@@ -18,7 +18,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 AC_PREREQ([2.69])
-AC_INIT([libMhO], [0.1-alpha], [kaszycki@mail.com], [libmho])
+AC_INIT([libMhO], [0.2], [kaszycki@mail.com], [libmho])
 AC_CONFIG_SRCDIR([include/libmho/load.h])
 AC_CONFIG_HEADERS([config.h])
 AC_CONFIG_AUX_DIR([build-aux])
