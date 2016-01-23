@@ -72,7 +72,7 @@ mhodump.o: mhodump.c ../include/libmho.h ../include/libmho/libmho.h \
   /usr/include/sys/_types/_ucontext.h /usr/include/sys/resource.h \
   /usr/include/alloca.h /usr/include/sys/_types/_ct_rune_t.h \
   /usr/include/sys/_types/_rune_t.h /usr/include/string.h \
-  /usr/include/strings.h /usr/include/secure/_string.h version.h
+  /usr/include/strings.h /usr/include/secure/_string.h version.h cow.h
 
 ../include/libmho.h:
 
@@ -321,3 +321,5 @@ mhodump.o: mhodump.c ../include/libmho.h ../include/libmho/libmho.h \
 /usr/include/secure/_string.h:
 
 version.h:
+
+cow.h:

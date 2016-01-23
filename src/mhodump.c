@@ -21,6 +21,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <version.h>
+#include <cow.h>
 #undef __LIBMHO_INTERNAL
 
 static struct option OPTIONS[] = {
@@ -43,7 +44,8 @@ print_help()
 	       "   load-commands - Display load commands\n"
 	       "   segments      - Display segments (in one file)\n"
 	       "   sections      - Display sections (in one segment)\n"
-	       "   symbols       - Display symbols (in one section)\n");
+	       "   symbols       - Display symbols (in one section)\n"
+	       "There is also one easter milk (I meant egg)... Try to find it!\n");
 }
 
 typedef int     (*subcommand_t) (int, char **);
@@ -67,6 +69,7 @@ int		load_commands(int, char **);
 int		segments   (int, char **);
 int		sections   (int, char **);
 int		symbols    (int, char **);
+int		moo        (int, char **);
 
 int
 subcommand_not_found(int argc, char **argv)
@@ -86,6 +89,7 @@ get_subcommand(const char *name)
 	register_scmd(segments, "segments");
 	register_scmd(sections, "sections");
 	register_scmd(symbols, "symbols");
+	register_scmd(moo, "moo");
 #undef register_scmd
 	return subcommand_not_found;
 }
@@ -208,5 +212,12 @@ int
 symbols(int argc, char **argv)
 {
 	fprintf(stderr, "TODO :-(\n");
+	return 0;
+}
+
+int 
+moo(int argc, char **argv)
+{
+	puts(cow_said_characters);
 	return 0;
 }

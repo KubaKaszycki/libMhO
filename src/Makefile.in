@@ -121,7 +121,7 @@ CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
 LTLIBRARIES = $(noinst_LTLIBRARIES)
 libutilities_la_LIBADD =
-am_libutilities_la_OBJECTS = version.lo
+am_libutilities_la_OBJECTS = version.lo cow.lo
 libutilities_la_OBJECTS = $(am_libutilities_la_OBJECTS)
 AM_V_lt = $(am__v_lt_@AM_V@)
 am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
@@ -312,7 +312,7 @@ top_srcdir = @top_srcdir@
 noinst_LTLIBRARIES = libutilities.la
 mhodump_SOURCES = mhodump.c
 mhodump_LDADD = ../lib/libmho.la libutilities.la
-libutilities_la_SOURCES = version.c
+libutilities_la_SOURCES = version.c cow.c
 AM_CPPFLAGS = -I ../include
 all: all-am
 
@@ -421,6 +421,7 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/cow.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/mhodump.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/version.Plo@am__quote@
 
