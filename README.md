@@ -10,13 +10,13 @@ just for manipulating object files.
  - Endian interface
  - Data can be read by high-level, endian caring solutions, or just by fread.
  - API + CLI = **SUCCESS**
- - mho\_ and MHO\_ prefix before anything declared - namespace safety and clearness
+ - mho\` and MHO\` prefix before anything declared - namespace safety and clearness
  - Not limited by any standards
  - Good English (I'm on level B2)
 
 ## Building
 ### Prerequirements
-**SKIP THIS STEP IF YOU HAVE ALREADY FILES: _Makefile.in_, _configure.ac_, _configure_ and _m4/libtool.m4_**
+**SKIP THIS STEP IF YOU HAVE ALREADY FILES: `Makefile.in`, `configure.ac`, `configure` and `m4/libtool.m4`**
  - [Perl](http://www.perl.org)
  - [GNU M4](http://www.gnu.org/software/m4)
  - [GNU Autoconf](http://www.gnu.org/software/autoconf)
@@ -31,84 +31,84 @@ try using binary distributions. In such case please download:
  - Basic modules for Perl (when running autoconf or automake you will notice if you did not download required module)
  - Autoconf (should be one package)
  - Automake (should be one package)
- - Libtool (should be one package, if also there is a package called _libtool-dev_, get it too)
+ - Libtool (should be one package, if also there is a package called `libtool-dev`, get it too)
  - autoconf-dev (if present)
 
 ### Configuration
 #### Getting M4 files for libtool and ltmain.sh
-The _.gitignores_ say there should be omitted some files, all matching regular expression _^l[it][a-z~]+\.m4$_. These files are **Libtool macro definitions**. They are essential when configuring, so they
-need to be fetched. Also, one file in _build-aux_ is omitted the same reason - _ltmain.sh_. All these files can be grabbed by doing:
+The `.gitignores` say there should be omitted some files, all matching regular expression `^l[it][a-z~]+\.m4$`. These files are **Libtool macro definitions**. They are essential when configuring, so they
+need to be fetched. Also, one file in `build-aux` is omitted the same reason - `ltmain.sh`. All these files can be grabbed by doing:
 	libtoolize -c
-The _-c_ option is not required, but it makes libtoolize copy, not symlink files, which is better. If some files left, you may use _-f_ option to force overwriting them.
+The `-c` option is not required, but it makes libtoolize copy, not symlink files, which is better. If some files left, you may use `-f` option to force overwriting them.
 
 #### Loading macros
 This step will probably last the most, because aclocal is pretty slow. To link all M4 files into one, we use:
 	aclocal -I m4
-This will collect all files in system, Automake's and our location. Yes, option _-I_ is similar to one in GCC; it is used to specify include directories for M4. But including is term different in GCC and
+This will collect all files in system, Automake's and our location. Yes, option `-I` is similar to one in GCC; it is used to specify include directories for M4. But including is term different in GCC and
 M4. A macro file is included if it contains definition, **not override** of macro called from another file. I don't know what about infinite recursion. This step probably can't be done by you manually.
 Trust aclocal. I do.
 
 #### Getting configuration file
-**AFTER THIS STEP DO NOT RUN _./configure_! THIS IS NOT THE LAST!**
-The _configure.ac_ seems to be a M4 file, it's similar to Libtool ones. Instead of definitions, there are more calls. This is a **configuration script template**. You can modify it, but you may spoil
-something. The best way is to trust me and use the file unchanged. The command to create _configure_ shell script (very portable) from _configure.ac_ is:
+**AFTER THIS STEP DO NOT RUN `./configure`! THIS IS NOT THE LAST!**
+The `configure.ac` seems to be a M4 file, it's similar to Libtool ones. Instead of definitions, there are more calls. This is a **configuration script template**. You can modify it, but you may spoil
+something. The best way is to trust me and use the file unchanged. The command to create `configure` shell script (very portable) from `configure.ac` is:
 	autoconf
 This will do the task.
 
 #### Creating Makefile.in
-**AFTER THIS STEP DO NOT RUN MAKE! THIS DOES NOT CREATE _Makefile_ files!**
+**AFTER THIS STEP DO NOT RUN MAKE! THIS DOES NOT CREATE `Makefile` files!**
 
-There are files called _Makefile.am_ in most subdirectories. We need _Makefile_ files. The middle step in this conversion is _Makefile.in_. To generate it, a program has to trace substainations in autoconf,
-place variables in _Makefile.in_, push _Makefile.am_ there and add some make rules. This seems complete Makefile. **NO!** This has many sequences like:
+There are files called `Makefile.am` in most subdirectories. We need `Makefile` files. The middle step in this conversion is `Makefile.in`. To generate it, a program has to trace substainations in autoconf,
+place variables in `Makefile.in`, push `Makefile.am` there and add some make rules. This seems complete Makefile. **NO!** This has many sequences like:
 	CC=@CC@
-Your C compiler is not _@CC@_.
-To generate _Makefile_s, call
+Your C compiler is not `@CC@`.
+To generate `Makefile`s, call
 	automake --add-missing --copy
-This will also add missing auxiliary files. _--copy_ can be omitted, but this will result in symlinking instead of copying files.
+This will also add missing auxiliary files. `--copy` can be omitted, but this will result in symlinking instead of copying files.
 
 #### Configuring
-Finally the last step! The name of this step in fact comes from name of configure script: _configure_. You can run it using:
- - _./configure_ - Use system shell
- - _sh configure_ - Use system shell
- - _bash configure_ - Use GNU bash (recommended)
- - _xxx configure_ - Use _xxx_ shell
+Finally the last step! The name of this step in fact comes from name of configure script: `configure`. You can run it using:
+ - `./configure` - Use system shell
+ - `sh configure` - Use system shell
+ - `bash configure` - Use GNU bash (recommended)
+ - `xxx configure` - Use `xxx` shell
 You may also pass some command-line arguments. The most important are:
- - _--disable-shared_ - Build only static libraries (default: no)
- - _--disable-static_ - Build only shared libraries (default: no)
+ - `--disable-shared` - Build only static libraries (default: no)
+ - `--disable-static` - Build only shared libraries (default: no)
 Note that disabling both library types is stupid.
- - _--without-pic_ - Disable Position Independ Compilation (PIC). This will probably have same consequences as _--disable-shared_. (default: no)
- - _--prefix=/my/prefix_ - Change prefix to _/my/prefix_ (default: _/usr/local_)
- - _CC=my-cc_ - Change C compiler to _my-cc_
- - _--exec-prefix=/binary/prefix_ - Change prefix for platform dependent files to _/binary/prefix_ (default: the value of _--prefix_)
- - _-C_ - Cache test results, speed up reconfigurations
- - _--enable-silent-rules_ - Enable silent rules (e.g. _CC test.lo_ instead of _libtool: link: gcc -o test.lo test.c_)
-There are many other possibilities; invoke configure with _--help_ parameter to get more help.
+ - `--without-pic` - Disable Position Independ Compilation (PIC). This will probably have same consequences as `--disable-shared`. (default: no)
+ - `--prefix=/my/prefix` - Change prefix to `/my/prefix` (default: `/usr/local`)
+ - `CC=my-cc` - Change C compiler to `my-cc`
+ - `--exec-prefix=/binary/prefix` - Change prefix for platform dependent files to `/binary/prefix` (default: the value of `--prefix`)
+ - `-C` - Cache test results, speed up reconfigurations
+ - `--enable-silent-rules` - Enable silent rules (e.g. `CC test.lo` instead of `libtool: link: gcc -o test.lo test.c`)
+There are many other possibilities; invoke configure with `--help` parameter to get more help.
 
 ### Compilation
-To compile the package, run _make_.
+To compile the package, run `make`.
 
 #### Reconfiguration
-Some helpers will re-generate all files you have generated. They also will call a command, called _config.status_. This magic file is a _configure_ result manager. It will run:
+Some helpers will re-generate all files you have generated. They also will call a command, called `config.status`. This magic file is a `configure` result manager. It will run:
 	config.status --recheck
 	config.status
-The first will re-run configure, with all settings same as first. Second will regenerate all _Makefile_s, etc.
+The first will re-run configure, with all settings same as first. Second will regenerate all `Makefile`s, etc.
 
 #### Compilation
-Depending on your settings, you may have long lines with compilation commands or short mnemonics. The compilation will first compile all source files to objects (this has mnemonic _CC_ or GCC option
-_-c_), then link them (this has mnemonic _CCLD_ or no GCC option _-c_). The second time _make_ runs, it will recompile only these objects whose source files changed and relink these binaries, whose
+Depending on your settings, you may have long lines with compilation commands or short mnemonics. The compilation will first compile all source files to objects (this has mnemonic `CC` or GCC option
+`-c`), then link them (this has mnemonic `CCLD` or no GCC option `-c`). The second time `make` runs, it will recompile only these objects whose source files changed and relink these binaries, whose
 objects changed.
 
 #### Tests
-To test libMhO, run _make check_.
+To test libMhO, run `make check`.
 
 #### Installation
-To install platform-independent files in _prefix_ and others in _exec-prefix_, invoke:
+To install platform-independent files in `prefix` and others in `exec-prefix`, invoke:
 	make install
 You can revert it:
 	make uninstall
 
 #### Invoking a rule
-Imagine a make rule _myrule_. Invoking it is simple:
+Imagine a make rule `myrule`. Invoking it is simple:
 	make myrule
 
 #### More rules
