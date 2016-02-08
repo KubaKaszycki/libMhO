@@ -17,6 +17,14 @@
 
 EXTRA_DIST = update_makefile_am.sh
 nobase_include_HEADERS = \
+libmho/command.h \
+libmho/cputype.h \
+libmho/filetype.h \
+libmho/io.h \
+libmho/libmho.h \
 libmho/load.h \
 libmho/magic.h \
-libmho/types.h 
+libmho/prot.h \
+libmho/swap.h \
+libmho/types.h \
+libmho.h 

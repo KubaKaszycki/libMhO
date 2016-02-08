@@ -17,6 +17,7 @@
 
 #define __LIBMHO_INTERNAL
 #include <libmho.h>
+#include <config.h>
 #include <getopt.h>
 #include <stdlib.h>
 #include <string.h>
@@ -164,27 +165,41 @@ header(int argc, char **argv)
 		}
 		return 0;
 	}
-	printf("CPU type: 0x%x (%s)\n", (short)header.cputype, mho_ct2s((short)header.cputype));
-	printf("CPU sub-type: 0x%x (%s)\n", (short)(header.cpusubtype & MHO_CPU_SUBTYPE_MASK), mho_cst2s((short)header.cputype, (short)(header.cpusubtype & MHO_CPU_SUBTYPE_MASK)));
+	printf("CPU type: 0x%x (%s)\n", header.cputype, mho_ct2s(header.cputype));
+	printf("CPU sub-type: 0x%x (%s)\n", header.cpusubtype & MHO_CPU_SUBTYPE_MASK, mho_cst2s(header.cputype, header.cpusubtype & MHO_CPU_SUBTYPE_MASK));
 	printf("File type: %hd (%s)\n", (short)header.filetype, mho_ft2s((short)header.filetype));
 	printf("Commands count: %d\n", header.ncmds);
 	printf("Commands sumaric size: %d\n", header.sizeofcmds);
 	printf("Flags:");
-	if (header.flags & MHO_FLAG_NOUNDEFS) {
-		printf(" MH_NOUNDEFS");
-	}
-	if (header.flags & MHO_FLAG_INCRLINK) {
-		printf(" MH_INCRLINK");
-	}
-	if (header.flags & MHO_FLAG_DYLDLINK) {
-		printf(" MH_DYLDLINK");
-	}
-	if (header.flags & MHO_FLAG_BINDATLOAD) {
-		printf(" MH_BINDATLOAD");
-	}
-	if (header.flags & MHO_FLAG_PREBOUND) {
-		printf(" MH_PREBOUND");
-	}
+#define __flag__(x) do { \
+if(header.flags & MHO_FLAG_##x) { \
+printf(" MH_" #x); \
+} \
+} while(0)
+	__flag__(NOUNDEFS);
+	__flag__(INCRLINK);
+	__flag__(DYLDLINK);
+	__flag__(BINDATLOAD);
+	__flag__(PREBOUND);
+	__flag__(SPLIT_SEGS);
+	__flag__(LAZY_INIT);
+	__flag__(TWOLEVEL);
+	__flag__(FORCE_FLAT);
+	__flag__(NOMULTIDEFS);
+	__flag__(NOFIXPREBINDING);
+	__flag__(PREBINDABLE);
+	__flag__(ALLMODSBOUND);
+	__flag__(SUBSECTIONS_VIA_SYMBOLS);
+	__flag__(CANONICAL);
+	__flag__(WEAK_DEFINES);
+	__flag__(BINDS_TO_WEAK);
+	__flag__(ALLOW_STACK_EXECUTION);
+	__flag__(ROOT_SAFE);
+	__flag__(SETUID_SAFE);
+	__flag__(NO_REEXPORTED_DYLIBS);
+	__flag__(PIE);
+	__flag__(DEAD_STRIPPABLE_DYLIB);
+#undef __flag__
 	printf("\n");
 	fclose(stream);
 	return 0;
@@ -193,7 +208,19 @@ header(int argc, char **argv)
 int
 load_commands(int argc, char **argv)
 {
-	fprintf(stderr, "TODO :-(\n");
+	FILE* stream = fopen(argv[1], "r");
+	struct mho_header hdr = mho_read_header(stream);
+	if(mho_magic_fat(hdr.magic)) {
+		fprintf(stderr, "Universal binaries not supported yet\n");
+		fclose(stream);
+		return 1;
+	}
+	struct mho_load_command *lc;
+	for(uint32_t i = 0; i < hdr.ncmds; i++) {
+		mho_read_command(stream, (void**) &lc);
+		printf("Command #%d:\n", i + 1);
+		printf("\tType: %d\n", lc->cmd);
+	}
 	return 0;
 }
 int

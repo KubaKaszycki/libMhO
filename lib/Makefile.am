@@ -16,5 +16,6 @@
 
 lib_LTLIBRARIES = libmho.la
 libmho_la_SOURCES = magic.c swap.c cputypes.c io.c filetype.c
+libmho_la_LIBADD = ../gnulib/libgnu.a
 
-AM_CPPFLAGS = -I ../include
+AM_CPPFLAGS = -I ../include -I ../gnulib

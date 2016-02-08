@@ -24,7 +24,6 @@ AC_CONFIG_HEADERS([config.h])
 AC_CONFIG_AUX_DIR([build-aux])
 AC_CONFIG_MACRO_DIR([m4])
 AM_INIT_AUTOMAKE([foreign])
-LT_INIT
 
 AH_TOP([/*
  * Copyright (c) 2016 Jakub Kaszycki
@@ -46,6 +45,9 @@ AH_TOP([/*
 
 # Checks for programs.
 AC_PROG_CC
+gl_EARLY
+gl_INIT
+LT_INIT
 
 # Checks for libraries.
 
@@ -58,10 +60,19 @@ AC_TYPE_UINT8_T
 AC_TYPE_UINT16_T
 AC_TYPE_UINT32_T
 AC_TYPE_UINT64_T
+gl_STDLIB_H
+gl_STDIO_H
+gl_UNISTD_H
 
 # Checks for library functions.
+gl_FUNC_MALLOC_GNU
+gl_FUNC_FSEEK
+gl_FUNC_FCLOSE
+gl_FUNC_FOPEN
+gl_FUNC_GETOPT_GNU
 
 AC_CONFIG_FILES([Makefile
+		 gnulib/Makefile
 		 include/Makefile
 		 lib/Makefile
 		 src/Makefile])
