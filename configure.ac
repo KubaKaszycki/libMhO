@@ -44,6 +44,7 @@ AH_TOP([/*
  */])
 
 # Checks for programs.
+JK_PROG_DOXYGEN
 AC_PROG_CC
 gl_EARLY
 gl_INIT
@@ -72,6 +73,7 @@ gl_FUNC_FOPEN
 gl_FUNC_GETOPT_GNU
 
 AC_CONFIG_FILES([Makefile
+		 doc/Makefile
 		 gnulib/Makefile
 		 include/Makefile
 		 lib/Makefile

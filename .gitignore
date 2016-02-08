@@ -17,3 +17,5 @@ config.log
 autoscan.log
 configure.scan
 autom4te.cache
+.#*
+.\#*
