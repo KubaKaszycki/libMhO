@@ -160,6 +160,13 @@ struct mho_header mho_read_header(FILE* stream) {
 	return result;
 }
 
+struct mho_header_64 mho_read_header_64(FILE* stream) {
+	struct mho_header hdr = mho_read_header(stream);
+	struct mho_header_64 result;
+	memcpy(&result, &hdr, sizeof(struct mho_header));
+	return result;
+}
+
 struct mho_fat_header mho_read_fhdr(FILE* stream) {
 	struct mho_fat_header result;
 	result.magic = mho_read_u32(stream);

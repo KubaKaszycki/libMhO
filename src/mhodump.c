@@ -165,9 +165,10 @@ header(int argc, char **argv)
 			printf("\tAlignment: %u\n", arch.size);
 		}
 		return 0;
+	} else {
+		printf("CPU type: 0x%x (%s)\n", header.cputype, mho_ct2s(header.cputype));
+        	printf("CPU sub-type: 0x%x (%s)\n", header.cpusubtype & MHO_CPU_SUBTYPE_MASK, mho_cst2s(header.cputype, header.cpusubtype & MHO_CPU_SUBTYPE_MASK));
 	}
-	printf("CPU type: 0x%x (%s)\n", header.cputype, mho_ct2s(header.cputype));
-	printf("CPU sub-type: 0x%x (%s)\n", header.cpusubtype & MHO_CPU_SUBTYPE_MASK, mho_cst2s(header.cputype, header.cpusubtype & MHO_CPU_SUBTYPE_MASK));
 	printf("File type: %hd (%s)\n", (short)header.filetype, mho_ft2s((short)header.filetype));
 	printf("Commands count: %d\n", header.ncmds);
 	printf("Commands sumaric size: %d\n", header.sizeofcmds);
@@ -202,6 +203,10 @@ printf(" MH_" #x); \
 	__flag__(DEAD_STRIPPABLE_DYLIB);
 #undef __flag__
 	printf("\n");
+	if(mho_magic_64(header.magic)) {
+		struct mho_header_64* hdr64 = (struct mho_header_64*) &header;
+		printf("Reserved (no purpose): 0x%x\n", hdr64->reserved);
+	}
 	fclose(stream);
 	return 0;
 }

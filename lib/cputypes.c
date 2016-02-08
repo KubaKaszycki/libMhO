@@ -33,35 +33,37 @@ mho_ct2s(mho_cpu_type_t type)
 	case MHO_CT_NS32332:
 		return "NS32332 (National Semiconductor)";
 	case MHO_CT_MC680x0:
-		return "m68k";
+		return "M68k (Motorola)";
 	case MHO_CT_I386:
 		return "x86 (Intel)";
 	case MHO_CT_X86_64:
 		return "x86 64-bit (Intel)";
 	case MHO_CT_MIPS:
-		return "mips";
+		return "Mips (Mips Computer Systems)";
 	case MHO_CT_NS32532:
 		return "NS32532 (National Semiconductor)";
 	case MHO_CT_HPPA:
-		return "hppa";
+		return "HPPA (Hewlett-Packard)";
 	case MHO_CT_ARM:
-		return "arm";
+		return "ARM (ARM Holdings)";
 	case MHO_CT_ARM64:
-		return "arm64";
+		return "AArch64 (ARM Holdings)";
 	case MHO_CT_MC88000:
-		return "m88k";
+		return "M88k (Motorola)";
 	case MHO_CT_SPARC:
-		return "sparc";
+		return "SPARC (Sun)";
+	case MHO_CT_SPARC64:
+		return "SPARC 64-bit (Sun)";
 	case MHO_CT_I860:
-		return "i860-big";
+		return "i860 big endian (Intel)";
 	case MHO_CT_I860_LITTLE:
-		return "i860";
+		return "i860 (Intel)";
 	case MHO_CT_RS6000:
-		return "rs6000";
+		return "RS6000 (IBM)";
 	case MHO_CT_POWERPC:
-		return "ppc";
+		return "PowerPC (Apple+IBM+Motorola)";
 	case MHO_CT_POWERPC64:
-		return "ppc64";
+		return "PowerPC 64-bit (Apple+IBM+Motorola)";
 	default:
 		return "unknown";
 	}
@@ -222,6 +224,19 @@ mho_cst2s(mho_cpu_type_t type, mho_cpu_subtype_t subtype)
 			return "Pentium 4 (64-bit)";
 		default:
 			return "unknown x86 (64-bit)";
+		}
+	case MHO_CT_MIPS:
+		switch(subtype) {
+		case MHO_CST_MIPS_ALL:
+			return "any Mips";
+		case MHO_CST_MIPS_R2300:
+			return "R2300";
+		case MHO_CST_MIPS_R2600:
+			return "R2600";
+		case MHO_CST_MIPS_R2800:
+			return "R2800";
+		case MHO_CST_MIPS_R2000a:
+			return "R2000a";
 		}
 	default:
 		return "unknown";
