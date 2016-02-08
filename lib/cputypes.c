@@ -237,6 +237,118 @@ mho_cst2s(mho_cpu_type_t type, mho_cpu_subtype_t subtype)
 			return "R2800";
 		case MHO_CST_MIPS_R2000a:
 			return "R2000a";
+		default:
+			return "unknown Mips";
+		}
+	case MHO_CT_MC680x0:
+		switch(subtype) {
+		case MHO_CST_MC68030:
+			return "MC68030";
+		case MHO_CST_MC68040:
+			return "MC68040";
+		case MHO_CST_MC68030_ONLY:
+			return "MC68030 only";
+		default:
+			return "unknown M68K";
+		}
+	case MHO_CT_HPPA:
+		switch(subtype) {
+		case MHO_CST_HPPA_7100:
+			return "7100";
+		case MHO_CST_HPPA_7100LC:
+			return "7100LC";
+		default:
+			return "unknown HPPA";
+		}
+	case MHO_CT_ARM:
+		switch(subtype) {
+		case MHO_CST_ARM_ALL:
+			return "any ARM";
+		case MHO_CST_ARM_A500_ARCH:
+			return "A500 ARCH";
+		case MHO_CST_ARM_A500:
+			return "A500";
+		case MHO_CST_ARM_A440:
+			return "A440";
+		case MHO_CST_ARM_M4:
+			return "M4";
+		case MHO_CST_ARM_V4T:
+			return "V4T";
+		case MHO_CST_ARM_V6:
+			return "V6";
+		case MHO_CST_ARM_V5TEJ:
+			return "V5TEJ";
+		case MHO_CST_XSCALE:
+			return "XSCALE";
+		case MHO_CST_ARM_V7:
+			return "V7";
+		case MHO_CST_ARM_V7F:
+			return "V7F";
+		case MHO_CST_ARM_V7S:
+			return "V7S";
+		case MHO_CST_ARM_V7K:
+			return "V7K";
+		case MHO_CST_ARM_V6M:
+			return "V6M";
+		case MHO_CST_ARM_V7M:
+			return "V7M";
+		case MHO_CST_ARM_V7EM:
+			return "V7EM";
+		case MHO_CST_ARM_V8:
+			return "V8";
+		default:
+			return "unknown ARM";
+		}
+	case MHO_CT_ARM64:
+		switch(subtype) {
+		case MHO_CST_ARM64_ALL:
+			return "any ARM (64-bit)";
+		case MHO_CST_ARM64_V8:
+			return "V8 (64-bit)";
+		default:
+			return "unknown ARM (64-bit)";
+		}
+	case MHO_CT_MC88000:
+		switch(subtype) {
+		case MHO_CST_MC88000_ALL:
+			return "any M88K";
+		default:
+			return "unknown M88K";
+		}
+	case MHO_CT_POWERPC:
+		switch(subtype) {
+		default:
+			return "unknown PowerPC";
+		}
+	case MHO_CT_POWERPC64:
+		switch(subtype) {
+		default:
+			return "unknown PowerPC (64-bit)";
+		}
+	case MHO_CT_I860:
+		switch(subtype) {
+		default:
+			return "unknown I860";
+		}
+	case MHO_CT_I860_LITTLE:
+		switch(subtype) {
+		default:
+			return "unknown I860 (little-endian)";
+		}
+	case MHO_CT_RS6000:
+		switch(subtype) {
+		default:
+			return "unknown RS6000";
+		}
+	case MHO_CT_SPARC:
+		switch(subtype) {
+		default:
+			return "unknown SPARC";
+		}
+	case MHO_CT_SPARC64:
+		switch(subtype) {
+		default:
+			return "unknown SPARC";
 		}
 	default:
 		return "unknown";

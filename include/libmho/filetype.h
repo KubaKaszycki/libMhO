@@ -19,15 +19,52 @@
 #ifndef _LIBMHO_FILETYPE_H
 #define _LIBMHO_FILETYPE_H
 
+/**
+ * Object/relocatable file.
+ */
 #define MHO_OBJECT 1
+
+/**
+ * Executable file.
+ */
 #define MHO_EXECUTE 2
+
+/**
+ * Fixed VM shared library.
+ */
 #define MHO_FVMLIB 3
+
+/**
+ * Core file.
+ */
 #define MHO_CORE 4
+
+/**
+ * Preloaded executable file.
+ */
 #define MHO_PRELOAD 5
+
+/**
+ * Dynamic library.
+ */
 #define MHO_DYLIB 6
+
+/**
+ * Dynamic linker.
+ */
 #define MHO_DYLINKER 7
+
+/**
+ * Bundle.
+ */
 #define MHO_BUNDLE 8
 
-const char     *mho_ft2s(int);
+/**
+ * Get a string which describes the file type best. The result
+ * is not writable.
+ * @param filetype file type
+ * @returns description, no need to be freed
+ */
+const char     *mho_ft2s(int filetype);
 
 #endif

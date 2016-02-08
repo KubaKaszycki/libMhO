@@ -189,7 +189,7 @@
 #define MHO_CST_VEO_3 3
 #define MHO_CST_VEO_4 4
 
-	const char     *mho_ct2s(mho_cpu_type_t);
-	const char     *mho_cst2s(mho_cpu_type_t, mho_cpu_subtype_t);
+const char     *mho_ct2s(mho_cpu_type_t);
+const char     *mho_cst2s(mho_cpu_type_t, mho_cpu_subtype_t);
 
 #endif

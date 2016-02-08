@@ -29,15 +29,56 @@ struct mho_dylib mho_read_dylib(FILE * stream);
 struct mho_fvmlib mho_read_fvmlib(FILE * stream);
 void mho_read_command(FILE * stream, void **result);
 
+/**
+ * The object file has no undefined references.
+ */
 #define MHO_FLAG_NOUNDEFS 0x1
+
+/**
+ * The output file is output of an incremental link of base file.
+ */
 #define MHO_FLAG_INCRLINK 0x2
+
+/**
+ * The object file is input for dynamic linker and can't be statically linked again.
+ */
 #define MHO_FLAG_DYLDLINK 0x4
+
+/**
+ * The object file's undefined references are bound by linker on load.
+ */
 #define MHO_FLAG_BINDATLOAD 0x8
+
+/**
+ * The file has its undefined references prebound.
+ */
 #define MHO_FLAG_PREBOUND 0x10
+
+/**
+ * The file has its read-only and read-write segments split.
+ */
 #define MHO_FLAG_SPLIT_SEGS 0x20
+
+/**
+ * The shared library init routine is to be run lazily via catching memory
+ * faults to its writeable segments.
+ * @deprecated obsolete
+ */
 #define MHO_FLAG_LAZY_INIT 0x40
+
+/**
+ * The image is using two-level name space bindings.
+ */
 #define MHO_FLAG_TWOLEVEL 0x80
+
+/**
+ * The executable is forcing all images to use flat name space bindings.
+ */
 #define MHO_FLAG_FORCE_FLAT 0x100
+
+/**
+ * 
+ */
 #define MHO_FLAG_NOMULTIDEFS 0x200
 #define MHO_FLAG_NOFIXPREBINDING 0x400
 #define MHO_FLAG_PREBINDABLE 0x800
@@ -52,43 +93,6 @@ void mho_read_command(FILE * stream, void **result);
 #define MHO_FLAG_NO_REEXPORTED_DYLIBS 0x100000
 #define MHO_FLAG_PIE 0x200000
 #define MHO_FLAG_DEAD_STRIPPABLE_DYLIB 0x400000
-
-#define MHO_LC_REQ_DYLD 0x80000000
-#define MHO_LC_SEGMENT 1
-#define MHO_LC_SYMTAB 2
-#define MHO_LC_SYMSEG 3
-#define MHO_LC_THREAD 4
-#define MHO_LC_UNIXTHREAD 5
-#define MHO_LC_LOADFVMLIB 6
-#define MHO_LC_IDFVMLIB 7
-#define MHO_LC_IDENT 8
-#define MHO_LC_FVMFILE 9
-#define MHO_LC_PREPAGE 10
-#define MHO_LC_DYSYMTAB 11
-#define MHO_LC_LOAD_DYLIB 12
-#define MHO_LC_ID_DYLIB 13
-#define MHO_LC_LOAD_DYLINKER 14
-#define MHO_LC_ID_DYLINKER 15
-#define MHO_LC_PREBOUND_DYLIB 16
-#define MHO_LC_ROUTINES 17
-#define MHO_LC_SUB_FRAMEWORK 18
-#define MHO_LC_SUB_UMBRELLA 19
-#define MHO_LC_SUB_CLIENT 20
-#define MHO_LC_SUB_LIBRARY 21
-#define MHO_LC_TWOLEVEL_HINTS 22
-#define MHO_LC_PREBIND_CKSUM 23
-#define MHO_LC_LOAD_WEAK_DYLIB (24 | MHO_LC_REQ_DYLD)
-#define MHO_LC_SEGMENT_64 25
-#define MHO_LC_ROUTINES_64 26
-#define MHO_LC_UUID 27
-#define MHO_LC_RPATH (28 | MHO_LC_REQ_DYLD)
-#define MHO_LC_CODE_SIGNATURE 29
-#define MHO_LC_SEGMENT_SPLIT_INFO 30
-#define MHO_LC_REEXPORT_DYLIB (31 | MHO_LC_REQ_DYLD)
-#define MHO_LC_LAZY_LOAD_DYLIB 32
-#define MHO_LC_ENCRYPTION_INFO 33
-#define MHO_LC_DYLD_INFO 34
-#define MHO_LC_DYLD_INFO_ONLY (MHO_LC_DYLD_INFO | MHO_LC_REQ_DYLD)
 
 #define MHO_SEG_FLAG_HIGHVM 0x1
 #define MHO_SEG_FLAG_FVMLIB 0x2
