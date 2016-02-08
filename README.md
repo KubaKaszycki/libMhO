@@ -49,7 +49,9 @@ This step will probably last the most, because aclocal is pretty slow. To link a
 	aclocal -I m4
 
 This will collect all files in system, Automake's and our location. Yes, option `-I` is similar to one in GCC; it is used to specify include directories for M4. But including is term different in GCC and
-M4. A macro file is included if it contains definition, **not override** of macro called from another file. I don't know what about infinite recursion. This step probably can't be done by you manually.
+M4. A macro file is included if it contains definition, **not override** of macro called from another file. I don't know what about infinite recursion.
+
+This step probably can't be done by you manually.
 Trust aclocal. I do.
 
 #### Getting configuration file
