@@ -55,9 +55,10 @@ something. The best way is to trust me and use the file unchanged. The command t
 	autoconf
 This will do the task.
 
-#### Creating _Makefile.in_s
-**AFTER THIS STEP DO NOT RUN MAKE! THIS DOES NOT CREATE _Makefile_s!**
-There are files called _Makefile.am_ in most subdirectories. We need _Makefile_s. The middle step in this conversion is _Makefile.in_. To generate it, a program has to trace substainations in autoconf,
+#### Creating Makefile.in
+**AFTER THIS STEP DO NOT RUN MAKE! THIS DOES NOT CREATE _Makefile_ files!**
+
+There are files called _Makefile.am_ in most subdirectories. We need _Makefile_ files. The middle step in this conversion is _Makefile.in_. To generate it, a program has to trace substainations in autoconf,
 place variables in _Makefile.in_, push _Makefile.am_ there and add some make rules. This seems complete Makefile. **NO!** This has many sequences like:
 	CC=@CC@
 Your C compiler is not _@CC@_.
@@ -111,4 +112,4 @@ Imagine a make rule _myrule_. Invoking it is simple:
 	make myrule
 
 #### More rules
-Read [http://www.gnu.org/software/automake/manual/automake.html](Automake manual)
+Read [GNU Automake manual](http://www.gnu.org/software/automake/manual/automake.html)
