@@ -13,6 +13,7 @@ just for manipulating object files.
  - mho\_ and MHO\_ prefix before anything declared - namespace safety and clearness
  - Not limited by any standards
  - Good English (I'm on level B2)
+
 ## Building
 ### Prerequirements
 **SKIP THIS STEP IF YOU HAVE ALREADY FILES: _Makefile.in_, _configure.ac_, _configure_ and _m4/libtool.m4_**
@@ -21,6 +22,7 @@ just for manipulating object files.
  - [GNU Autoconf](http://www.gnu.org/software/autoconf)
  - [GNU Automake](http://www.gnu.org/software/automake)
  - [GNU Libtool](http://www.gnu.org/software/libtool)
+
 Note that M4 does not depend on Perl.
 Please install these in order given to get more benefits from co-installation and do this task faster. Notice that in fact instead of downloading sources (which may be heavy, like of Perl), you **may**
 try using binary distributions. In such case please download:
