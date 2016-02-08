@@ -38,12 +38,16 @@ try using binary distributions. In such case please download:
 #### Getting M4 files for libtool and ltmain.sh
 The `.gitignores` say there should be omitted some files, all matching regular expression `^l[it][a-z~]+\.m4$`. These files are **Libtool macro definitions**. They are essential when configuring, so they
 need to be fetched. Also, one file in `build-aux` is omitted the same reason - `ltmain.sh`. All these files can be grabbed by doing:
+
 	libtoolize -c
+
 The `-c` option is not required, but it makes libtoolize copy, not symlink files, which is better. If some files left, you may use `-f` option to force overwriting them.
 
 #### Loading macros
 This step will probably last the most, because aclocal is pretty slow. To link all M4 files into one, we use:
+
 	aclocal -I m4
+
 This will collect all files in system, Automake's and our location. Yes, option `-I` is similar to one in GCC; it is used to specify include directories for M4. But including is term different in GCC and
 M4. A macro file is included if it contains definition, **not override** of macro called from another file. I don't know what about infinite recursion. This step probably can't be done by you manually.
 Trust aclocal. I do.
@@ -52,7 +56,9 @@ Trust aclocal. I do.
 **AFTER THIS STEP DO NOT RUN `./configure`! THIS IS NOT THE LAST!**
 The `configure.ac` seems to be a M4 file, it's similar to Libtool ones. Instead of definitions, there are more calls. This is a **configuration script template**. You can modify it, but you may spoil
 something. The best way is to trust me and use the file unchanged. The command to create `configure` shell script (very portable) from `configure.ac` is:
+
 	autoconf
+
 This will do the task.
 
 #### Creating Makefile.in
@@ -60,10 +66,14 @@ This will do the task.
 
 There are files called `Makefile.am` in most subdirectories. We need `Makefile` files. The middle step in this conversion is `Makefile.in`. To generate it, a program has to trace substainations in autoconf,
 place variables in `Makefile.in`, push `Makefile.am` there and add some make rules. This seems complete Makefile. **NO!** This has many sequences like:
+
 	CC=@CC@
+
 Your C compiler is not `@CC@`.
 To generate `Makefile`s, call
+
 	automake --add-missing --copy
+
 This will also add missing auxiliary files. `--copy` can be omitted, but this will result in symlinking instead of copying files.
 
 #### Configuring
@@ -89,8 +99,10 @@ To compile the package, run `make`.
 
 #### Reconfiguration
 Some helpers will re-generate all files you have generated. They also will call a command, called `config.status`. This magic file is a `configure` result manager. It will run:
+
 	config.status --recheck
 	config.status
+
 The first will re-run configure, with all settings same as first. Second will regenerate all `Makefile`s, etc.
 
 #### Compilation
@@ -103,12 +115,16 @@ To test libMhO, run `make check`.
 
 #### Installation
 To install platform-independent files in `prefix` and others in `exec-prefix`, invoke:
+
 	make install
+
 You can revert it:
+
 	make uninstall
 
 #### Invoking a rule
 Imagine a make rule `myrule`. Invoking it is simple:
+
 	make myrule
 
 #### More rules
