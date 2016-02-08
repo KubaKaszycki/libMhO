@@ -1,5 +1,5 @@
-# libMhO
-Mach-O support library for non-Mach systems.
+# Overview
+LibMhO - Mach-O support library for non-Mach systems.
 ## Why this?
 This solution does not require any high-level libraries, such as BFD. It uses its own mechanism, prepared especially for Mach-O (anything prepared uniquely for this must be better than something generic).
 It also seems to be pretty fast (it may cause SIGSEGVs if file is inaccessible, because it does little checks). **This library does not support and will never support ar(5) archives!**. This library is
