@@ -1,3 +1,4 @@
+/* 
  * _GL_UNUSED_PARAMETER is a marker that can be appended to function
  * parameter declarations for parameters that are not used.  This helps to 
  * reduce warnings, such as from GCC -Wunused-parameter.  The syntax is as 

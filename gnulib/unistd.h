@@ -388,7 +388,7 @@ _GL_INLINE_HEADER_BEGIN
 
 #endif				/* _GL_CXXDEFS_H */
 
-/* The definition of _GL_ARG_NONNULL is copied here.  */
+/* The definition of _GL_ARG_NONNULL is copied here.
  * _GL_ARG_NONNULL((n,...,m)) tells the compiler and static analyzer tools
  * that the values passed as arguments n, ..., m must be non-NULL pointers.
  * n = 1 stands for the first argument, n = 2 for the second argument etc.  
