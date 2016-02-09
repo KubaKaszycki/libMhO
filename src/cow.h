@@ -16,7 +16,7 @@
  */
 
 #ifndef _COW_H
-#define _COW_H
+# define _COW_H
 
 extern const char *cow_said_characters;
 

@@ -16,15 +16,15 @@
  */
 
 #ifndef _LIBMHO_LIBMHO_H
-#define _LIBMHO_LIBMHO_H
+# define _LIBMHO_LIBMHO_H
 
-#include <libmho/command.h>
-#include <libmho/cputype.h>
-#include <libmho/filetype.h>
-#include <libmho/load.h>
-#include <libmho/magic.h>
-#include <libmho/prot.h>
-#include <libmho/swap.h>
-#include <libmho/types.h>
+# include <libmho/command.h>
+# include <libmho/cputype.h>
+# include <libmho/filetype.h>
+# include <libmho/load.h>
+# include <libmho/magic.h>
+# include <libmho/prot.h>
+# include <libmho/swap.h>
+# include <libmho/types.h>
 
 #endif

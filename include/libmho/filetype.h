@@ -17,47 +17,47 @@
  */
 
 #ifndef _LIBMHO_FILETYPE_H
-#define _LIBMHO_FILETYPE_H
+# define _LIBMHO_FILETYPE_H
 
 /**
  * Object/relocatable file.
  */
-#define MHO_OBJECT 1
+# define MHO_OBJECT 1
 
 /**
  * Executable file.
  */
-#define MHO_EXECUTE 2
+# define MHO_EXECUTE 2
 
 /**
  * Fixed VM shared library.
  */
-#define MHO_FVMLIB 3
+# define MHO_FVMLIB 3
 
 /**
  * Core file.
  */
-#define MHO_CORE 4
+# define MHO_CORE 4
 
 /**
  * Preloaded executable file.
  */
-#define MHO_PRELOAD 5
+# define MHO_PRELOAD 5
 
 /**
  * Dynamic library.
  */
-#define MHO_DYLIB 6
+# define MHO_DYLIB 6
 
 /**
  * Dynamic linker.
  */
-#define MHO_DYLINKER 7
+# define MHO_DYLINKER 7
 
 /**
  * Bundle.
  */
-#define MHO_BUNDLE 8
+# define MHO_BUNDLE 8
 
 /**
  * Get a string which describes the file type best. The result

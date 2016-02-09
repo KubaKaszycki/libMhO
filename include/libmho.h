@@ -17,8 +17,8 @@
  */
 
 #ifndef _LIBMHO_H
-#define _LIBMHO_H
+# define _LIBMHO_H
 
-#include <libmho/libmho.h>
+# include <libmho/libmho.h>
 
 #endif

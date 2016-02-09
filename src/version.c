@@ -21,7 +21,7 @@
 #include <config.h>
 #include <stdio.h>
 
-void 
+void
 print_version()
 {
 	printf("%s v%s\n", PACKAGE_NAME, PACKAGE_VERSION);

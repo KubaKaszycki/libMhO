@@ -18,25 +18,27 @@
 
 #include <libmho.h>
 
-const char* mho_ft2s(int ft) {
-	switch(ft) {
-		case MHO_OBJECT:
-			return "object";
-		case MHO_EXECUTE:
-			return "executable";
-		case MHO_FVMLIB:
-			return "fvmlib";
-		case MHO_CORE:
-			return "core";
-		case MHO_PRELOAD:
-			return "preloaded";
-		case MHO_DYLIB:
-			return "dynamic library";
-		case MHO_DYLINKER:
-			return "dynamic linker";
-		case MHO_BUNDLE:
-			return "bundle";
-		default:
-			return "unknown";
+const char     *
+mho_ft2s(int ft)
+{
+	switch (ft) {
+	case MHO_OBJECT:
+		return "object";
+	case MHO_EXECUTE:
+		return "executable";
+	case MHO_FVMLIB:
+		return "fvmlib";
+	case MHO_CORE:
+		return "core";
+	case MHO_PRELOAD:
+		return "preloaded";
+	case MHO_DYLIB:
+		return "dynamic library";
+	case MHO_DYLINKER:
+		return "dynamic linker";
+	case MHO_BUNDLE:
+		return "bundle";
+	default:
+		return "unknown";
 	}
 }

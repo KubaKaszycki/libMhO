@@ -25,8 +25,8 @@ void           *
 mho_swap_copy(const void *memory, const size_t size)
 {
 	uint8_t        *buf = (uint8_t *) malloc(size);
-	register const uint8_t *memory_uint8_t = (const uint8_t *)memory;
-	const size_t	bytes = size / 8;
+	register const uint8_t *memory_uint8_t = (const uint8_t *) memory;
+	const size_t    bytes = size / 8;
 	if (bytes == 0) {
 		return buf;
 	}
@@ -37,10 +37,10 @@ mho_swap_copy(const void *memory, const size_t size)
 	for (size_t i = 0; i < bytes; i++) {
 		buf[i] = memory_uint8_t[(bytes - i) - 1];
 	}
-	return (void *)buf;
+	return (void *) buf;
 }
 
-void 
+void
 mho_swap(void *memory, const size_t size)
 {
 	void           *copybuf = mho_swap_copy(memory, size);
@@ -48,13 +48,13 @@ mho_swap(void *memory, const size_t size)
 	free(copybuf);
 }
 
-uint8_t 
+uint8_t
 mho_swap8(uint8_t i)
 {
 	return i;
 }
 
-uint16_t 
+uint16_t
 mho_swap16(uint16_t i)
 {
 	register uint16_t copy = 0;
@@ -63,7 +63,7 @@ mho_swap16(uint16_t i)
 	return copy;
 }
 
-uint32_t 
+uint32_t
 mho_swap32(uint32_t i)
 {
 	register uint32_t copy = 0;
@@ -72,7 +72,7 @@ mho_swap32(uint32_t i)
 	return copy;
 }
 
-uint64_t 
+uint64_t
 mho_swap64(uint64_t i)
 {
 	register uint64_t copy = 0;

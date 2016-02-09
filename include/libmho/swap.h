@@ -21,7 +21,7 @@
 #include <inttypes.h>
 
 #ifndef _LIBMHO_SWAP_H
-#define _LIBMHO_SWAP_H
+# define _LIBMHO_SWAP_H
 
 /**
  * Endian-swap memory, return a copy.
@@ -36,34 +36,34 @@ void           *mho_swap_copy(const void *memory, const size_t size);
  * @param memory memory to swap
  * @param size length of memory
  */
-void		mho_swap  (void *memory, const size_t size);
+void            mho_swap(void *memory, const size_t size);
 
 /**
  * Endian-swap 8-bit integer.
  * @param number number to swap
  * @returns swapped number
  */
-uint8_t		mho_swap8(uint8_t number);
+uint8_t         mho_swap8(uint8_t number);
 
 /**
  * Endian-swap 16-bit integer.
  * @param number number to swap
  * @returns swapped number
  */
-uint16_t	mho_swap16(uint16_t number);
+uint16_t        mho_swap16(uint16_t number);
 
 /**
  * Endian-swap 32-bit integer.
  * @param number number to swap
  * @returns swapped number
  */
-uint32_t	mho_swap32(uint32_t number);
+uint32_t        mho_swap32(uint32_t number);
 
 /**
  * Endian-swap 64-bit integer.
  * @param number number to swap
  * @returns swapped number
  */
-uint64_t	mho_swap64(uint64_t number);
+uint64_t        mho_swap64(uint64_t number);
 
 #endif

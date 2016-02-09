@@ -22,63 +22,63 @@
 #include <sys/types.h>
 
 #ifndef _LIBMHO_IO_H
-#define _LIBMHO_IO_H
+# define _LIBMHO_IO_H
 
 /**
  * Read a 8-bit signed integer from file.
  * @param stream open file
  * @returns read number
  */
-int8_t		mho_read_8(FILE * stream);
+int8_t          mho_read_8(FILE * stream);
 
 /**
  * Read a 8-bit unsigned integer from file.
  * @param stream open file
  * @returns read number
  */
-uint8_t		mho_read_u8(FILE * stream);
+uint8_t         mho_read_u8(FILE * stream);
 
 /**
  * Read a 16-bit signed integer from file.
  * @param stream open file
  * @returns read number
  */
-int16_t		mho_read_16(FILE * stream);
+int16_t         mho_read_16(FILE * stream);
 
 /**                                 
  * Read a 16-bit unsigned integer from file.
  * @param stream open file
  * @returns read number
  */
-uint16_t	mho_read_u16(FILE * stream);
+uint16_t        mho_read_u16(FILE * stream);
 
 /**                                 
  * Read a 32-bit signed integer from file.
  * @param stream open file
  * @returns read number
  */
-int32_t		mho_read_32(FILE * stream);
+int32_t         mho_read_32(FILE * stream);
 
 /**                                 
  * Read a 32-bit unsigned integer from file.
  * @param stream open file
  * @returns read number
  */
-uint32_t	mho_read_u32(FILE * stream);
+uint32_t        mho_read_u32(FILE * stream);
 
 /**                                 
  * Read a 64-bit signed integer from file.
  * @param stream open file
  * @returns read number
  */
-int64_t		mho_read_64(FILE * stream);
+int64_t         mho_read_64(FILE * stream);
 
 /**                                 
  * Read a 64-bit unsigned integer from file.
  * @param stream open file
  * @returns read number
  */
-uint64_t	mho_read_u64(FILE * stream);
+uint64_t        mho_read_u64(FILE * stream);
 
 /**
  * Reads bytes from file.

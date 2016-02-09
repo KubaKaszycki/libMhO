@@ -66,12 +66,12 @@ version(int argc, char **argv)
 	return 0;
 }
 
-int		header     (int, char **);
-int		load_commands(int, char **);
-int		segments   (int, char **);
-int		sections   (int, char **);
-int		symbols    (int, char **);
-int		moo        (int, char **);
+int             header(int, char **);
+int             load_commands(int, char **);
+int             segments(int, char **);
+int             sections(int, char **);
+int             symbols(int, char **);
+int             moo(int, char **);
 
 int
 subcommand_not_found(int argc, char **argv)
@@ -104,7 +104,7 @@ main(int argc, char **argv)
 		fprintf(stderr, "For details type: %s help\n", argv[0]);
 		return 1;
 	}
-	subcommand_t	sc = get_subcommand(argv[1]);
+	subcommand_t    sc = get_subcommand(argv[1]);
 	return sc(argc - 1, argv + 1);
 }
 
@@ -158,18 +158,29 @@ header(int argc, char **argv)
 		for (uint32_t i = 0; i < fhdr.nfat_arch; i++) {
 			struct mho_fat_arch arch = mho_read_farch(stream);
 			printf("Architecture #%u:\n", i + 1);
-			printf("\tCPU type: 0x%x (%s)\n", arch.cputype, mho_ct2s(arch.cputype));
-			printf("\tCPU sub-type: 0x%x (%s)\n", arch.cpusubtype & MHO_CPU_SUBTYPE_MASK, mho_cst2s(arch.cputype, arch.cpusubtype & MHO_CPU_SUBTYPE_MASK));
+			printf("\tCPU type: 0x%x (%s)\n", arch.cputype,
+			       mho_ct2s(arch.cputype));
+			printf("\tCPU sub-type: 0x%x (%s)\n",
+			       arch.cpusubtype & MHO_CPU_SUBTYPE_MASK,
+			       mho_cst2s(arch.cputype,
+					 arch.cpusubtype &
+					 MHO_CPU_SUBTYPE_MASK));
 			printf("\tOffset: %u\n", arch.offset);
 			printf("\tSize: %u\n", arch.size);
 			printf("\tAlignment: %u\n", arch.size);
 		}
 		return 0;
 	} else {
-		printf("CPU type: 0x%x (%s)\n", header.cputype, mho_ct2s(header.cputype));
-        	printf("CPU sub-type: 0x%x (%s)\n", header.cpusubtype & MHO_CPU_SUBTYPE_MASK, mho_cst2s(header.cputype, header.cpusubtype & MHO_CPU_SUBTYPE_MASK));
+		printf("CPU type: 0x%x (%s)\n", header.cputype,
+		       mho_ct2s(header.cputype));
+		printf("CPU sub-type: 0x%x (%s)\n",
+		       header.cpusubtype & MHO_CPU_SUBTYPE_MASK,
+		       mho_cst2s(header.cputype,
+				 header.cpusubtype &
+				 MHO_CPU_SUBTYPE_MASK));
 	}
-	printf("File type: %hd (%s)\n", (short)header.filetype, mho_ft2s((short)header.filetype));
+	printf("File type: %hd (%s)\n", (short) header.filetype,
+	       mho_ft2s((short) header.filetype));
 	printf("Commands count: %d\n", header.ncmds);
 	printf("Commands sumaric size: %d\n", header.sizeofcmds);
 	printf("Flags:");
@@ -203,8 +214,9 @@ printf(" MH_" #x); \
 	__flag__(DEAD_STRIPPABLE_DYLIB);
 #undef __flag__
 	printf("\n");
-	if(mho_magic_64(header.magic)) {
-		struct mho_header_64* hdr64 = (struct mho_header_64*) &header;
+	if (mho_magic_64(header.magic)) {
+		struct mho_header_64 *hdr64 =
+		    (struct mho_header_64 *) &header;
 		printf("Reserved (no purpose): 0x%x\n", hdr64->reserved);
 	}
 	fclose(stream);
@@ -214,16 +226,16 @@ printf(" MH_" #x); \
 int
 load_commands(int argc, char **argv)
 {
-	FILE* stream = fopen(argv[1], "r");
+	FILE           *stream = fopen(argv[1], "r");
 	struct mho_header hdr = mho_read_header(stream);
-	if(mho_magic_fat(hdr.magic)) {
+	if (mho_magic_fat(hdr.magic)) {
 		fprintf(stderr, "Universal binaries not supported yet\n");
 		fclose(stream);
 		return 1;
 	}
 	struct mho_load_command *lc;
-	for(uint32_t i = 0; i < hdr.ncmds; i++) {
-		mho_read_command(stream, (void**) &lc);
+	for (uint32_t i = 0; i < hdr.ncmds; i++) {
+		mho_read_command(stream, (void **) &lc);
 		printf("Command #%d:\n", i + 1);
 		printf("\tType: %d\n", lc->cmd);
 	}
@@ -248,7 +260,7 @@ symbols(int argc, char **argv)
 	return 0;
 }
 
-int 
+int
 moo(int argc, char **argv)
 {
 	puts(cow_said_characters);

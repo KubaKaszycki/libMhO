@@ -16,17 +16,19 @@
  * this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#define __LIBMHO_INTERNAL // Suppress warnings
+#define __LIBMHO_INTERNAL	// Suppress warnings
 #include <libmho/magic.h>
 #undef __LIBMHO_INTERNAL
 
-bool	mho_endian_checked;
-bool	mho_endian_little;
+bool            mho_endian_checked;
+bool            mho_endian_little;
 
 bool
 mho_bytecmp(uint32_t i1, uint32_t i2)
 {
-	return (i1 & 0xFF) == (i2 & 0xFF) && (i1 & 0xFF00) == (i2 & 0xFF00) && (i1 & 0xFF0000) == (i2 & 0xFF0000) && (i1 & 0xFF000000) == (i2 & 0xFF000000);
+	return (i1 & 0xFF) == (i2 & 0xFF) && (i1 & 0xFF00) == (i2 & 0xFF00)
+	    && (i1 & 0xFF0000) == (i2 & 0xFF0000)
+	    && (i1 & 0xFF000000) == (i2 & 0xFF000000);
 }
 
 void
@@ -35,8 +37,8 @@ mho_check_endian()
 	if (mho_endian_checked)
 		return;
 	mho_endian_checked = true;
-	uint16_t	i1 = 0xAB;
-	uint16_t	i2 = 0xCD;
+	uint16_t        i1 = 0xAB;
+	uint16_t        i2 = 0xCD;
 	mho_endian_little = mho_bytecmp(0xABCD, (i1 << 8) | i2);
 }
 
@@ -57,7 +59,9 @@ mho_host_littleendian()
 bool
 mho_is_magic(uint32_t number)
 {
-	return number == MHO_MAGIC || number == MHO_CIGAM || number == MHO_MAGIC64 || number == MHO_CIGAM64 || number == MHO_MAGIC_FAT || number == MHO_CIGAM_FAT;
+	return number == MHO_MAGIC || number == MHO_CIGAM
+	    || number == MHO_MAGIC64 || number == MHO_CIGAM64
+	    || number == MHO_MAGIC_FAT || number == MHO_CIGAM_FAT;
 }
 
 bool
@@ -68,7 +72,7 @@ mho_magic_64(uint32_t number)
 	return number == MHO_MAGIC64 || number == MHO_CIGAM64;
 }
 
-bool 
+bool
 mho_magic_fat(uint32_t number)
 {
 	if (!mho_is_magic(number)) {
@@ -83,7 +87,11 @@ mho_magic_littleendian(uint32_t number)
 	if (!mho_is_magic(number))
 		return false;
 	if (mho_host_littleendian()) {
-		return mho_bytecmp(number, MHO_MAGIC) || mho_bytecmp(number, MHO_MAGIC64) || mho_bytecmp(number, MHO_MAGIC_FAT);
+		return mho_bytecmp(number, MHO_MAGIC)
+		    || mho_bytecmp(number, MHO_MAGIC64)
+		    || mho_bytecmp(number, MHO_MAGIC_FAT);
 	}
-	return mho_bytecmp(number, MHO_CIGAM) || mho_bytecmp(number, MHO_CIGAM64) || mho_bytecmp(number, MHO_CIGAM_FAT);
+	return mho_bytecmp(number, MHO_CIGAM)
+	    || mho_bytecmp(number, MHO_CIGAM64)
+	    || mho_bytecmp(number, MHO_CIGAM_FAT);
 }

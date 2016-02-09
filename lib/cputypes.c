@@ -226,7 +226,7 @@ mho_cst2s(mho_cpu_type_t type, mho_cpu_subtype_t subtype)
 			return "unknown x86 (64-bit)";
 		}
 	case MHO_CT_MIPS:
-		switch(subtype) {
+		switch (subtype) {
 		case MHO_CST_MIPS_ALL:
 			return "any Mips";
 		case MHO_CST_MIPS_R2300:
@@ -241,7 +241,7 @@ mho_cst2s(mho_cpu_type_t type, mho_cpu_subtype_t subtype)
 			return "unknown Mips";
 		}
 	case MHO_CT_MC680x0:
-		switch(subtype) {
+		switch (subtype) {
 		case MHO_CST_MC68030:
 			return "MC68030";
 		case MHO_CST_MC68040:
@@ -252,7 +252,7 @@ mho_cst2s(mho_cpu_type_t type, mho_cpu_subtype_t subtype)
 			return "unknown M68K";
 		}
 	case MHO_CT_HPPA:
-		switch(subtype) {
+		switch (subtype) {
 		case MHO_CST_HPPA_7100:
 			return "7100";
 		case MHO_CST_HPPA_7100LC:
@@ -261,7 +261,7 @@ mho_cst2s(mho_cpu_type_t type, mho_cpu_subtype_t subtype)
 			return "unknown HPPA";
 		}
 	case MHO_CT_ARM:
-		switch(subtype) {
+		switch (subtype) {
 		case MHO_CST_ARM_ALL:
 			return "any ARM";
 		case MHO_CST_ARM_A500_ARCH:
@@ -300,7 +300,7 @@ mho_cst2s(mho_cpu_type_t type, mho_cpu_subtype_t subtype)
 			return "unknown ARM";
 		}
 	case MHO_CT_ARM64:
-		switch(subtype) {
+		switch (subtype) {
 		case MHO_CST_ARM64_ALL:
 			return "any ARM (64-bit)";
 		case MHO_CST_ARM64_V8:
@@ -309,44 +309,44 @@ mho_cst2s(mho_cpu_type_t type, mho_cpu_subtype_t subtype)
 			return "unknown ARM (64-bit)";
 		}
 	case MHO_CT_MC88000:
-		switch(subtype) {
+		switch (subtype) {
 		case MHO_CST_MC88000_ALL:
 			return "any M88K";
 		default:
 			return "unknown M88K";
 		}
 	case MHO_CT_POWERPC:
-		switch(subtype) {
+		switch (subtype) {
 		default:
 			return "unknown PowerPC";
 		}
 	case MHO_CT_POWERPC64:
-		switch(subtype) {
+		switch (subtype) {
 		default:
 			return "unknown PowerPC (64-bit)";
 		}
 	case MHO_CT_I860:
-		switch(subtype) {
+		switch (subtype) {
 		default:
 			return "unknown I860";
 		}
 	case MHO_CT_I860_LITTLE:
-		switch(subtype) {
+		switch (subtype) {
 		default:
 			return "unknown I860 (little-endian)";
 		}
 	case MHO_CT_RS6000:
-		switch(subtype) {
+		switch (subtype) {
 		default:
 			return "unknown RS6000";
 		}
 	case MHO_CT_SPARC:
-		switch(subtype) {
+		switch (subtype) {
 		default:
 			return "unknown SPARC";
 		}
 	case MHO_CT_SPARC64:
-		switch(subtype) {
+		switch (subtype) {
 		default:
 			return "unknown SPARC";
 		}
