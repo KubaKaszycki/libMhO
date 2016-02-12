@@ -17,28 +17,32 @@
  */
 
 #include <libmho.h>
+#include <gettext.h>
+
+#undef _
+#define _(x) dgettext("libmho", x)
 
 const char     *
 mho_ft2s(int ft)
 {
 	switch (ft) {
 	case MHO_OBJECT:
-		return "object";
+		return _("Object");
 	case MHO_EXECUTE:
-		return "executable";
+		return _("Executable");
 	case MHO_FVMLIB:
-		return "fvmlib";
+		return _("FVMlib");
 	case MHO_CORE:
-		return "core";
+		return _("Core");
 	case MHO_PRELOAD:
-		return "preloaded";
+		return _("Preloaded");
 	case MHO_DYLIB:
-		return "dynamic library";
+		return _("Dynamic library");
 	case MHO_DYLINKER:
-		return "dynamic linker";
+		return _("Dynamic linker");
 	case MHO_BUNDLE:
-		return "bundle";
+		return _("Bundle");
 	default:
-		return "unknown";
+		return _("Unknown");
 	}
 }

@@ -15,7 +15,16 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 lib_LTLIBRARIES = libmho.la
-libmho_la_SOURCES = magic.c swap.c cputypes.c io.c filetype.c
-libmho_la_LIBADD = ../gnulib/libgnu.a
+libmho_la_SOURCES = magic.c swap.c cputypes.c io.c filetype.c init-intl.c
+libmho_la_LIBADD = -lgnu -lintl
+libmho_la_LDFLAGS = -L../gnulib -L../intl
 
 AM_CPPFLAGS = -I ../include -I ../gnulib
+
+dirs.h: stamp-dirs-h
+	echo '#define localedir "$(localedir)"' >> dirs.h
+
+stamp-dirs-h: Makefile Makefile.in Makefile.am ../configure ../configure.ac
+	touch $@
+
+init-intl.lo: dirs.h

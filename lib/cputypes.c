@@ -17,55 +17,59 @@
  */
 
 #include <libmho/cputype.h>
+#include <gettext.h>
+
+#undef _
+#define _(x) dgettext("libmho", x)
 
 const char     *
 mho_ct2s(mho_cpu_type_t type)
 {
 	switch (type) {
 	case MHO_CT_ANY:
-		return "any CPU (any vendor)";
+		return _("any CPU (any vendor)");
 	case MHO_CT_VAX:
-		return "VAX (Digital Equipment Corporation)";
+		return _("VAX (Digital Equipment Corporation)");
 	case MHO_CT_ROMP:
-		return "Research OPD Micro Processor (IBM)";
+		return _("Research OPD Micro Processor (IBM)");
 	case MHO_CT_NS32032:
-		return "NS32032 (National Semiconductor)";
+		return _("NS32032 (National Semiconductor)");
 	case MHO_CT_NS32332:
-		return "NS32332 (National Semiconductor)";
+		return _("NS32332 (National Semiconductor)");
 	case MHO_CT_MC680x0:
-		return "M68k (Motorola)";
+		return _("M68k (Motorola)");
 	case MHO_CT_I386:
-		return "x86 (Intel)";
+		return _("x86 (Intel)");
 	case MHO_CT_X86_64:
-		return "x86 64-bit (Intel)";
+		return _("x86 64-bit (Intel)");
 	case MHO_CT_MIPS:
-		return "Mips (Mips Computer Systems)";
+		return _("Mips (Mips Computer Systems)");
 	case MHO_CT_NS32532:
-		return "NS32532 (National Semiconductor)";
+		return _("NS32532 (National Semiconductor)");
 	case MHO_CT_HPPA:
-		return "HPPA (Hewlett-Packard)";
+		return _("HPPA (Hewlett-Packard)");
 	case MHO_CT_ARM:
-		return "ARM (ARM Holdings)";
+		return _("ARM (ARM Holdings)");
 	case MHO_CT_ARM64:
-		return "AArch64 (ARM Holdings)";
+		return _("AArch64 (ARM Holdings)");
 	case MHO_CT_MC88000:
-		return "M88k (Motorola)";
+		return _("M88k (Motorola)");
 	case MHO_CT_SPARC:
-		return "SPARC (Sun)";
+		return _("SPARC (Sun)");
 	case MHO_CT_SPARC64:
-		return "SPARC 64-bit (Sun)";
+		return _("SPARC 64-bit (Sun)");
 	case MHO_CT_I860:
-		return "i860 big endian (Intel)";
+		return _("i860 big endian (Intel)");
 	case MHO_CT_I860_LITTLE:
-		return "i860 (Intel)";
+		return _("i860 (Intel)");
 	case MHO_CT_RS6000:
-		return "RS6000 (IBM)";
+		return _("RS6000 (IBM)");
 	case MHO_CT_POWERPC:
-		return "PowerPC (Apple+IBM+Motorola)";
+		return _("PowerPC (Apple+IBM+Motorola)");
 	case MHO_CT_POWERPC64:
-		return "PowerPC 64-bit (Apple+IBM+Motorola)";
+		return _("PowerPC 64-bit (Apple+IBM+Motorola)");
 	default:
-		return "unknown";
+		return _("Unknown");
 	}
 }
 
@@ -75,17 +79,17 @@ mho_cst2s(mho_cpu_type_t type, mho_cpu_subtype_t subtype)
 	subtype &= 0xFF;
 	switch (type) {
 	case MHO_CT_ANY:
-		return "any";
+		return _("any");
 	case MHO_CT_VAX:
 		switch (subtype) {
 		case MHO_CST_VAX_ALL:
-			return "all VAX";
+			return _("any VAX");
 		case MHO_CST_VAX780:
-			return "VAX-11/780";
+			return _("VAX-11/780");
 		case MHO_CST_VAX785:
-			return "VAX-11/785";
+			return _("VAX-11/785");
 		case MHO_CST_VAX750:
-			return "VAX-11/750";
+			return _("VAX-11/750");
 		case MHO_CST_VAX730:
 			return "VAX-11/730";
 		case MHO_CST_UVAXI:
@@ -351,6 +355,6 @@ mho_cst2s(mho_cpu_type_t type, mho_cpu_subtype_t subtype)
 			return "unknown SPARC";
 		}
 	default:
-		return "unknown";
+		return _("Unknown");
 	}
 }

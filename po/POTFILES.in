@@ -1,0 +1,4 @@
+# List of source files which contain translatable strings.
+lib/filetype.c
+lib/cputypes.c
+src/mhodump.c

@@ -18,8 +18,9 @@ bin_PROGRAMS = mhodump
 noinst_LTLIBRARIES = libutilities.la
 
 mhodump_SOURCES = mhodump.c
-mhodump_LDADD = ../lib/libmho.la libutilities.la ../gnulib/libgnu.a
+mhodump_LDADD = -lmho -lutilities -lgnu -lintl
+mhodump_LDFLAGS = -L../lib -L. -L../gnulib -L../intl
 
 libutilities_la_SOURCES = version.c cow.c
 
-AM_CPPFLAGS = -I ../include -I ../gnulib
+AM_CPPFLAGS = -I ../include -I ../gnulib -I .. -I ../intl

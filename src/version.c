@@ -20,6 +20,7 @@
 #include <version.h>
 #include <config.h>
 #include <stdio.h>
+#undef __LIBMHO_INTERNAL
 
 void
 print_version()

@@ -18,24 +18,109 @@
 
 #define __LIBMHO_INTERNAL
 #include <libmho.h>
-#include <config.h>
+#include <gettext.h>
+#include <locale.h>
 #include <getopt.h>
 #include <stdlib.h>
 #include <string.h>
 #include <version.h>
 #include <cow.h>
+#include <libgen.h>
+#include <xlocale.h>
+#include <errno.h>
+#include <sys/stat.h>
 #undef __LIBMHO_INTERNAL
+
+#undef _
+#define _(x) dgettext("libmho", x)
+
+#ifdef ENABLE_NLS
+# define printf(x, ...) printf_l(uselocale(NULL), x, ##__VA_ARGS__)
+# define fprintf(f, x, ...) fprintf_l(f, uselocale(NULL), x, ##__VA_ARGS__)
+#endif
 
 static struct option OPTIONS[] = {
 	{"help", no_argument, NULL, 'h'},
 	{NULL, 0, NULL, 0}
 };
 
+int
+verify_file(const char *path)
+{
+	struct stat     st_buf;
+	errno = 0;
+	stat(path, &st_buf);
+	if (errno != 0) {
+		char           *buf = (char *) malloc(1024);
+		strerror_r(errno, buf, 1024);
+		fprintf(stderr, "%s: %s\n", path, buf);
+		free(buf);
+		goto invalid;
+	}
+	errno = 0;
+	switch (st_buf.st_mode & S_IFMT) {
+	case S_IFDIR:
+		fprintf(stderr, "%s: %s\n", path, _("Is a directory"));
+		goto invalid;
+	case S_IFSOCK:
+		fprintf(stderr, "%s: %s\n", path,
+			_("Operation not supported on socket"));
+		goto invalid;
+	case S_IFWHT:
+		fprintf(stderr, "%s: %s\n", path, _("No such file"));
+		goto invalid;
+	}
+	errno = 0;
+	if ((st_buf.st_mode & 04) == 0) {	// Read for others
+		if (((st_buf.st_mode & 040) == 0)
+		    || (getegid() != st_buf.st_gid)) {
+			if (((st_buf.st_mode & 0400) == 0)
+			    || (geteuid() != st_buf.st_uid)) {
+				fprintf(stderr, "%s: %s\n", path,
+					_("No read permission"));
+				goto invalid;
+			}
+		}
+	}
+	errno = 0;
+	FILE           *stream = fopen(path, "r");
+	if (errno != 0) {
+		char           *buf = (char *) malloc(1024);
+		strerror_r(errno, buf, 1024);
+		fprintf(stderr, "%s: %s: %s\n", path, _("I/O error"), buf);
+		free(buf);
+		goto invalid;
+	}
+	if (stream == NULL) {
+		fprintf(stderr, "%s: %s\n", path, _("I/O error"));
+		goto invalid;
+	}
+	struct mho_header hdr = mho_read_header(stream);
+	if (errno != 0) {
+		char           *buf = (char *) malloc(1024);
+		strerror_r(errno, buf, 1024);
+		fprintf(stderr, "%s: %s: %s\n", path, _("I/O error"), buf);
+		free(buf);
+		goto invalid;
+	}
+	if (!mho_is_magic(hdr.magic)) {
+		fprintf(stderr, "%s: %s\n", path, _("Not a Mach object"));
+		goto invalid;
+	}
+	goto valid;
+      valid:
+	return 0;
+      invalid:
+	return 1;
+}
+
+char           *alias;
+
 void
 print_help()
 {
 	print_version();
-	printf("mhodump - Dump something from Mach-O file\n"
+	printf("%s - %s\n"
 	       "\n"
 	       "Usage: mhodump <SUBCOMMAND> [options...]\n"
 	       "\n"
@@ -47,7 +132,8 @@ print_help()
 	       "   segments      - Display segments (in one file)\n"
 	       "   sections      - Display sections (in one segment)\n"
 	       "   symbols       - Display symbols (in one section)\n"
-	       "There is also one easter milk (I meant egg)... Try to find it!\n");
+	       "There is also one easter milk (I meant egg)... Try to find it!\n",
+	       alias, _("Dump something from Mach-O file"));
 }
 
 typedef int     (*subcommand_t) (int, char **);
@@ -99,47 +185,49 @@ get_subcommand(const char *name)
 int
 main(int argc, char **argv)
 {
+	alias = strdup(basename(argv[0]));
 	if (argc == 1) {
-		fprintf(stderr, "Error: missing subcommand\n");
-		fprintf(stderr, "For details type: %s help\n", argv[0]);
+		fprintf(stderr, "%s: %s: %s\n", alias, _("Error"),
+			_("Missing subcommand"));
+		fprintf(stderr, _("For details type: %s help\n"), alias);
 		return 1;
 	}
 	subcommand_t    sc = get_subcommand(argv[1]);
-	return sc(argc - 1, argv + 1);
+	int             result = sc(argc - 1, argv + 1);
+	free(alias);
+	return result;
 }
 
 int
 header(int argc, char **argv)
 {
-	FILE           *stream = fopen(argv[1], "r");
-	struct mho_header header = mho_read_header(stream);
-	if (!mho_is_magic(header.magic)) {
-		fprintf(stderr, "Not an object file\n");
-		fclose(stream);
+	if (verify_file(argv[1]) == 1) {
 		return 1;
 	}
+	FILE           *stream = fopen(argv[1], "r");
+	struct mho_header header = mho_read_header(stream);
 	printf("Magic number: 0x%x (", header.magic);
 	if (mho_is_magic(header.magic)) {
 		if (mho_magic_64(header.magic)) {
 			printf("64-bit, ");
 		} else if (mho_magic_fat(header.magic)) {
-			printf("universal, ");
+			printf("%s, ", _("universal"));
 		} else {
 			printf("32-bit, ");
 		}
 		if (mho_magic_littleendian(header.magic)) {
 			if (mho_host_littleendian()) {
-				printf("little-endian");
+				printf("%s", _("little endian"));
 			} else
-				printf("big-endian");
+				printf("%s", _("big endian"));
 		} else {
 			if (mho_host_littleendian()) {
-				printf("big-endian");
+				printf("%s", _("big endian"));
 			} else
-				printf("little-endian");
+				printf("%s", _("little endian"));
 		}
 	} else {
-		printf("invalid");
+		printf(_("invalid"));
 	}
 	if (mho_magic_littleendian(header.magic)) {
 		if (mho_host_bigendian()) {
@@ -154,10 +242,11 @@ header(int argc, char **argv)
 	if (mho_magic_fat(header.magic)) {
 		fseek(stream, -sizeof(struct mho_header), SEEK_CUR);
 		struct mho_fat_header fhdr = mho_read_fhdr(stream);
-		printf("Architecture count: %u\n", fhdr.nfat_arch);
+		printf("%s: %u\n", _("Architecture count"),
+		       fhdr.nfat_arch);
 		for (uint32_t i = 0; i < fhdr.nfat_arch; i++) {
 			struct mho_fat_arch arch = mho_read_farch(stream);
-			printf("Architecture #%u:\n", i + 1);
+			printf("%s %u:\n", _("Architecture"), i + 1);
 			printf("\tCPU type: 0x%x (%s)\n", arch.cputype,
 			       mho_ct2s(arch.cputype));
 			printf("\tCPU sub-type: 0x%x (%s)\n",

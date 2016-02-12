@@ -1,0 +1,224 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Jakub Kaszycki
+# This file is distributed under the same license as the libmho package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: libmho 0.2\n"
+"Report-Msgid-Bugs-To: kaszycki@mail.com\n"
+"POT-Creation-Date: 2016-02-12 14:09+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lib/filetype.c:30
+msgid "Object"
+msgstr ""
+
+#: lib/filetype.c:32
+msgid "Executable"
+msgstr ""
+
+#: lib/filetype.c:34
+msgid "FVMlib"
+msgstr ""
+
+#: lib/filetype.c:36
+msgid "Core"
+msgstr ""
+
+#: lib/filetype.c:38
+msgid "Preloaded"
+msgstr ""
+
+#: lib/filetype.c:40
+msgid "Dynamic library"
+msgstr ""
+
+#: lib/filetype.c:42
+msgid "Dynamic linker"
+msgstr ""
+
+#: lib/filetype.c:44
+msgid "Bundle"
+msgstr ""
+
+#: lib/filetype.c:46 lib/cputypes.c:72 lib/cputypes.c:358
+msgid "Unknown"
+msgstr ""
+
+#: lib/cputypes.c:30
+msgid "any CPU (any vendor)"
+msgstr ""
+
+#: lib/cputypes.c:32
+msgid "VAX (Digital Equipment Corporation)"
+msgstr ""
+
+#: lib/cputypes.c:34
+msgid "Research OPD Micro Processor (IBM)"
+msgstr ""
+
+#: lib/cputypes.c:36
+msgid "NS32032 (National Semiconductor)"
+msgstr ""
+
+#: lib/cputypes.c:38
+msgid "NS32332 (National Semiconductor)"
+msgstr ""
+
+#: lib/cputypes.c:40
+msgid "M68k (Motorola)"
+msgstr ""
+
+#: lib/cputypes.c:42
+msgid "x86 (Intel)"
+msgstr ""
+
+#: lib/cputypes.c:44
+msgid "x86 64-bit (Intel)"
+msgstr ""
+
+#: lib/cputypes.c:46
+msgid "Mips (Mips Computer Systems)"
+msgstr ""
+
+#: lib/cputypes.c:48
+msgid "NS32532 (National Semiconductor)"
+msgstr ""
+
+#: lib/cputypes.c:50
+msgid "HPPA (Hewlett-Packard)"
+msgstr ""
+
+#: lib/cputypes.c:52
+msgid "ARM (ARM Holdings)"
+msgstr ""
+
+#: lib/cputypes.c:54
+msgid "AArch64 (ARM Holdings)"
+msgstr ""
+
+#: lib/cputypes.c:56
+msgid "M88k (Motorola)"
+msgstr ""
+
+#: lib/cputypes.c:58
+msgid "SPARC (Sun)"
+msgstr ""
+
+#: lib/cputypes.c:60
+msgid "SPARC 64-bit (Sun)"
+msgstr ""
+
+#: lib/cputypes.c:62
+msgid "i860 big endian (Intel)"
+msgstr ""
+
+#: lib/cputypes.c:64
+msgid "i860 (Intel)"
+msgstr ""
+
+#: lib/cputypes.c:66
+msgid "RS6000 (IBM)"
+msgstr ""
+
+#: lib/cputypes.c:68
+msgid "PowerPC (Apple+IBM+Motorola)"
+msgstr ""
+
+#: lib/cputypes.c:70
+msgid "PowerPC 64-bit (Apple+IBM+Motorola)"
+msgstr ""
+
+#: lib/cputypes.c:82
+msgid "any"
+msgstr ""
+
+#: lib/cputypes.c:86
+msgid "any VAX"
+msgstr ""
+
+#: lib/cputypes.c:88
+msgid "VAX-11/780"
+msgstr ""
+
+#: lib/cputypes.c:90
+msgid "VAX-11/785"
+msgstr ""
+
+#: lib/cputypes.c:92
+msgid "VAX-11/750"
+msgstr ""
+
+#: src/mhodump.c:54 src/mhodump.c:84 src/mhodump.c:89 src/mhodump.c:96
+msgid "I/O error"
+msgstr ""
+
+#: src/mhodump.c:61
+msgid "Is a directory"
+msgstr ""
+
+#: src/mhodump.c:64
+msgid "Operation not supported on socket"
+msgstr ""
+
+#: src/mhodump.c:67
+msgid "No such file"
+msgstr ""
+
+#: src/mhodump.c:74
+msgid "No read permission"
+msgstr ""
+
+#: src/mhodump.c:101
+msgid "Not a Mach object"
+msgstr ""
+
+#: src/mhodump.c:131
+msgid "Dump something from Mach-O file"
+msgstr ""
+
+#: src/mhodump.c:185
+msgid "Error"
+msgstr ""
+
+#: src/mhodump.c:186
+msgid "Missing subcommand"
+msgstr ""
+
+#: src/mhodump.c:187
+#, c-format
+msgid "For details type: %s help\n"
+msgstr ""
+
+#: src/mhodump.c:209
+msgid "universal"
+msgstr ""
+
+#: src/mhodump.c:215 src/mhodump.c:222
+msgid "little endian"
+msgstr ""
+
+#: src/mhodump.c:217 src/mhodump.c:220
+msgid "big endian"
+msgstr ""
+
+#: src/mhodump.c:225
+#, c-format
+msgid "invalid"
+msgstr ""
+
+#: src/mhodump.c:240
+msgid "Architecture count"
+msgstr ""
+
+#: src/mhodump.c:243
+msgid "Architecture"
+msgstr ""

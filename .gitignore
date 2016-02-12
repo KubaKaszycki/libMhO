@@ -14,8 +14,10 @@ aclocal.m4
 configure
 config.cache
 config.log
+config.status
 autoscan.log
 configure.scan
 autom4te.cache
 .#*
 .\#*
+__priv__

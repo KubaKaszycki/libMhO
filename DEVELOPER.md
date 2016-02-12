@@ -12,7 +12,7 @@ If working directory is not mentioned, I mean SOURCES ROOT.
 
 ### Indent all sources
 
-	for X in `find . | grep -E '\.[ch]$' | grep -vF 'gnulib'`; do indent -orig -ppi1 -i8 -ut $X; done
+	for X in `find . | grep -E '\.[ch]$' | grep -vF 'gnulib' | grep -vF 'intl'`; do indent -orig -ppi1 -i8 -ut $X; done
 
 Before calling this, ensure two things:
  - You don't have important environment variable X (would be overwritten)
@@ -23,3 +23,8 @@ Before calling this, ensure two things:
 	for X in `find . | grep -E '(\~|\.BAK)$'`; do rm -rf $X; done
 
 Delete all temporary/backup files (ending with ~ or .BAK).
+
+## Your private scripts
+.gitignore mentions that each file with name \_\_priv\_\_ will be omitted from commit. This can be file or directory with
+your private stuff. I have some useful scripts there. To get a copy, mail me:
+[Jakub Kaszycki](mailto:kaszycki@mail.com?subject=libMhO+__priv__+scripts).

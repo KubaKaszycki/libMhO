@@ -1,0 +1,249 @@
+# English translations for libmho package.
+# Copyright (C) 2016 Jakub Kaszycki
+# This file is distributed under the same license as the libmho package.
+# Automatically generated, 2016.
+#
+# All this catalog "translates" are quotation characters.
+# The msgids must be ASCII and therefore cannot contain real quotation
+# characters, only substitutes like grave accent (0x60), apostrophe (0x27)
+# and double quote (0x22). These substitutes look strange; see
+# http://www.cl.cam.ac.uk/~mgk25/ucs/quotes.html
+#
+# This catalog translates grave accent (0x60) and apostrophe (0x27) to
+# left single quotation mark (U+2018) and right single quotation mark (U+2019).
+# It also translates pairs of apostrophe (0x27) to
+# left single quotation mark (U+2018) and right single quotation mark (U+2019)
+# and pairs of quotation mark (0x22) to
+# left double quotation mark (U+201C) and right double quotation mark (U+201D).
+#
+# When output to an UTF-8 terminal, the quotation characters appear perfectly.
+# When output to an ISO-8859-1 terminal, the single quotation marks are
+# transliterated to apostrophes (by iconv in glibc 2.2 or newer) or to
+# grave/acute accent (by libiconv), and the double quotation marks are
+# transliterated to 0x22.
+# When output to an ASCII terminal, the single quotation marks are
+# transliterated to apostrophes, and the double quotation marks are
+# transliterated to 0x22.
+#
+# This catalog furthermore displays the text between the quotation marks in
+# bold face, assuming the VT100/XTerm escape sequences.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: libmho 0.2\n"
+"Report-Msgid-Bugs-To: kaszycki@mail.com\n"
+"POT-Creation-Date: 2016-02-12 14:09+0100\n"
+"PO-Revision-Date: 2016-02-12 14:09+0100\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: en@boldquot\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: lib/filetype.c:30
+msgid "Object"
+msgstr "Object"
+
+#: lib/filetype.c:32
+msgid "Executable"
+msgstr "Executable"
+
+#: lib/filetype.c:34
+msgid "FVMlib"
+msgstr "FVMlib"
+
+#: lib/filetype.c:36
+msgid "Core"
+msgstr "Core"
+
+#: lib/filetype.c:38
+msgid "Preloaded"
+msgstr "Preloaded"
+
+#: lib/filetype.c:40
+msgid "Dynamic library"
+msgstr "Dynamic library"
+
+#: lib/filetype.c:42
+msgid "Dynamic linker"
+msgstr "Dynamic linker"
+
+#: lib/filetype.c:44
+msgid "Bundle"
+msgstr "Bundle"
+
+#: lib/filetype.c:46 lib/cputypes.c:72 lib/cputypes.c:358
+msgid "Unknown"
+msgstr "Unknown"
+
+#: lib/cputypes.c:30
+msgid "any CPU (any vendor)"
+msgstr "any CPU (any vendor)"
+
+#: lib/cputypes.c:32
+msgid "VAX (Digital Equipment Corporation)"
+msgstr "VAX (Digital Equipment Corporation)"
+
+#: lib/cputypes.c:34
+msgid "Research OPD Micro Processor (IBM)"
+msgstr "Research OPD Micro Processor (IBM)"
+
+#: lib/cputypes.c:36
+msgid "NS32032 (National Semiconductor)"
+msgstr "NS32032 (National Semiconductor)"
+
+#: lib/cputypes.c:38
+msgid "NS32332 (National Semiconductor)"
+msgstr "NS32332 (National Semiconductor)"
+
+#: lib/cputypes.c:40
+msgid "M68k (Motorola)"
+msgstr "M68k (Motorola)"
+
+#: lib/cputypes.c:42
+msgid "x86 (Intel)"
+msgstr "x86 (Intel)"
+
+#: lib/cputypes.c:44
+msgid "x86 64-bit (Intel)"
+msgstr "x86 64-bit (Intel)"
+
+#: lib/cputypes.c:46
+msgid "Mips (Mips Computer Systems)"
+msgstr "Mips (Mips Computer Systems)"
+
+#: lib/cputypes.c:48
+msgid "NS32532 (National Semiconductor)"
+msgstr "NS32532 (National Semiconductor)"
+
+#: lib/cputypes.c:50
+msgid "HPPA (Hewlett-Packard)"
+msgstr "HPPA (Hewlett-Packard)"
+
+#: lib/cputypes.c:52
+msgid "ARM (ARM Holdings)"
+msgstr "ARM (ARM Holdings)"
+
+#: lib/cputypes.c:54
+msgid "AArch64 (ARM Holdings)"
+msgstr "AArch64 (ARM Holdings)"
+
+#: lib/cputypes.c:56
+msgid "M88k (Motorola)"
+msgstr "M88k (Motorola)"
+
+#: lib/cputypes.c:58
+msgid "SPARC (Sun)"
+msgstr "SPARC (Sun)"
+
+#: lib/cputypes.c:60
+msgid "SPARC 64-bit (Sun)"
+msgstr "SPARC 64-bit (Sun)"
+
+#: lib/cputypes.c:62
+msgid "i860 big endian (Intel)"
+msgstr "i860 big endian (Intel)"
+
+#: lib/cputypes.c:64
+msgid "i860 (Intel)"
+msgstr "i860 (Intel)"
+
+#: lib/cputypes.c:66
+msgid "RS6000 (IBM)"
+msgstr "RS6000 (IBM)"
+
+#: lib/cputypes.c:68
+msgid "PowerPC (Apple+IBM+Motorola)"
+msgstr "PowerPC (Apple+IBM+Motorola)"
+
+#: lib/cputypes.c:70
+msgid "PowerPC 64-bit (Apple+IBM+Motorola)"
+msgstr "PowerPC 64-bit (Apple+IBM+Motorola)"
+
+#: lib/cputypes.c:82
+msgid "any"
+msgstr "any"
+
+#: lib/cputypes.c:86
+msgid "any VAX"
+msgstr "any VAX"
+
+#: lib/cputypes.c:88
+msgid "VAX-11/780"
+msgstr "VAX-11/780"
+
+#: lib/cputypes.c:90
+msgid "VAX-11/785"
+msgstr "VAX-11/785"
+
+#: lib/cputypes.c:92
+msgid "VAX-11/750"
+msgstr "VAX-11/750"
+
+#: src/mhodump.c:54 src/mhodump.c:84 src/mhodump.c:89 src/mhodump.c:96
+msgid "I/O error"
+msgstr "I/O error"
+
+#: src/mhodump.c:61
+msgid "Is a directory"
+msgstr "Is a directory"
+
+#: src/mhodump.c:64
+msgid "Operation not supported on socket"
+msgstr "Operation not supported on socket"
+
+#: src/mhodump.c:67
+msgid "No such file"
+msgstr "No such file"
+
+#: src/mhodump.c:74
+msgid "No read permission"
+msgstr "No read permission"
+
+#: src/mhodump.c:101
+msgid "Not a Mach object"
+msgstr "Not a Mach object"
+
+#: src/mhodump.c:131
+msgid "Dump something from Mach-O file"
+msgstr "Dump something from Mach-O file"
+
+#: src/mhodump.c:185
+msgid "Error"
+msgstr "Error"
+
+#: src/mhodump.c:186
+msgid "Missing subcommand"
+msgstr "Missing subcommand"
+
+#: src/mhodump.c:187
+#, c-format
+msgid "For details type: %s help\n"
+msgstr "For details type: %s help\n"
+
+#: src/mhodump.c:209
+msgid "universal"
+msgstr "universal"
+
+#: src/mhodump.c:215 src/mhodump.c:222
+msgid "little endian"
+msgstr "little endian"
+
+#: src/mhodump.c:217 src/mhodump.c:220
+msgid "big endian"
+msgstr "big endian"
+
+#: src/mhodump.c:225
+#, c-format
+msgid "invalid"
+msgstr "invalid"
+
+#: src/mhodump.c:240
+msgid "Architecture count"
+msgstr "Architecture count"
+
+#: src/mhodump.c:243
+msgid "Architecture"
+msgstr "Architecture"

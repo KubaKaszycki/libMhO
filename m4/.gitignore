@@ -4,3 +4,16 @@ ltsugar.m4
 ltversion.m4
 lt~obsolete.m4
 /gnulib-comp.m4
+/fcntl_h.m4
+/fdopen.m4
+/inttypes.m4
+/multiarch.m4
+/stdalign.m4
+/stdint.m4
+/ungetc.m4
+/wchar_h.m4
+/strerror.m4
+/strerror_r.m4
+/string_h.m4
+/thread.m4
+/yield.m4

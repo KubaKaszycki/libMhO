@@ -972,36 +972,6 @@ AC_CONFIG_COMMANDS_PRE(
 rm -f conftest.file
 ])
 
-# sigpipe.m4 serial 2
-dnl Copyright (C) 2008-2013 Free Software Foundation, Inc.
-dnl This file is free software; the Free Software Foundation
-dnl gives unlimited permission to copy and/or distribute it,
-dnl with or without modifications, as long as this notice is preserved.
-
-dnl Tests whether SIGPIPE is provided by <signal.h>.
-dnl Sets gl_cv_header_signal_h_SIGPIPE.
-AC_DEFUN([gl_SIGNAL_SIGPIPE],
-[
-  dnl Use AC_REQUIRE here, so that the default behavior below is expanded
-  dnl once only, before all statements that occur in other macros.
-  AC_REQUIRE([gl_SIGNAL_SIGPIPE_BODY])
-])
-
-AC_DEFUN([gl_SIGNAL_SIGPIPE_BODY],
-[
-  AC_REQUIRE([AC_PROG_CC])
-  AC_CACHE_CHECK([for SIGPIPE], [gl_cv_header_signal_h_SIGPIPE], [
-    AC_EGREP_CPP([booboo],[
-#include <signal.h>
-#if !defined SIGPIPE
-booboo
-#endif
-      ],
-      [gl_cv_header_signal_h_SIGPIPE=no],
-      [gl_cv_header_signal_h_SIGPIPE=yes])
-  ])
-])
-
 # Copyright (C) 2009-2014 Free Software Foundation, Inc.
 #
 # This file is free software; the Free Software Foundation
@@ -1243,10 +1213,14 @@ AC_SUBST([am__untar])
 m4_include([m4/00gnulib.m4])
 m4_include([m4/absolute-header.m4])
 m4_include([m4/close.m4])
+m4_include([m4/codeset.m4])
 m4_include([m4/errno_h.m4])
 m4_include([m4/extensions.m4])
 m4_include([m4/extern-inline.m4])
 m4_include([m4/fclose.m4])
+m4_include([m4/fcntl-o.m4])
+m4_include([m4/fcntl_h.m4])
+m4_include([m4/fdopen.m4])
 m4_include([m4/fflush.m4])
 m4_include([m4/fopen.m4])
 m4_include([m4/fpurge.m4])
@@ -1257,13 +1231,30 @@ m4_include([m4/fstat.m4])
 m4_include([m4/ftell.m4])
 m4_include([m4/ftello.m4])
 m4_include([m4/getopt.m4])
+m4_include([m4/gettext.m4])
 m4_include([m4/gettimeofday.m4])
+m4_include([m4/glibc2.m4])
+m4_include([m4/glibc21.m4])
 m4_include([m4/gnulib-common.m4])
 m4_include([m4/gnulib-comp.m4])
+m4_include([m4/iconv.m4])
 m4_include([m4/include_next.m4])
+m4_include([m4/intdiv0.m4])
+m4_include([m4/intl.m4])
+m4_include([m4/intlmacosx.m4])
+m4_include([m4/intmax.m4])
+m4_include([m4/inttypes-pri.m4])
+m4_include([m4/inttypes.m4])
+m4_include([m4/inttypes_h.m4])
 m4_include([m4/jk-doxygen.m4])
 m4_include([m4/largefile.m4])
+m4_include([m4/lcmessage.m4])
+m4_include([m4/lib-ld.m4])
+m4_include([m4/lib-link.m4])
+m4_include([m4/lib-prefix.m4])
 m4_include([m4/libtool.m4])
+m4_include([m4/lock.m4])
+m4_include([m4/longlong.m4])
 m4_include([m4/lseek.m4])
 m4_include([m4/ltoptions.m4])
 m4_include([m4/ltsugar.m4])
@@ -1272,18 +1263,39 @@ m4_include([m4/lt~obsolete.m4])
 m4_include([m4/malloc.m4])
 m4_include([m4/msvc-inval.m4])
 m4_include([m4/msvc-nothrow.m4])
+m4_include([m4/multiarch.m4])
+m4_include([m4/nls.m4])
 m4_include([m4/nocrash.m4])
 m4_include([m4/off_t.m4])
+m4_include([m4/po.m4])
+m4_include([m4/printf-posix.m4])
+m4_include([m4/progtest.m4])
+m4_include([m4/size_max.m4])
 m4_include([m4/ssize_t.m4])
+m4_include([m4/stdalign.m4])
 m4_include([m4/stdbool.m4])
 m4_include([m4/stddef_h.m4])
+m4_include([m4/stdint.m4])
+m4_include([m4/stdint_h.m4])
 m4_include([m4/stdio_h.m4])
 m4_include([m4/stdlib_h.m4])
+m4_include([m4/strerror.m4])
+m4_include([m4/strerror_r.m4])
+m4_include([m4/string_h.m4])
 m4_include([m4/sys_socket_h.m4])
 m4_include([m4/sys_stat_h.m4])
 m4_include([m4/sys_time_h.m4])
 m4_include([m4/sys_types_h.m4])
+m4_include([m4/thread.m4])
+m4_include([m4/threadlib.m4])
 m4_include([m4/time_h.m4])
+m4_include([m4/uintmax_t.m4])
+m4_include([m4/ungetc.m4])
 m4_include([m4/unistd_h.m4])
+m4_include([m4/visibility.m4])
 m4_include([m4/warn-on-use.m4])
+m4_include([m4/wchar_h.m4])
 m4_include([m4/wchar_t.m4])
+m4_include([m4/wint_t.m4])
+m4_include([m4/xsize.m4])
+m4_include([m4/yield.m4])

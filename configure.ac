@@ -50,7 +50,11 @@ gl_EARLY
 gl_INIT
 LT_INIT
 
+INTL_LIBTOOL_SUFFIX_PREFIX=l
+AC_SUBST([INTL_LIBTOOL_SUFFIX_PREFIX])
+
 # Checks for libraries.
+AM_GNU_GETTEXT
 
 # Checks for header files.
 AC_CHECK_HEADERS([stdint.h inttypes.h])
@@ -71,11 +75,16 @@ gl_FUNC_FSEEK
 gl_FUNC_FCLOSE
 gl_FUNC_FOPEN
 gl_FUNC_GETOPT_GNU
+gl_FUNC_STRERROR_R
 
 AC_CONFIG_FILES([Makefile
 		 doc/Makefile
 		 gnulib/Makefile
+		 gnulib-tests/Makefile
 		 include/Makefile
+		 intl/Makefile
 		 lib/Makefile
+		 m4/Makefile
+		 po/Makefile.in
 		 src/Makefile])
 AC_OUTPUT

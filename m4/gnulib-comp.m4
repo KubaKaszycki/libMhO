@@ -42,59 +42,122 @@ AC_DEFUN([gl_EARLY],
   AC_REQUIRE([gl_USE_SYSTEM_EXTENSIONS])
   AC_REQUIRE([gl_PROG_AR_RANLIB])
 
+  AC_REQUIRE([AM_PROG_CC_C_O])
   # Code from module absolute-header:
+  # Code from module binary-io:
+  # Code from module binary-io-tests:
   # Code from module close:
+  # Code from module close-tests:
   # Code from module errno:
+  # Code from module errno-tests:
   # Code from module extensions:
   # Code from module extern-inline:
   # Code from module fclose:
+  # Code from module fclose-tests:
+  # Code from module fcntl-h:
+  # Code from module fcntl-h-tests:
   # Code from module fd-hook:
+  # Code from module fdopen:
+  # Code from module fdopen-tests:
   # Code from module fflush:
   AC_REQUIRE([AC_FUNC_FSEEKO])
+  # Code from module fflush-tests:
+  # Code from module fgetc-tests:
   # Code from module fopen:
+  # Code from module fopen-tests:
   # Code from module fpurge:
+  # Code from module fpurge-tests:
+  # Code from module fputc-tests:
+  # Code from module fread-tests:
   # Code from module freading:
+  # Code from module freading-tests:
   # Code from module fseek:
+  # Code from module fseek-tests:
   # Code from module fseeko:
   AC_REQUIRE([AC_FUNC_FSEEKO])
+  # Code from module fseeko-tests:
   # Code from module fstat:
+  # Code from module fstat-tests:
   # Code from module ftell:
+  # Code from module ftell-tests:
   # Code from module ftello:
   AC_REQUIRE([AC_FUNC_FSEEKO])
+  # Code from module ftello-tests:
+  # Code from module fwrite-tests:
   # Code from module gettimeofday:
+  # Code from module gettimeofday-tests:
+  # Code from module havelib:
   # Code from module include_next:
+  # Code from module intprops:
+  # Code from module intprops-tests:
+  # Code from module inttypes:
+  # Code from module inttypes-incomplete:
+  # Code from module inttypes-tests:
   # Code from module largefile:
   AC_REQUIRE([AC_SYS_LARGEFILE])
+  # Code from module lock:
+  # Code from module lock-tests:
   # Code from module lseek:
+  # Code from module lseek-tests:
+  # Code from module malloc:
   # Code from module malloc-gnu:
+  # Code from module malloc-gnu-tests:
   # Code from module malloc-posix:
   # Code from module msvc-inval:
   # Code from module msvc-nothrow:
+  # Code from module multiarch:
   # Code from module snippet/_Noreturn:
   # Code from module snippet/arg-nonnull:
   # Code from module snippet/c++defs:
   # Code from module snippet/unused-parameter:
   # Code from module snippet/warn-on-use:
   # Code from module ssize_t:
+  # Code from module stdalign:
+  # Code from module stdalign-tests:
   # Code from module stdbool:
+  # Code from module stdbool-tests:
   # Code from module stddef:
+  # Code from module stddef-tests:
+  # Code from module stdint:
+  # Code from module stdint-tests:
   # Code from module stdio:
+  # Code from module stdio-tests:
   # Code from module stdlib:
+  # Code from module stdlib-tests:
+  # Code from module strerror-override:
+  # Code from module strerror_r-posix:
+  # Code from module strerror_r-posix-tests:
+  # Code from module string:
+  # Code from module string-tests:
   # Code from module sys_stat:
+  # Code from module sys_stat-tests:
   # Code from module sys_time:
+  # Code from module sys_time-tests:
   # Code from module sys_types:
+  # Code from module sys_types-tests:
+  # Code from module test-framework-sh:
+  # Code from module test-framework-sh-tests:
+  # Code from module thread:
+  # Code from module thread-tests:
+  # Code from module threadlib:
+  gl_THREADLIB_EARLY
   # Code from module time:
+  # Code from module time-tests:
   # Code from module unistd:
+  # Code from module unistd-tests:
+  # Code from module verify:
+  # Code from module verify-tests:
+  # Code from module wchar:
+  # Code from module wchar-tests:
+  # Code from module yield:
 ])
 
 # This macro should be invoked from ./configure.ac, in the section
 # "Check for header files, types and library functions".
 AC_DEFUN([gl_INIT],
 [
-  AM_CONDITIONAL([GL_COND_LIBTOOL], [false])
-  gl_cond_libtool=false
-  gl_libdeps=
-  gl_ltlibdeps=
+  AM_CONDITIONAL([GL_COND_LIBTOOL], [true])
+  gl_cond_libtool=true
   gl_m4_base='m4'
   m4_pushdef([AC_LIBOBJ], m4_defn([gl_LIBOBJ]))
   m4_pushdef([AC_REPLACE_FUNCS], m4_defn([gl_REPLACE_FUNCS]))
@@ -169,6 +232,8 @@ AC_DEFUN([gl_INIT],
   fi
   gl_SYS_TIME_MODULE_INDICATOR([gettimeofday])
   AC_REQUIRE([gl_LARGEFILE])
+  gl_LOCK
+  gl_MODULE_INDICATOR([lock])
   gl_FUNC_LSEEK
   if test $REPLACE_LSEEK = 1; then
     AC_LIBOBJ([lseek])
@@ -197,12 +262,26 @@ AC_DEFUN([gl_INIT],
   gl_STDDEF_H
   gl_STDIO_H
   gl_STDLIB_H
+  AC_REQUIRE([gl_HEADER_ERRNO_H])
+  AC_REQUIRE([gl_FUNC_STRERROR_0])
+  if test -n "$ERRNO_H" || test $REPLACE_STRERROR_0 = 1; then
+    AC_LIBOBJ([strerror-override])
+    gl_PREREQ_SYS_H_WINSOCK2
+  fi
+  gl_FUNC_STRERROR_R
+  if test $HAVE_DECL_STRERROR_R = 0 || test $REPLACE_STRERROR_R = 1; then
+    AC_LIBOBJ([strerror_r])
+    gl_PREREQ_STRERROR_R
+  fi
+  gl_STRING_MODULE_INDICATOR([strerror_r])
+  gl_HEADER_STRING_H
   gl_HEADER_SYS_STAT_H
   AC_PROG_MKDIR_P
   gl_HEADER_SYS_TIME_H
   AC_PROG_MKDIR_P
   gl_SYS_TYPES_H
   AC_PROG_MKDIR_P
+  gl_THREADLIB
   gl_HEADER_TIME_H
   gl_UNISTD_H
   # End of code from modules
@@ -244,13 +323,34 @@ AC_DEFUN([gl_INIT],
   m4_pushdef([gltests_LIBSOURCES_LIST], [])
   m4_pushdef([gltests_LIBSOURCES_DIR], [])
   gl_COMMON
-  gl_source_base='tests'
+  gl_source_base='gnulib-tests'
 changequote(,)dnl
   gltests_WITNESS=IN_`echo "${PACKAGE-$PACKAGE_TARNAME}" | LC_ALL=C tr abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ | LC_ALL=C sed -e 's/[^A-Z0-9_]/_/g'`_GNULIB_TESTS
 changequote([, ])dnl
   AC_SUBST([gltests_WITNESS])
   gl_module_indicator_condition=$gltests_WITNESS
   m4_pushdef([gl_MODULE_INDICATOR_CONDITION], [$gl_module_indicator_condition])
+  gl_FCNTL_H
+  gl_FUNC_FDOPEN
+  if test $REPLACE_FDOPEN = 1; then
+    AC_LIBOBJ([fdopen])
+    gl_PREREQ_FDOPEN
+  fi
+  gl_STDIO_MODULE_INDICATOR([fdopen])
+  gl_FUNC_UNGETC_WORKS
+  gl_FUNC_UNGETC_WORKS
+  gl_FUNC_UNGETC_WORKS
+  gl_FUNC_UNGETC_WORKS
+  gl_INTTYPES_H
+  gl_INTTYPES_INCOMPLETE
+  gl_MULTIARCH
+  gl_STDALIGN_H
+  gl_STDINT_H
+  AC_REQUIRE([gt_TYPE_WCHAR_T])
+  AC_REQUIRE([gt_TYPE_WINT_T])
+  gl_THREAD
+  gl_WCHAR_H
+  gl_YIELD
   m4_popdef([gl_MODULE_INDICATOR_CONDITION])
   m4_ifval(gltests_LIBSOURCES_LIST, [
     m4_syscmd([test ! -d ]m4_defn([gltests_LIBSOURCES_DIR])[ ||
@@ -282,10 +382,8 @@ changequote([, ])dnl
     AC_SUBST([gltests_LIBOBJS], [$gltests_libobjs])
     AC_SUBST([gltests_LTLIBOBJS], [$gltests_ltlibobjs])
   ])
-  LIBGNU_LIBDEPS="$gl_libdeps"
-  AC_SUBST([LIBGNU_LIBDEPS])
-  LIBGNU_LTLIBDEPS="$gl_ltlibdeps"
-  AC_SUBST([LIBGNU_LTLIBDEPS])
+  LIBTESTS_LIBDEPS="$gltests_libdeps"
+  AC_SUBST([LIBTESTS_LIBDEPS])
 ])
 
 # Like AC_LIBOBJ, except that the module name goes
@@ -336,7 +434,7 @@ AC_DEFUN([gltests_REPLACE_FUNCS], [
 AC_DEFUN([gltests_LIBSOURCES], [
   m4_foreach([_gl_NAME], [$1], [
     m4_if(_gl_NAME, [alloca.c], [], [
-      m4_define([gltests_LIBSOURCES_DIR], [tests])
+      m4_define([gltests_LIBSOURCES_DIR], [gnulib-tests])
       m4_append([gltests_LIBSOURCES_LIST], _gl_NAME, [ ])
     ])
   ])
@@ -345,6 +443,7 @@ AC_DEFUN([gltests_LIBSOURCES], [
 # This macro records the list of files which have been installed by
 # gnulib-tool and may be removed by future gnulib-tool invocations.
 AC_DEFUN([gl_FILE_LIST], [
+  build-aux/config.rpath
   build-aux/snippet/_Noreturn.h
   build-aux/snippet/arg-nonnull.h
   build-aux/snippet/c++defs.h
@@ -366,6 +465,9 @@ AC_DEFUN([gl_FILE_LIST], [
   lib/ftell.c
   lib/ftello.c
   lib/gettimeofday.c
+  lib/glthread/lock.c
+  lib/glthread/lock.h
+  lib/glthread/threadlib.c
   lib/lseek.c
   lib/malloc.c
   lib/msvc-inval.c
@@ -377,6 +479,10 @@ AC_DEFUN([gl_FILE_LIST], [
   lib/stdio-impl.h
   lib/stdio.in.h
   lib/stdlib.in.h
+  lib/strerror-override.c
+  lib/strerror-override.h
+  lib/strerror_r.c
+  lib/string.in.h
   lib/sys_stat.in.h
   lib/sys_time.in.h
   lib/sys_types.in.h
@@ -390,6 +496,9 @@ AC_DEFUN([gl_FILE_LIST], [
   m4/extensions.m4
   m4/extern-inline.m4
   m4/fclose.m4
+  m4/fcntl-o.m4
+  m4/fcntl_h.m4
+  m4/fdopen.m4
   m4/fflush.m4
   m4/fopen.m4
   m4/fpurge.m4
@@ -402,23 +511,124 @@ AC_DEFUN([gl_FILE_LIST], [
   m4/gettimeofday.m4
   m4/gnulib-common.m4
   m4/include_next.m4
+  m4/inttypes-pri.m4
+  m4/inttypes.m4
   m4/largefile.m4
+  m4/lib-ld.m4
+  m4/lib-link.m4
+  m4/lib-prefix.m4
+  m4/lock.m4
+  m4/longlong.m4
   m4/lseek.m4
   m4/malloc.m4
   m4/msvc-inval.m4
   m4/msvc-nothrow.m4
+  m4/multiarch.m4
   m4/off_t.m4
   m4/ssize_t.m4
+  m4/stdalign.m4
   m4/stdbool.m4
   m4/stddef_h.m4
+  m4/stdint.m4
   m4/stdio_h.m4
   m4/stdlib_h.m4
+  m4/strerror.m4
+  m4/strerror_r.m4
+  m4/string_h.m4
   m4/sys_socket_h.m4
   m4/sys_stat_h.m4
   m4/sys_time_h.m4
   m4/sys_types_h.m4
+  m4/thread.m4
+  m4/threadlib.m4
   m4/time_h.m4
+  m4/ungetc.m4
   m4/unistd_h.m4
   m4/warn-on-use.m4
+  m4/wchar_h.m4
   m4/wchar_t.m4
+  m4/wint_t.m4
+  m4/yield.m4
+  tests/init.sh
+  tests/macros.h
+  tests/signature.h
+  tests/test-binary-io.c
+  tests/test-binary-io.sh
+  tests/test-close.c
+  tests/test-errno.c
+  tests/test-fclose.c
+  tests/test-fcntl-h.c
+  tests/test-fdopen.c
+  tests/test-fflush.c
+  tests/test-fflush2.c
+  tests/test-fflush2.sh
+  tests/test-fgetc.c
+  tests/test-fopen.c
+  tests/test-fopen.h
+  tests/test-fpurge.c
+  tests/test-fputc.c
+  tests/test-fread.c
+  tests/test-freading.c
+  tests/test-fseek.c
+  tests/test-fseek.sh
+  tests/test-fseek2.sh
+  tests/test-fseeko.c
+  tests/test-fseeko.sh
+  tests/test-fseeko2.sh
+  tests/test-fseeko3.c
+  tests/test-fseeko3.sh
+  tests/test-fseeko4.c
+  tests/test-fseeko4.sh
+  tests/test-fstat.c
+  tests/test-ftell.c
+  tests/test-ftell.sh
+  tests/test-ftell2.sh
+  tests/test-ftell3.c
+  tests/test-ftello.c
+  tests/test-ftello.sh
+  tests/test-ftello2.sh
+  tests/test-ftello3.c
+  tests/test-ftello4.c
+  tests/test-ftello4.sh
+  tests/test-fwrite.c
+  tests/test-gettimeofday.c
+  tests/test-init.sh
+  tests/test-intprops.c
+  tests/test-inttypes.c
+  tests/test-lock.c
+  tests/test-lseek.c
+  tests/test-lseek.sh
+  tests/test-malloc-gnu.c
+  tests/test-stdalign.c
+  tests/test-stdbool.c
+  tests/test-stddef.c
+  tests/test-stdint.c
+  tests/test-stdio.c
+  tests/test-stdlib.c
+  tests/test-strerror_r.c
+  tests/test-string.c
+  tests/test-sys_stat.c
+  tests/test-sys_time.c
+  tests/test-sys_types.c
+  tests/test-sys_wait.h
+  tests/test-thread_create.c
+  tests/test-thread_self.c
+  tests/test-time.c
+  tests/test-unistd.c
+  tests/test-verify.c
+  tests/test-verify.sh
+  tests/test-wchar.c
+  tests=lib/binary-io.c
+  tests=lib/binary-io.h
+  tests=lib/fcntl.in.h
+  tests=lib/fdopen.c
+  tests=lib/glthread/thread.c
+  tests=lib/glthread/thread.h
+  tests=lib/glthread/yield.h
+  tests=lib/intprops.h
+  tests=lib/inttypes.in.h
+  tests=lib/stdalign.in.h
+  tests=lib/stdint.in.h
+  tests=lib/verify.h
+  tests=lib/wchar.in.h
 ])
