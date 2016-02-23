@@ -22,6 +22,7 @@ libmho_la_LDFLAGS = -L../gnulib -L../intl
 AM_CPPFLAGS = -I ../include -I ../gnulib
 
 dirs.h: stamp-dirs-h
+	rm -f $@
 	echo '#define localedir "$(localedir)"' >> dirs.h
 
 stamp-dirs-h: Makefile Makefile.in Makefile.am ../configure ../configure.ac
