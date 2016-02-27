@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libmho 0.2\n"
 "Report-Msgid-Bugs-To: kaszycki@mail.com\n"
-"POT-Creation-Date: 2016-02-12 14:09+0100\n"
+"POT-Creation-Date: 2016-02-27 22:21+0100\n"
 "PO-Revision-Date: 2016-02-12 11:32+0100\n"
 "Last-Translator: Jakub Kaszycki <kaszycki@mail.com>\n"
 "Language-Team: Polish\n"
@@ -158,27 +158,27 @@ msgstr "VAX-11/785"
 msgid "VAX-11/750"
 msgstr "VAX-11/750"
 
-#: src/mhodump.c:54 src/mhodump.c:84 src/mhodump.c:89 src/mhodump.c:96
-msgid "I/O error"
-msgstr "Błąd wejścia/wyjścia"
-
-#: src/mhodump.c:61
+#: src/mhodump.c:58
 msgid "Is a directory"
 msgstr "Jest katalogiem"
 
-#: src/mhodump.c:64
+#: src/mhodump.c:62
 msgid "Operation not supported on socket"
 msgstr "Operacja nieobsługiwana dla gniazda"
 
-#: src/mhodump.c:67
+#: src/mhodump.c:65
 msgid "No such file"
 msgstr "Nie ma takiego pliku"
 
-#: src/mhodump.c:74
+#: src/mhodump.c:75
 msgid "No read permission"
 msgstr "Brak uprawnień odczytu"
 
-#: src/mhodump.c:101
+#: src/mhodump.c:85 src/mhodump.c:90 src/mhodump.c:97
+msgid "I/O error"
+msgstr "Błąd wejścia/wyjścia"
+
+#: src/mhodump.c:102
 msgid "Not a Mach object"
 msgstr "Nie jest obiektem Mach"
 
@@ -186,40 +186,148 @@ msgstr "Nie jest obiektem Mach"
 msgid "Dump something from Mach-O file"
 msgstr "Wypisz coś z pliku Mach-O"
 
-#: src/mhodump.c:185
+#: src/mhodump.c:131
+msgid "Usage"
+msgstr "Użycie"
+
+#: src/mhodump.c:131
+msgid "SUBCOMMAND"
+msgstr "PODKOMENDA"
+
+#: src/mhodump.c:132
+msgid "options"
+msgstr "opcje"
+
+#: src/mhodump.c:132
+msgid "Subcommands"
+msgstr "Podkomendy:"
+
+#: src/mhodump.c:132
+msgid "Display this help text"
+msgstr "Wyświetl ten tekst pomocy"
+
+#: src/mhodump.c:133
+msgid "Display version of libMhO"
+msgstr "Wyświetl wersję libMhO"
+
+#: src/mhodump.c:133
+msgid "Display Mach header"
+msgstr "Wyświetl nagłówek Mach"
+
+#: src/mhodump.c:134
+msgid "Display load commands"
+msgstr "Wyświetl komendy ładowania"
+
+#: src/mhodump.c:134
+msgid "Display segments (in one file)"
+msgstr "Wyświetl segmenty (w jednym pliku)"
+
+#: src/mhodump.c:135
+msgid "Display sections (in one segment)"
+msgstr "Wyświetl sekcje (w jednym segmencie)"
+
+#: src/mhodump.c:135
+msgid "Display symbols (in one section)"
+msgstr "Wyświetl symbole (w jednej sekcji)"
+
+#: src/mhodump.c:136
+msgid "There is also one easter milk (I meant egg)... Try to find it!"
+msgstr "Jest też wielkanocne mleko (chodziło mi o jajko)... Spróbuj je znaleźć!"
+
+#: src/mhodump.c:165
+msgid "Command not found"
+msgstr "Komendy nie znaleziono"
+
+#: src/mhodump.c:190
 msgid "Error"
 msgstr "Błąd"
 
-#: src/mhodump.c:186
+#: src/mhodump.c:191
 msgid "Missing subcommand"
 msgstr "Brakująca podkomenda"
 
-#: src/mhodump.c:187
+#: src/mhodump.c:192
 #, c-format
 msgid "For details type: %s help\n"
 msgstr "Aby uzyskać szczegóły, wpisz: %s help\n"
 
 #: src/mhodump.c:209
+msgid "Magic number"
+msgstr "Liczba magiczna"
+
+#: src/mhodump.c:214
 msgid "universal"
 msgstr "uniwersalna"
 
-#: src/mhodump.c:215 src/mhodump.c:222
+#: src/mhodump.c:220 src/mhodump.c:227
 msgid "little endian"
 msgstr "mały endian"
 
-#: src/mhodump.c:217 src/mhodump.c:220
+#: src/mhodump.c:222 src/mhodump.c:225
 msgid "big endian"
 msgstr "duży endian"
 
-#: src/mhodump.c:225
+#: src/mhodump.c:230
 #, c-format
 msgid "invalid"
 msgstr "niepoprawna"
 
-#: src/mhodump.c:240
+#: src/mhodump.c:245
 msgid "Architecture count"
 msgstr "Liczba architektur"
 
-#: src/mhodump.c:243
+#: src/mhodump.c:249
 msgid "Architecture"
 msgstr "Architektura"
+
+#: src/mhodump.c:250 src/mhodump.c:263
+msgid "CPU type"
+msgstr "Typ CPU"
+
+#: src/mhodump.c:252 src/mhodump.c:265
+msgid "CPU subtype"
+msgstr "Podtyp CPU"
+
+#: src/mhodump.c:257
+msgid "Offset"
+msgstr "Odległość"
+
+#: src/mhodump.c:258
+msgid "Size"
+msgstr "Rozmiar"
+
+#: src/mhodump.c:259
+msgid "Alignment"
+msgstr "Zaokrąglenie"
+
+#: src/mhodump.c:271
+msgid "File type"
+msgstr "Typ pliku"
+
+#: src/mhodump.c:273
+msgid "Commands count"
+msgstr "Ilość komend"
+
+#: src/mhodump.c:274
+msgid "Commands sumaric size"
+msgstr "Całkowity rozmiar komend"
+
+#: src/mhodump.c:275
+msgid "Flags"
+msgstr "Flagi"
+
+#: src/mhodump.c:309
+msgid "Reserved (no purpose)"
+msgstr "Zarezerwowane (bez powodu)"
+
+#: src/mhodump.c:321
+msgid "Universal binaries not supported yet"
+msgstr "Uniwersalne obiekty jeszcze nieobsługiwane"
+
+#: src/mhodump.c:328
+msgid "Command"
+msgstr "Komenda"
+
+#: src/mhodump.c:329
+msgid "Type"
+msgstr "Typ"

@@ -1,83 +1,62 @@
-# English translations for libmho package.
+# Polish translations for libmho package
+# Polskie t³umaczenia dla pakietu libmho.
 # Copyright (C) 2016 Jakub Kaszycki
 # This file is distributed under the same license as the libmho package.
-# Automatically generated, 2016.
-#
-# All this catalog "translates" are quotation characters.
-# The msgids must be ASCII and therefore cannot contain real quotation
-# characters, only substitutes like grave accent (0x60), apostrophe (0x27)
-# and double quote (0x22). These substitutes look strange; see
-# http://www.cl.cam.ac.uk/~mgk25/ucs/quotes.html
-#
-# This catalog translates grave accent (0x60) and apostrophe (0x27) to
-# left single quotation mark (U+2018) and right single quotation mark (U+2019).
-# It also translates pairs of apostrophe (0x27) to
-# left single quotation mark (U+2018) and right single quotation mark (U+2019)
-# and pairs of quotation mark (0x22) to
-# left double quotation mark (U+201C) and right double quotation mark (U+201D).
-#
-# When output to an UTF-8 terminal, the quotation characters appear perfectly.
-# When output to an ISO-8859-1 terminal, the single quotation marks are
-# transliterated to apostrophes (by iconv in glibc 2.2 or newer) or to
-# grave/acute accent (by libiconv), and the double quotation marks are
-# transliterated to 0x22.
-# When output to an ASCII terminal, the single quotation marks are
-# transliterated to apostrophes, and the double quotation marks are
-# transliterated to 0x22.
+# Jakub Kaszycki <kaszycki@mail.com>, 2016.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: libmho 0.2\n"
 "Report-Msgid-Bugs-To: kaszycki@mail.com\n"
 "POT-Creation-Date: 2016-02-27 22:21+0100\n"
-"PO-Revision-Date: 2016-02-27 22:21+0100\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
-"Language: en@quot\n"
+"PO-Revision-Date: 2016-02-12 11:32+0100\n"
+"Last-Translator: Jakub Kaszycki <kaszycki@mail.com>\n"
+"Language-Team: Polish\n"
+"Language: pl\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=ISO-8859-2\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #: lib/filetype.c:30
 msgid "Object"
-msgstr "Object"
+msgstr "Obiekt"
 
 #: lib/filetype.c:32
 msgid "Executable"
-msgstr "Executable"
+msgstr "Wykonywalny"
 
 #: lib/filetype.c:34
 msgid "FVMlib"
-msgstr "FVMlib"
+msgstr "Sta³a biblioteka wirtualnej maszyny"
 
 #: lib/filetype.c:36
 msgid "Core"
-msgstr "Core"
+msgstr "J±dro"
 
 #: lib/filetype.c:38
 msgid "Preloaded"
-msgstr "Preloaded"
+msgstr "Pre³adowane"
 
 #: lib/filetype.c:40
 msgid "Dynamic library"
-msgstr "Dynamic library"
+msgstr "Biblioteka dynamiczna"
 
 #: lib/filetype.c:42
 msgid "Dynamic linker"
-msgstr "Dynamic linker"
+msgstr "Linker dynamiczny"
 
 #: lib/filetype.c:44
 msgid "Bundle"
-msgstr "Bundle"
+msgstr "Paczka"
 
 #: lib/filetype.c:46 lib/cputypes.c:72 lib/cputypes.c:358
 msgid "Unknown"
-msgstr "Unknown"
+msgstr "Nieznany"
 
 #: lib/cputypes.c:30
 msgid "any CPU (any vendor)"
-msgstr "any CPU (any vendor)"
+msgstr "jakiekolwiek CPU (jakikolwiek producent)"
 
 #: lib/cputypes.c:32
 msgid "VAX (Digital Equipment Corporation)"
@@ -141,7 +120,7 @@ msgstr "SPARC 64-bit (Sun)"
 
 #: lib/cputypes.c:62
 msgid "i860 big endian (Intel)"
-msgstr "i860 big endian (Intel)"
+msgstr "i860 du¿y endian (intel)"
 
 #: lib/cputypes.c:64
 msgid "i860 (Intel)"
@@ -161,11 +140,11 @@ msgstr "PowerPC 64-bit (Apple+IBM+Motorola)"
 
 #: lib/cputypes.c:82
 msgid "any"
-msgstr "any"
+msgstr "jakikolwiek"
 
 #: lib/cputypes.c:86
 msgid "any VAX"
-msgstr "any VAX"
+msgstr "jakikolwiek VAX"
 
 #: lib/cputypes.c:88
 msgid "VAX-11/780"
@@ -181,174 +160,174 @@ msgstr "VAX-11/750"
 
 #: src/mhodump.c:58
 msgid "Is a directory"
-msgstr "Is a directory"
+msgstr "Jest katalogiem"
 
 #: src/mhodump.c:62
 msgid "Operation not supported on socket"
-msgstr "Operation not supported on socket"
+msgstr "Operacja nieobs³ugiwana dla gniazda"
 
 #: src/mhodump.c:65
 msgid "No such file"
-msgstr "No such file"
+msgstr "Nie ma takiego pliku"
 
 #: src/mhodump.c:75
 msgid "No read permission"
-msgstr "No read permission"
+msgstr "Brak uprawnieñ odczytu"
 
 #: src/mhodump.c:85 src/mhodump.c:90 src/mhodump.c:97
 msgid "I/O error"
-msgstr "I/O error"
+msgstr "B³±d wej¶cia/wyj¶cia"
 
 #: src/mhodump.c:102
 msgid "Not a Mach object"
-msgstr "Not a Mach object"
+msgstr "Nie jest obiektem Mach"
 
 #: src/mhodump.c:131
 msgid "Dump something from Mach-O file"
-msgstr "Dump something from Mach-O file"
+msgstr "Wypisz co¶ z pliku Mach-O"
 
 #: src/mhodump.c:131
 msgid "Usage"
-msgstr "Usage"
+msgstr "U¿ycie"
 
 #: src/mhodump.c:131
 msgid "SUBCOMMAND"
-msgstr "SUBCOMMAND"
+msgstr "PODKOMENDA"
 
 #: src/mhodump.c:132
 msgid "options"
-msgstr "options"
+msgstr "opcje"
 
 #: src/mhodump.c:132
 msgid "Subcommands"
-msgstr "Subcommands"
+msgstr "Podkomendy:"
 
 #: src/mhodump.c:132
 msgid "Display this help text"
-msgstr "Display this help text"
+msgstr "Wy¶wietl ten tekst pomocy"
 
 #: src/mhodump.c:133
 msgid "Display version of libMhO"
-msgstr "Display version of libMhO"
+msgstr "Wy¶wietl wersjê libMhO"
 
 #: src/mhodump.c:133
 msgid "Display Mach header"
-msgstr "Display Mach header"
+msgstr "Wy¶wietl nag³ówek Mach"
 
 #: src/mhodump.c:134
 msgid "Display load commands"
-msgstr "Display load commands"
+msgstr "Wy¶wietl komendy ³adowania"
 
 #: src/mhodump.c:134
 msgid "Display segments (in one file)"
-msgstr "Display segments (in one file)"
+msgstr "Wy¶wietl segmenty (w jednym pliku)"
 
 #: src/mhodump.c:135
 msgid "Display sections (in one segment)"
-msgstr "Display sections (in one segment)"
+msgstr "Wy¶wietl sekcje (w jednym segmencie)"
 
 #: src/mhodump.c:135
 msgid "Display symbols (in one section)"
-msgstr "Display symbols (in one section)"
+msgstr "Wy¶wietl symbole (w jednej sekcji)"
 
 #: src/mhodump.c:136
 msgid "There is also one easter milk (I meant egg)... Try to find it!"
-msgstr "There is also one easter milk (I meant egg)... Try to find it!"
+msgstr "Jest te¿ wielkanocne mleko (chodzi³o mi o jajko)... Spróbuj je znale¼æ!"
 
 #: src/mhodump.c:165
 msgid "Command not found"
-msgstr "Command not found"
+msgstr "Komendy nie znaleziono"
 
 #: src/mhodump.c:190
 msgid "Error"
-msgstr "Error"
+msgstr "B³±d"
 
 #: src/mhodump.c:191
 msgid "Missing subcommand"
-msgstr "Missing subcommand"
+msgstr "Brakuj±ca podkomenda"
 
 #: src/mhodump.c:192
 #, c-format
 msgid "For details type: %s help\n"
-msgstr "For details type: %s help\n"
+msgstr "Aby uzyskaæ szczegó³y, wpisz: %s help\n"
 
 #: src/mhodump.c:209
 msgid "Magic number"
-msgstr "Magic number"
+msgstr "Liczba magiczna"
 
 #: src/mhodump.c:214
 msgid "universal"
-msgstr "universal"
+msgstr "uniwersalna"
 
 #: src/mhodump.c:220 src/mhodump.c:227
 msgid "little endian"
-msgstr "little endian"
+msgstr "ma³y endian"
 
 #: src/mhodump.c:222 src/mhodump.c:225
 msgid "big endian"
-msgstr "big endian"
+msgstr "du¿y endian"
 
 #: src/mhodump.c:230
 #, c-format
 msgid "invalid"
-msgstr "invalid"
+msgstr "niepoprawna"
 
 #: src/mhodump.c:245
 msgid "Architecture count"
-msgstr "Architecture count"
+msgstr "Liczba architektur"
 
 #: src/mhodump.c:249
 msgid "Architecture"
-msgstr "Architecture"
+msgstr "Architektura"
 
 #: src/mhodump.c:250 src/mhodump.c:263
 msgid "CPU type"
-msgstr "CPU type"
+msgstr "Typ CPU"
 
 #: src/mhodump.c:252 src/mhodump.c:265
 msgid "CPU subtype"
-msgstr "CPU subtype"
+msgstr "Podtyp CPU"
 
 #: src/mhodump.c:257
 msgid "Offset"
-msgstr "Offset"
+msgstr "Odleg³o¶æ"
 
 #: src/mhodump.c:258
 msgid "Size"
-msgstr "Size"
+msgstr "Rozmiar"
 
 #: src/mhodump.c:259
 msgid "Alignment"
-msgstr "Alignment"
+msgstr "Zaokr±glenie"
 
 #: src/mhodump.c:271
 msgid "File type"
-msgstr "File type"
+msgstr "Typ pliku"
 
 #: src/mhodump.c:273
 msgid "Commands count"
-msgstr "Commands count"
+msgstr "Ilo¶æ komend"
 
 #: src/mhodump.c:274
 msgid "Commands sumaric size"
-msgstr "Commands sumaric size"
+msgstr "Ca³kowity rozmiar komend"
 
 #: src/mhodump.c:275
 msgid "Flags"
-msgstr "Flags"
+msgstr "Flagi"
 
 #: src/mhodump.c:309
 msgid "Reserved (no purpose)"
-msgstr "Reserved (no purpose)"
+msgstr "Zarezerwowane (bez powodu)"
 
 #: src/mhodump.c:321
 msgid "Universal binaries not supported yet"
-msgstr "Universal binaries not supported yet"
+msgstr "Uniwersalne obiekty jeszcze nieobs³ugiwane"
 
 #: src/mhodump.c:328
 msgid "Command"
-msgstr "Command"
+msgstr "Komenda"
 
 #: src/mhodump.c:329
 msgid "Type"
-msgstr "Type"
+msgstr "Typ"

@@ -476,3 +476,7 @@ force:
 # Tell versions [3.59,3.63) of GNU make not to export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
 .NOEXPORT:
+
+pl_PL.ISO-8859-2.po: pl.po
+	rm -f $@
+	cat $< | sed 's/UTF\-8/ISO\-8859\-2/g' | iconv -f UTF-8 -t ISO-8859-2 > $@

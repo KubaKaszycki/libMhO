@@ -39,11 +39,6 @@
 # define fprintf(f, x, ...) fprintf_l(f, uselocale(NULL), x, ##__VA_ARGS__)
 #endif
 
-static struct option OPTIONS[] = {
-	{"help", no_argument, NULL, 'h'},
-	{NULL, 0, NULL, 0}
-};
-
 int
 verify_file(const char *path)
 {
@@ -122,18 +117,23 @@ print_help()
 	print_version();
 	printf("%s - %s\n"
 	       "\n"
-	       "Usage: mhodump <SUBCOMMAND> [options...]\n"
+	       "%s: mhodump <%s> [%s...]\n"
 	       "\n"
-	       "Subcommands:\n"
-	       "   help          - Display this help text\n"
-	       "   version       - Display version\n"
-	       "   header        - Display Mach-O header\n"
-	       "   load-commands - Display load commands\n"
-	       "   segments      - Display segments (in one file)\n"
-	       "   sections      - Display sections (in one segment)\n"
-	       "   symbols       - Display symbols (in one section)\n"
-	       "There is also one easter milk (I meant egg)... Try to find it!\n",
-	       alias, _("Dump something from Mach-O file"));
+	       "%s:\n"
+	       "   help          - %s\n"
+	       "   version       - %s\n"
+	       "   header        - %s\n"
+	       "   load-commands - %s\n"
+	       "   segments      - %s\n"
+	       "   sections      - %s\n"
+	       "   symbols       - %s\n"
+	       "%s\n",
+	       alias, _("Dump something from Mach-O file"), _("Usage"), _("SUBCOMMAND"),
+	       _("options"), _("Subcommands"), _("Display this help text"),
+	       _("Display version of libMhO"), _("Display Mach header"),
+	       _("Display load commands"), _("Display segments (in one file)"),
+	       _("Display sections (in one segment)"), _("Display symbols (in one section)"),
+	       _("There is also one easter milk (I meant egg)... Try to find it!"));
 }
 
 typedef int     (*subcommand_t) (int, char **);
@@ -162,7 +162,7 @@ int             moo(int, char **);
 int
 subcommand_not_found(int argc, char **argv)
 {
-	fprintf(stderr, "Command not found: %s!\n", argv[0]);
+	fprintf(stderr, "%s: %s!\n", _("Command not found"), argv[0]);
 	return 1;
 }
 
@@ -206,7 +206,7 @@ header(int argc, char **argv)
 	}
 	FILE           *stream = fopen(argv[1], "r");
 	struct mho_header header = mho_read_header(stream);
-	printf("Magic number: 0x%x (", header.magic);
+	printf("%s: 0x%x (", _("Magic number"), header.magic);
 	if (mho_is_magic(header.magic)) {
 		if (mho_magic_64(header.magic)) {
 			printf("64-bit, ");
@@ -247,32 +247,32 @@ header(int argc, char **argv)
 		for (uint32_t i = 0; i < fhdr.nfat_arch; i++) {
 			struct mho_fat_arch arch = mho_read_farch(stream);
 			printf("%s %u:\n", _("Architecture"), i + 1);
-			printf("\tCPU type: 0x%x (%s)\n", arch.cputype,
+			printf("\t%s: 0x%x (%s)\n", _("CPU type"), arch.cputype,
 			       mho_ct2s(arch.cputype));
-			printf("\tCPU sub-type: 0x%x (%s)\n",
+			printf("\t%s: 0x%x (%s)\n", _("CPU subtype"),
 			       arch.cpusubtype & MHO_CPU_SUBTYPE_MASK,
 			       mho_cst2s(arch.cputype,
 					 arch.cpusubtype &
 					 MHO_CPU_SUBTYPE_MASK));
-			printf("\tOffset: %u\n", arch.offset);
-			printf("\tSize: %u\n", arch.size);
-			printf("\tAlignment: %u\n", arch.size);
+			printf("\t%s: %u\n", _("Offset"), arch.offset);
+			printf("\t%s: %u\n", _("Size"), arch.size);
+			printf("\t%s: %u\n", _("Alignment"), arch.alignment);
 		}
 		return 0;
 	} else {
-		printf("CPU type: 0x%x (%s)\n", header.cputype,
+		printf("%s: 0x%x (%s)\n", _("CPU type"), header.cputype,
 		       mho_ct2s(header.cputype));
-		printf("CPU sub-type: 0x%x (%s)\n",
+		printf("%s: 0x%x (%s)\n", _("CPU subtype"),
 		       header.cpusubtype & MHO_CPU_SUBTYPE_MASK,
 		       mho_cst2s(header.cputype,
 				 header.cpusubtype &
 				 MHO_CPU_SUBTYPE_MASK));
 	}
-	printf("File type: %hd (%s)\n", (short) header.filetype,
+	printf("%s: %hd (%s)\n", _("File type"), (short) header.filetype,
 	       mho_ft2s((short) header.filetype));
-	printf("Commands count: %d\n", header.ncmds);
-	printf("Commands sumaric size: %d\n", header.sizeofcmds);
-	printf("Flags:");
+	printf("%s: %d\n", _("Commands count"), header.ncmds);
+	printf("%s: %d\n", _("Commands sumaric size"), header.sizeofcmds);
+	printf("%s:", _("Flags"));
 #define __flag__(x) do { \
 if(header.flags & MHO_FLAG_##x) { \
 printf(" MH_" #x); \
@@ -306,7 +306,7 @@ printf(" MH_" #x); \
 	if (mho_magic_64(header.magic)) {
 		struct mho_header_64 *hdr64 =
 		    (struct mho_header_64 *) &header;
-		printf("Reserved (no purpose): 0x%x\n", hdr64->reserved);
+		printf("%s: 0x%x\n", _("Reserved (no purpose)"), hdr64->reserved);
 	}
 	fclose(stream);
 	return 0;
@@ -318,15 +318,15 @@ load_commands(int argc, char **argv)
 	FILE           *stream = fopen(argv[1], "r");
 	struct mho_header hdr = mho_read_header(stream);
 	if (mho_magic_fat(hdr.magic)) {
-		fprintf(stderr, "Universal binaries not supported yet\n");
+		fprintf(stderr, "%s\n", _("Universal binaries not supported yet"));
 		fclose(stream);
 		return 1;
 	}
 	struct mho_load_command *lc;
 	for (uint32_t i = 0; i < hdr.ncmds; i++) {
 		mho_read_command(stream, (void **) &lc);
-		printf("Command #%d:\n", i + 1);
-		printf("\tType: %d\n", lc->cmd);
+		printf("%s #%d:\n", _("Command"), i + 1);
+		printf("\t%s: %d\n", _("Type"), lc->cmd);
 	}
 	return 0;
 }

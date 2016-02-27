@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libmho 0.2\n"
 "Report-Msgid-Bugs-To: kaszycki@mail.com\n"
-"POT-Creation-Date: 2016-02-12 14:09+0100\n"
+"POT-Creation-Date: 2016-02-27 22:21+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -157,27 +157,27 @@ msgstr ""
 msgid "VAX-11/750"
 msgstr ""
 
-#: src/mhodump.c:54 src/mhodump.c:84 src/mhodump.c:89 src/mhodump.c:96
-msgid "I/O error"
-msgstr ""
-
-#: src/mhodump.c:61
+#: src/mhodump.c:58
 msgid "Is a directory"
 msgstr ""
 
-#: src/mhodump.c:64
+#: src/mhodump.c:62
 msgid "Operation not supported on socket"
 msgstr ""
 
-#: src/mhodump.c:67
+#: src/mhodump.c:65
 msgid "No such file"
 msgstr ""
 
-#: src/mhodump.c:74
+#: src/mhodump.c:75
 msgid "No read permission"
 msgstr ""
 
-#: src/mhodump.c:101
+#: src/mhodump.c:85 src/mhodump.c:90 src/mhodump.c:97
+msgid "I/O error"
+msgstr ""
+
+#: src/mhodump.c:102
 msgid "Not a Mach object"
 msgstr ""
 
@@ -185,40 +185,148 @@ msgstr ""
 msgid "Dump something from Mach-O file"
 msgstr ""
 
-#: src/mhodump.c:185
+#: src/mhodump.c:131
+msgid "Usage"
+msgstr ""
+
+#: src/mhodump.c:131
+msgid "SUBCOMMAND"
+msgstr ""
+
+#: src/mhodump.c:132
+msgid "options"
+msgstr ""
+
+#: src/mhodump.c:132
+msgid "Subcommands"
+msgstr ""
+
+#: src/mhodump.c:132
+msgid "Display this help text"
+msgstr ""
+
+#: src/mhodump.c:133
+msgid "Display version of libMhO"
+msgstr ""
+
+#: src/mhodump.c:133
+msgid "Display Mach header"
+msgstr ""
+
+#: src/mhodump.c:134
+msgid "Display load commands"
+msgstr ""
+
+#: src/mhodump.c:134
+msgid "Display segments (in one file)"
+msgstr ""
+
+#: src/mhodump.c:135
+msgid "Display sections (in one segment)"
+msgstr ""
+
+#: src/mhodump.c:135
+msgid "Display symbols (in one section)"
+msgstr ""
+
+#: src/mhodump.c:136
+msgid "There is also one easter milk (I meant egg)... Try to find it!"
+msgstr ""
+
+#: src/mhodump.c:165
+msgid "Command not found"
+msgstr ""
+
+#: src/mhodump.c:190
 msgid "Error"
 msgstr ""
 
-#: src/mhodump.c:186
+#: src/mhodump.c:191
 msgid "Missing subcommand"
 msgstr ""
 
-#: src/mhodump.c:187
+#: src/mhodump.c:192
 #, c-format
 msgid "For details type: %s help\n"
 msgstr ""
 
 #: src/mhodump.c:209
+msgid "Magic number"
+msgstr ""
+
+#: src/mhodump.c:214
 msgid "universal"
 msgstr ""
 
-#: src/mhodump.c:215 src/mhodump.c:222
+#: src/mhodump.c:220 src/mhodump.c:227
 msgid "little endian"
 msgstr ""
 
-#: src/mhodump.c:217 src/mhodump.c:220
+#: src/mhodump.c:222 src/mhodump.c:225
 msgid "big endian"
 msgstr ""
 
-#: src/mhodump.c:225
+#: src/mhodump.c:230
 #, c-format
 msgid "invalid"
 msgstr ""
 
-#: src/mhodump.c:240
+#: src/mhodump.c:245
 msgid "Architecture count"
 msgstr ""
 
-#: src/mhodump.c:243
+#: src/mhodump.c:249
 msgid "Architecture"
+msgstr ""
+
+#: src/mhodump.c:250 src/mhodump.c:263
+msgid "CPU type"
+msgstr ""
+
+#: src/mhodump.c:252 src/mhodump.c:265
+msgid "CPU subtype"
+msgstr ""
+
+#: src/mhodump.c:257
+msgid "Offset"
+msgstr ""
+
+#: src/mhodump.c:258
+msgid "Size"
+msgstr ""
+
+#: src/mhodump.c:259
+msgid "Alignment"
+msgstr ""
+
+#: src/mhodump.c:271
+msgid "File type"
+msgstr ""
+
+#: src/mhodump.c:273
+msgid "Commands count"
+msgstr ""
+
+#: src/mhodump.c:274
+msgid "Commands sumaric size"
+msgstr ""
+
+#: src/mhodump.c:275
+msgid "Flags"
+msgstr ""
+
+#: src/mhodump.c:309
+msgid "Reserved (no purpose)"
+msgstr ""
+
+#: src/mhodump.c:321
+msgid "Universal binaries not supported yet"
+msgstr ""
+
+#: src/mhodump.c:328
+msgid "Command"
+msgstr ""
+
+#: src/mhodump.c:329
+msgid "Type"
 msgstr ""
