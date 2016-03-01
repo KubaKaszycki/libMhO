@@ -128,12 +128,15 @@ print_help()
 	       "   sections      - %s\n"
 	       "   symbols       - %s\n"
 	       "%s\n",
-	       alias, _("Dump something from Mach-O file"), _("Usage"), _("SUBCOMMAND"),
-	       _("options"), _("Subcommands"), _("Display this help text"),
-	       _("Display version of libMhO"), _("Display Mach header"),
-	       _("Display load commands"), _("Display segments (in one file)"),
-	       _("Display sections (in one segment)"), _("Display symbols (in one section)"),
-	       _("There is also one easter milk (I meant egg)... Try to find it!"));
+	       alias, _("Dump something from Mach-O file"), _("Usage"),
+	       _("SUBCOMMAND"), _("options"), _("Subcommands"),
+	       _("Display this help text"), _("Display version of libMhO"),
+	       _("Display Mach header"), _("Display load commands"),
+	       _("Display segments (in one file)"),
+	       _("Display sections (in one segment)"),
+	       _("Display symbols (in one section)"),
+	       _
+	       ("There is also one easter milk (I meant egg)... Try to find it!"));
 }
 
 typedef int     (*subcommand_t) (int, char **);
@@ -247,16 +250,18 @@ header(int argc, char **argv)
 		for (uint32_t i = 0; i < fhdr.nfat_arch; i++) {
 			struct mho_fat_arch arch = mho_read_farch(stream);
 			printf("%s %u:\n", _("Architecture"), i + 1);
-			printf("\t%s: 0x%x (%s)\n", _("CPU type"), arch.cputype,
-			       mho_ct2s(arch.cputype));
+			printf("\t%s: 0x%x (%s)\n", _("CPU type"),
+			       arch.cputype, mho_ct2s(arch.cputype));
 			printf("\t%s: 0x%x (%s)\n", _("CPU subtype"),
 			       arch.cpusubtype & MHO_CPU_SUBTYPE_MASK,
 			       mho_cst2s(arch.cputype,
-					 arch.cpusubtype &
+					 arch.
+					 cpusubtype &
 					 MHO_CPU_SUBTYPE_MASK));
 			printf("\t%s: %u\n", _("Offset"), arch.offset);
 			printf("\t%s: %u\n", _("Size"), arch.size);
-			printf("\t%s: %u\n", _("Alignment"), arch.alignment);
+			printf("\t%s: %u\n", _("Alignment"),
+			       arch.alignment);
 		}
 		return 0;
 	} else {
@@ -306,7 +311,8 @@ printf(" MH_" #x); \
 	if (mho_magic_64(header.magic)) {
 		struct mho_header_64 *hdr64 =
 		    (struct mho_header_64 *) &header;
-		printf("%s: 0x%x\n", _("Reserved (no purpose)"), hdr64->reserved);
+		printf("%s: 0x%x\n", _("Reserved (no purpose)"),
+		       hdr64->reserved);
 	}
 	fclose(stream);
 	return 0;
@@ -318,7 +324,8 @@ load_commands(int argc, char **argv)
 	FILE           *stream = fopen(argv[1], "r");
 	struct mho_header hdr = mho_read_header(stream);
 	if (mho_magic_fat(hdr.magic)) {
-		fprintf(stderr, "%s\n", _("Universal binaries not supported yet"));
+		fprintf(stderr, "%s\n",
+			_("Universal binaries not supported yet"));
 		fclose(stream);
 		return 1;
 	}
