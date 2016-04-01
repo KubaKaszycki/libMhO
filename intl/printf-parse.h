@@ -19,21 +19,21 @@
 #define _PRINTF_PARSE_H
 
 #if HAVE_FEATURES_H
-# include <features.h> /* for __GLIBC__, __UCLIBC__ */
+# include <features.h>		/* for __GLIBC__, __UCLIBC__ */
 #endif
 
 #include "printf-args.h"
 
 
 /* Flags */
-#define FLAG_GROUP       1      /* ' flag */
-#define FLAG_LEFT        2      /* - flag */
-#define FLAG_SHOWSIGN    4      /* + flag */
-#define FLAG_SPACE       8      /* space flag */
-#define FLAG_ALT        16      /* # flag */
+#define FLAG_GROUP       1	/* ' flag */
+#define FLAG_LEFT        2	/* - flag */
+#define FLAG_SHOWSIGN    4	/* + flag */
+#define FLAG_SPACE       8	/* space flag */
+#define FLAG_ALT        16	/* # flag */
 #define FLAG_ZERO       32
 #if __GLIBC__ >= 2 && !defined __UCLIBC__
-# define FLAG_LOCALIZED 64      /* I flag, uses localized digits */
+# define FLAG_LOCALIZED 64	/* I flag, uses localized digits */
 #endif
 
 /* arg_index value indicating that no argument is consumed.  */
@@ -45,16 +45,16 @@
 /* A parsed directive.  */
 typedef struct
 {
-  const char* dir_start;
-  const char* dir_end;
+  const char *dir_start;
+  const char *dir_end;
   int flags;
-  const char* width_start;
-  const char* width_end;
+  const char *width_start;
+  const char *width_end;
   size_t width_arg_index;
-  const char* precision_start;
-  const char* precision_end;
+  const char *precision_start;
+  const char *precision_end;
   size_t precision_arg_index;
-  char conversion; /* d i o u x X f e E g G c s p n U % but not C S */
+  char conversion;		/* d i o u x X f e E g G c s p n U % but not C S */
   size_t arg_index;
 }
 char_directive;
@@ -80,6 +80,6 @@ STATIC
 #else
 extern
 #endif
-int printf_parse (const char *format, char_directives *d, arguments *a);
+int printf_parse (const char *format, char_directives * d, arguments * a);
 
 #endif /* _PRINTF_PARSE_H */

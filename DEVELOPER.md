@@ -1,9 +1,9 @@
 # Developer notes
 ## Coding style
-We use here modified Berkeley coding style. Everything goes indented with a tab, macros by one space. This is equivalent to call
+We use here modified GNU coding style. Everything goes indented with two spaces, macros by one space. This is equivalent to call
 to GNU indent:
 
-	indent -orig -ppi1 -i8 -ut file
+	indent -gnu file
 
 If you have this tool, I kindly ask you to put some effort and format the files.
 
@@ -12,7 +12,7 @@ If working directory is not mentioned, I mean SOURCES ROOT.
 
 ### Indent all sources
 
-	for X in `find . | grep -E '\.[ch]$' | grep -vF 'gnulib' | grep -vF 'intl'`; do indent -orig -ppi1 -i8 -ut $X; done
+	for X in `find . | grep -E '\.[ch]$' | grep -vF 'gnulib' | grep -vF 'intl'`; do indent -gnu $X; done
 
 Before calling this, ensure two things:
  - You don't have important environment variable X (would be overwritten)

@@ -19,21 +19,21 @@
 #define _WPRINTF_PARSE_H
 
 #if HAVE_FEATURES_H
-# include <features.h> /* for __GLIBC__, __UCLIBC__ */
+# include <features.h>		/* for __GLIBC__, __UCLIBC__ */
 #endif
 
 #include "printf-args.h"
 
 
 /* Flags */
-#define FLAG_GROUP       1      /* ' flag */
-#define FLAG_LEFT        2      /* - flag */
-#define FLAG_SHOWSIGN    4      /* + flag */
-#define FLAG_SPACE       8      /* space flag */
-#define FLAG_ALT        16      /* # flag */
+#define FLAG_GROUP       1	/* ' flag */
+#define FLAG_LEFT        2	/* - flag */
+#define FLAG_SHOWSIGN    4	/* + flag */
+#define FLAG_SPACE       8	/* space flag */
+#define FLAG_ALT        16	/* # flag */
 #define FLAG_ZERO       32
 #if __GLIBC__ >= 2 && !defined __UCLIBC__
-# define FLAG_LOCALIZED 64      /* I flag, uses localized digits */
+# define FLAG_LOCALIZED 64	/* I flag, uses localized digits */
 #endif
 
 /* arg_index value indicating that no argument is consumed.  */
@@ -45,16 +45,16 @@
 /* A parsed directive.  */
 typedef struct
 {
-  const wchar_t* dir_start;
-  const wchar_t* dir_end;
+  const wchar_t *dir_start;
+  const wchar_t *dir_end;
   int flags;
-  const wchar_t* width_start;
-  const wchar_t* width_end;
+  const wchar_t *width_start;
+  const wchar_t *width_end;
   size_t width_arg_index;
-  const wchar_t* precision_start;
-  const wchar_t* precision_end;
+  const wchar_t *precision_start;
+  const wchar_t *precision_end;
   size_t precision_arg_index;
-  wchar_t conversion; /* d i o u x X f F e E g G a A c s p n U % but not C S */
+  wchar_t conversion;		/* d i o u x X f F e E g G a A c s p n U % but not C S */
   size_t arg_index;
 }
 wchar_t_directive;
@@ -80,6 +80,7 @@ STATIC
 #else
 extern
 #endif
-int wprintf_parse (const wchar_t *format, wchar_t_directives *d, arguments *a);
+int wprintf_parse (const wchar_t * format, wchar_t_directives * d,
+		   arguments * a);
 
 #endif /* _WPRINTF_PARSE_H */

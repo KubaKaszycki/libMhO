@@ -22,12 +22,12 @@
 #ifndef _LIBMHO_LOAD_H
 # define _LIBMHO_LOAD_H
 
-struct mho_header mho_read_header(FILE * stream);
-struct mho_fat_header mho_read_fhdr(FILE * stream);
-struct mho_fat_arch mho_read_farch(FILE * stream);
-struct mho_dylib mho_read_dylib(FILE * stream);
-struct mho_fvmlib mho_read_fvmlib(FILE * stream);
-void            mho_read_command(FILE * stream, void **result);
+struct mho_header mho_read_header (FILE * stream);
+struct mho_fat_header mho_read_fhdr (FILE * stream);
+struct mho_fat_arch mho_read_farch (FILE * stream);
+struct mho_dylib mho_read_dylib (FILE * stream);
+struct mho_fvmlib mho_read_fvmlib (FILE * stream);
+void mho_read_command (FILE * stream, void **result);
 
 /**
  * The object file has no undefined references.

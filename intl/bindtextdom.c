@@ -48,8 +48,6 @@
 
 /* Lock variable to protect the global data in the gettext implementation.  */
 gl_rwlock_define (extern, _nl_state_lock attribute_hidden)
-
-
 /* Names for the libintl functions are a problem.  They must not clash
    with existing names and they should follow ANSI C.  But this source
    code is also used in GNU C Library where the names have a __
@@ -64,16 +62,15 @@ gl_rwlock_define (extern, _nl_state_lock attribute_hidden)
 # define BINDTEXTDOMAIN libintl_bindtextdomain
 # define BIND_TEXTDOMAIN_CODESET libintl_bind_textdomain_codeset
 #endif
-
 /* Specifies the directory name *DIRNAMEP and the output codeset *CODESETP
    to be used for the DOMAINNAME message catalog.
    If *DIRNAMEP or *CODESETP is NULL, the corresponding attribute is not
    modified, only the current value is returned.
    If DIRNAMEP or CODESETP is NULL, the corresponding attribute is neither
    modified nor returned.  */
-static void
-set_binding_values (const char *domainname,
-		    const char **dirnamep, const char **codesetp)
+     static void
+       set_binding_values (const char *domainname,
+			   const char **dirnamep, const char **codesetp)
 {
   struct binding *binding;
   int modified;
@@ -92,7 +89,8 @@ set_binding_values (const char *domainname,
 
   modified = 0;
 
-  for (binding = _nl_domain_bindings; binding != NULL; binding = binding->next)
+  for (binding = _nl_domain_bindings; binding != NULL;
+       binding = binding->next)
     {
       int compare = strcmp (domainname, binding->domainname);
       if (compare == 0)
@@ -118,8 +116,8 @@ set_binding_values (const char *domainname,
 	  else
 	    {
 	      /* The domain is already bound.  If the new value and the old
-		 one are equal we simply do nothing.  Otherwise replace the
-		 old binding.  */
+	         one are equal we simply do nothing.  Otherwise replace the
+	         old binding.  */
 	      char *result = binding->dirname;
 	      if (strcmp (dirname, result) != 0)
 		{
@@ -160,8 +158,8 @@ set_binding_values (const char *domainname,
 	  else
 	    {
 	      /* The domain is already bound.  If the new value and the old
-		 one are equal we simply do nothing.  Otherwise replace the
-		 old binding.  */
+	         one are equal we simply do nothing.  Otherwise replace the
+	         old binding.  */
 	      char *result = binding->codeset;
 	      if (result == NULL || strcmp (codeset, result) != 0)
 		{
@@ -200,7 +198,8 @@ set_binding_values (const char *domainname,
       /* We have to create a new binding.  */
       size_t len = strlen (domainname) + 1;
       struct binding *new_binding =
-	(struct binding *) malloc (offsetof (struct binding, domainname) + len);
+	(struct binding *) malloc (offsetof (struct binding, domainname) +
+				   len);
 
       if (__builtin_expect (new_binding == NULL, 0))
 	goto failed;

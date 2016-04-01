@@ -93,13 +93,19 @@ extern const char *_nl_normalize_codeset (const char *codeset,
    its ->next field denotes the chaining inside *L10NFILE_LIST, and
    furthermore its ->successor[] field contains a list of other lookup
    results from which this lookup result inherits.  */
-extern struct loaded_l10nfile *
-_nl_make_l10nflist (struct loaded_l10nfile **l10nfile_list,
-		    const char *dirlist, size_t dirlist_len, int mask,
-		    const char *language, const char *territory,
-		    const char *codeset, const char *normalized_codeset,
-		    const char *modifier,
-		    const char *filename, int do_allocate);
+extern struct loaded_l10nfile *_nl_make_l10nflist (struct loaded_l10nfile
+						   **l10nfile_list,
+						   const char *dirlist,
+						   size_t dirlist_len,
+						   int mask,
+						   const char *language,
+						   const char *territory,
+						   const char *codeset,
+						   const char
+						   *normalized_codeset,
+						   const char *modifier,
+						   const char *filename,
+						   int do_allocate);
 
 /* Lookup the real locale name for a locale alias NAME, or NULL if
    NAME is not a locale alias (but possibly a real locale name).
@@ -127,4 +133,4 @@ extern int _nl_explode_name (char *name, const char **language,
 			     const char **codeset,
 			     const char **normalized_codeset);
 
-#endif	/* loadinfo.h */
+#endif /* loadinfo.h */

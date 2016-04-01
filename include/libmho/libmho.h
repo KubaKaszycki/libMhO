@@ -20,6 +20,7 @@
 
 # include <libmho/command.h>
 # include <libmho/cputype.h>
+# include <libmho/dyld.h>
 # include <libmho/filetype.h>
 # include <libmho/load.h>
 # include <libmho/magic.h>

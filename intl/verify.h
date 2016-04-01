@@ -177,10 +177,10 @@
 
 #ifdef __cplusplus
 # if !GNULIB_defined_struct__gl_verify_type
-template <int w>
-  struct _gl_verify_type {
-    unsigned int _gl_verify_error_if_negative: w;
-  };
+template < int w > struct _gl_verify_type
+{
+  unsigned int _gl_verify_error_if_negative:w;
+};
 #  define GNULIB_defined_struct__gl_verify_type 1
 # endif
 # define _GL_VERIFY_TYPE(R, DIAGNOSTIC) \
@@ -217,7 +217,7 @@ template <int w>
 #  define _Static_assert(R, DIAGNOSTIC) _GL_VERIFY (R, DIAGNOSTIC)
 # endif
 # if !defined _GL_HAVE_STATIC_ASSERT && !defined static_assert
-#  define static_assert _Static_assert /* C11 requires this #define.  */
+#  define static_assert _Static_assert	/* C11 requires this #define.  */
 # endif
 #endif
 

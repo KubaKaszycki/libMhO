@@ -31,32 +31,26 @@
 
 /* These structs are the constant expression for the germanic plural
    form determination.  It represents the expression  "n != 1".  */
-static const struct expression plvar =
-{
+static const struct expression plvar = {
   .nargs = 0,
   .operation = var,
 };
-static const struct expression plone =
-{
+
+static const struct expression plone = {
   .nargs = 0,
   .operation = num,
-  .val =
-  {
-    .num = 1
-  }
+  .val = {
+	  .num = 1}
 };
-const struct expression GERMANIC_PLURAL =
-{
+
+const struct expression GERMANIC_PLURAL = {
   .nargs = 2,
   .operation = not_equal,
-  .val =
-  {
-    .args =
-    {
-      [0] = (struct expression *) &plvar,
-      [1] = (struct expression *) &plone
-    }
-  }
+  .val = {
+	  .args = {
+		   [0] = (struct expression *) &plvar,
+		   [1] = (struct expression *) &plone}
+	  }
 };
 
 # define INIT_GERMANIC_PLURAL()
@@ -93,8 +87,7 @@ init_germanic_plural (void)
 
 #endif
 
-void
-internal_function
+void internal_function
 EXTRACT_PLURAL_EXPRESSION (const char *nullentry,
 			   const struct expression **pluralp,
 			   unsigned long int *npluralsp)

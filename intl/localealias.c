@@ -45,7 +45,7 @@
 #   include <alloca.h>
 #  else
 #   ifdef _AIX
- #pragma alloca
+#pragma alloca
 #   else
 #    ifndef alloca
 char *alloca ();
@@ -104,7 +104,7 @@ char *alloca ();
 /* For those losing systems which don't have `alloca' we have to add
    some additional code emulating it.  */
 #ifdef HAVE_ALLOCA
-# define freea(p) /* nothing */
+# define freea(p)		/* nothing */
 #else
 # define alloca(n) malloc (n)
 # define freea(p) free (p)
@@ -123,13 +123,11 @@ char *alloca ();
 
 
 __libc_lock_define_initialized (static, lock)
-
-
-struct alias_map
-{
-  const char *alias;
-  const char *value;
-};
+     struct alias_map
+     {
+       const char *alias;
+       const char *value;
+     };
 
 
 #ifndef _LIBC
@@ -137,23 +135,22 @@ struct alias_map
 #endif
 
 libc_freeres_ptr (static char *string_space);
-static size_t string_space_act;
-static size_t string_space_max;
+     static size_t string_space_act;
+     static size_t string_space_max;
 libc_freeres_ptr (static struct alias_map *map);
-static size_t nmap;
-static size_t maxmap;
+     static size_t nmap;
+     static size_t maxmap;
 
 
 /* Prototypes for local functions.  */
-static size_t read_alias_file (const char *fname, int fname_len)
-     internal_function;
-static int extend_alias_table (void);
-static int alias_compare (const struct alias_map *map1,
-			  const struct alias_map *map2);
+     static size_t read_alias_file (const char *fname, int fname_len)
+  internal_function;
+     static int extend_alias_table (void);
+     static int alias_compare (const struct alias_map *map1,
+			       const struct alias_map *map2);
 
 
-const char *
-_nl_expand_alias (const char *name)
+     const char *_nl_expand_alias (const char *name)
 {
   static const char *locale_alias_path;
   struct alias_map *retval;
@@ -174,9 +171,9 @@ _nl_expand_alias (const char *name)
       if (nmap > 0)
 	retval = (struct alias_map *) bsearch (&item, map, nmap,
 					       sizeof (struct alias_map),
-					       (int (*) (const void *,
-							 const void *)
-						) alias_compare);
+					       (int (*)(const void *,
+							const void *))
+					       alias_compare);
       else
 	retval = NULL;
 
@@ -213,8 +210,7 @@ _nl_expand_alias (const char *name)
 }
 
 
-static size_t
-internal_function
+static size_t internal_function
 read_alias_file (const char *fname, int fname_len)
 {
   FILE *fp;
@@ -251,12 +247,12 @@ read_alias_file (const char *fname, int fname_len)
   while (!FEOF (fp))
     {
       /* It is a reasonable approach to use a fix buffer here because
-	 a) we are only interested in the first two fields
-	 b) these fields must be usable as file names and so must not
-	    be that long
-	 We avoid a multi-kilobyte buffer here since this would use up
-	 stack space which we might not have if the program ran out of
-	 memory.  */
+         a) we are only interested in the first two fields
+         b) these fields must be usable as file names and so must not
+         be that long
+         We avoid a multi-kilobyte buffer here since this would use up
+         stack space which we might not have if the program ran out of
+         memory.  */
       char buf[400];
       char *alias;
       char *value;
@@ -308,9 +304,9 @@ read_alias_file (const char *fname, int fname_len)
 
 #ifdef IN_LIBGLOCALE
 	      /* glibc's locale.alias contains entries for ja_JP and ko_KR
-		 that make it impossible to use a Japanese or Korean UTF-8
-		 locale under the name "ja_JP" or "ko_KR".  Ignore these
-		 entries.  */
+	         that make it impossible to use a Japanese or Korean UTF-8
+	         locale under the name "ja_JP" or "ko_KR".  Ignore these
+	         entries.  */
 	      if (strchr (alias, '_') == NULL)
 #endif
 		{
@@ -324,13 +320,15 @@ read_alias_file (const char *fname, int fname_len)
 		  alias_len = strlen (alias) + 1;
 		  value_len = strlen (value) + 1;
 
-		  if (string_space_act + alias_len + value_len > string_space_max)
+		  if (string_space_act + alias_len + value_len >
+		      string_space_max)
 		    {
 		      /* Increase size of memory pool.  */
 		      size_t new_size = (string_space_max
 					 + (alias_len + value_len > 1024
 					    ? alias_len + value_len : 1024));
-		      char *new_pool = (char *) realloc (string_space, new_size);
+		      char *new_pool =
+			(char *) realloc (string_space, new_size);
 		      if (new_pool == NULL)
 			goto out;
 
@@ -366,8 +364,8 @@ read_alias_file (const char *fname, int fname_len)
 	}
 
       /* Possibly not the whole line fits into the buffer.  Ignore
-	 the rest of the line.  */
-      if (! complete_line)
+         the rest of the line.  */
+      if (!complete_line)
 	do
 	  if (FGETS (buf, sizeof buf, fp) == NULL)
 	    /* Make sure the inner loop will be left.  The outer loop
@@ -376,14 +374,14 @@ read_alias_file (const char *fname, int fname_len)
 	while (strchr (buf, '\n') == NULL);
     }
 
- out:
+out:
   /* Should we test for ferror()?  I think we have to silently ignore
      errors.  --drepper  */
   fclose (fp);
 
   if (added > 0)
     qsort (map, nmap, sizeof (struct alias_map),
-	   (int (*) (const void *, const void *)) alias_compare);
+	   (int (*)(const void *, const void *)) alias_compare);
 
   return added;
 }
@@ -424,7 +422,7 @@ alias_compare (const struct alias_map *map1, const struct alias_map *map2)
   do
     {
       /* I know this seems to be odd but the tolower() function in
-	 some systems libc cannot handle nonalpha characters.  */
+         some systems libc cannot handle nonalpha characters.  */
       c1 = isupper (*p1) ? tolower (*p1) : *p1;
       c2 = isupper (*p2) ? tolower (*p2) : *p2;
       if (c1 == '\0')

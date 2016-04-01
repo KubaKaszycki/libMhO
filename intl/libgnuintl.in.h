@@ -50,13 +50,14 @@
 #endif
 
 #ifdef __cplusplus
-extern "C" {
+extern "C"
+{
 #endif
 
 
 /* Version number: (major<<16) + (minor<<8) + subminor */
 #define LIBINTL_VERSION 0x001306
-extern int libintl_version;
+  extern int libintl_version;
 
 
 /* We redirect the functions to those prefixed with "libintl_".  This is
@@ -122,126 +123,128 @@ extern int libintl_version;
    LC_MESSAGES locale.  If not found, returns MSGID itself (the default
    text).  */
 #ifdef _INTL_REDIRECT_INLINE
-extern char *libintl_gettext (const char *__msgid)
-       _INTL_MAY_RETURN_STRING_ARG (1);
-static inline char *gettext (const char *__msgid)
-{
-  return libintl_gettext (__msgid);
-}
+  extern char *libintl_gettext (const char *__msgid)
+    _INTL_MAY_RETURN_STRING_ARG (1);
+  static inline char *gettext (const char *__msgid)
+  {
+    return libintl_gettext (__msgid);
+  }
 #else
 #ifdef _INTL_REDIRECT_MACROS
 # define gettext libintl_gettext
 #endif
-extern char *gettext (const char *__msgid)
-       _INTL_ASM (libintl_gettext)
-       _INTL_MAY_RETURN_STRING_ARG (1);
+  extern char *gettext (const char *__msgid)
+    _INTL_ASM (libintl_gettext) _INTL_MAY_RETURN_STRING_ARG (1);
 #endif
 
 /* Look up MSGID in the DOMAINNAME message catalog for the current
    LC_MESSAGES locale.  */
 #ifdef _INTL_REDIRECT_INLINE
-extern char *libintl_dgettext (const char *__domainname, const char *__msgid)
-       _INTL_MAY_RETURN_STRING_ARG (2);
-static inline char *dgettext (const char *__domainname, const char *__msgid)
-{
-  return libintl_dgettext (__domainname, __msgid);
-}
+  extern char *libintl_dgettext (const char *__domainname,
+				 const char *__msgid)
+    _INTL_MAY_RETURN_STRING_ARG (2);
+  static inline char *dgettext (const char *__domainname, const char *__msgid)
+  {
+    return libintl_dgettext (__domainname, __msgid);
+  }
 #else
 #ifdef _INTL_REDIRECT_MACROS
 # define dgettext libintl_dgettext
 #endif
-extern char *dgettext (const char *__domainname, const char *__msgid)
-       _INTL_ASM (libintl_dgettext)
-       _INTL_MAY_RETURN_STRING_ARG (2);
+  extern char *dgettext (const char *__domainname, const char *__msgid)
+    _INTL_ASM (libintl_dgettext) _INTL_MAY_RETURN_STRING_ARG (2);
 #endif
 
 /* Look up MSGID in the DOMAINNAME message catalog for the current CATEGORY
    locale.  */
 #ifdef _INTL_REDIRECT_INLINE
-extern char *libintl_dcgettext (const char *__domainname, const char *__msgid,
-                                int __category)
-       _INTL_MAY_RETURN_STRING_ARG (2);
-static inline char *dcgettext (const char *__domainname, const char *__msgid,
-                               int __category)
-{
-  return libintl_dcgettext (__domainname, __msgid, __category);
-}
+  extern char *libintl_dcgettext (const char *__domainname,
+				  const char *__msgid,
+				  int __category)
+    _INTL_MAY_RETURN_STRING_ARG (2);
+  static inline char *dcgettext (const char *__domainname,
+				 const char *__msgid, int __category)
+  {
+    return libintl_dcgettext (__domainname, __msgid, __category);
+  }
 #else
 #ifdef _INTL_REDIRECT_MACROS
 # define dcgettext libintl_dcgettext
 #endif
-extern char *dcgettext (const char *__domainname, const char *__msgid,
-                        int __category)
-       _INTL_ASM (libintl_dcgettext)
-       _INTL_MAY_RETURN_STRING_ARG (2);
+  extern char *dcgettext (const char *__domainname, const char *__msgid,
+			  int __category)
+    _INTL_ASM (libintl_dcgettext) _INTL_MAY_RETURN_STRING_ARG (2);
 #endif
 
 
 /* Similar to 'gettext' but select the plural form corresponding to the
    number N.  */
 #ifdef _INTL_REDIRECT_INLINE
-extern char *libintl_ngettext (const char *__msgid1, const char *__msgid2,
-                               unsigned long int __n)
-       _INTL_MAY_RETURN_STRING_ARG (1) _INTL_MAY_RETURN_STRING_ARG (2);
-static inline char *ngettext (const char *__msgid1, const char *__msgid2,
-                              unsigned long int __n)
-{
-  return libintl_ngettext (__msgid1, __msgid2, __n);
-}
+  extern char *libintl_ngettext (const char *__msgid1, const char *__msgid2,
+				 unsigned long int __n)
+    _INTL_MAY_RETURN_STRING_ARG (1) _INTL_MAY_RETURN_STRING_ARG (2);
+  static inline char *ngettext (const char *__msgid1, const char *__msgid2,
+				unsigned long int __n)
+  {
+    return libintl_ngettext (__msgid1, __msgid2, __n);
+  }
 #else
 #ifdef _INTL_REDIRECT_MACROS
 # define ngettext libintl_ngettext
 #endif
-extern char *ngettext (const char *__msgid1, const char *__msgid2,
-                       unsigned long int __n)
-       _INTL_ASM (libintl_ngettext)
-       _INTL_MAY_RETURN_STRING_ARG (1) _INTL_MAY_RETURN_STRING_ARG (2);
+  extern char *ngettext (const char *__msgid1, const char *__msgid2,
+			 unsigned long int __n)
+    _INTL_ASM (libintl_ngettext)
+    _INTL_MAY_RETURN_STRING_ARG (1) _INTL_MAY_RETURN_STRING_ARG (2);
 #endif
 
 /* Similar to 'dgettext' but select the plural form corresponding to the
    number N.  */
 #ifdef _INTL_REDIRECT_INLINE
-extern char *libintl_dngettext (const char *__domainname, const char *__msgid1,
-                                const char *__msgid2, unsigned long int __n)
-       _INTL_MAY_RETURN_STRING_ARG (2) _INTL_MAY_RETURN_STRING_ARG (3);
-static inline char *dngettext (const char *__domainname, const char *__msgid1,
-                               const char *__msgid2, unsigned long int __n)
-{
-  return libintl_dngettext (__domainname, __msgid1, __msgid2, __n);
-}
+  extern char *libintl_dngettext (const char *__domainname,
+				  const char *__msgid1, const char *__msgid2,
+				  unsigned long int __n)
+    _INTL_MAY_RETURN_STRING_ARG (2) _INTL_MAY_RETURN_STRING_ARG (3);
+  static inline char *dngettext (const char *__domainname,
+				 const char *__msgid1, const char *__msgid2,
+				 unsigned long int __n)
+  {
+    return libintl_dngettext (__domainname, __msgid1, __msgid2, __n);
+  }
 #else
 #ifdef _INTL_REDIRECT_MACROS
 # define dngettext libintl_dngettext
 #endif
-extern char *dngettext (const char *__domainname,
-                        const char *__msgid1, const char *__msgid2,
-                        unsigned long int __n)
-       _INTL_ASM (libintl_dngettext)
-       _INTL_MAY_RETURN_STRING_ARG (2) _INTL_MAY_RETURN_STRING_ARG (3);
+  extern char *dngettext (const char *__domainname,
+			  const char *__msgid1, const char *__msgid2,
+			  unsigned long int __n)
+    _INTL_ASM (libintl_dngettext)
+    _INTL_MAY_RETURN_STRING_ARG (2) _INTL_MAY_RETURN_STRING_ARG (3);
 #endif
 
 /* Similar to 'dcgettext' but select the plural form corresponding to the
    number N.  */
 #ifdef _INTL_REDIRECT_INLINE
-extern char *libintl_dcngettext (const char *__domainname,
-                                 const char *__msgid1, const char *__msgid2,
-                                 unsigned long int __n, int __category)
-       _INTL_MAY_RETURN_STRING_ARG (2) _INTL_MAY_RETURN_STRING_ARG (3);
-static inline char *dcngettext (const char *__domainname,
-                                const char *__msgid1, const char *__msgid2,
-                                unsigned long int __n, int __category)
-{
-  return libintl_dcngettext (__domainname, __msgid1, __msgid2, __n, __category);
-}
+  extern char *libintl_dcngettext (const char *__domainname,
+				   const char *__msgid1, const char *__msgid2,
+				   unsigned long int __n, int __category)
+    _INTL_MAY_RETURN_STRING_ARG (2) _INTL_MAY_RETURN_STRING_ARG (3);
+  static inline char *dcngettext (const char *__domainname,
+				  const char *__msgid1, const char *__msgid2,
+				  unsigned long int __n, int __category)
+  {
+    return libintl_dcngettext (__domainname, __msgid1, __msgid2, __n,
+			       __category);
+  }
 #else
 #ifdef _INTL_REDIRECT_MACROS
 # define dcngettext libintl_dcngettext
 #endif
-extern char *dcngettext (const char *__domainname,
-                         const char *__msgid1, const char *__msgid2,
-                         unsigned long int __n, int __category)
-       _INTL_ASM (libintl_dcngettext)
-       _INTL_MAY_RETURN_STRING_ARG (2) _INTL_MAY_RETURN_STRING_ARG (3);
+  extern char *dcngettext (const char *__domainname,
+			   const char *__msgid1, const char *__msgid2,
+			   unsigned long int __n, int __category)
+    _INTL_ASM (libintl_dcngettext)
+    _INTL_MAY_RETURN_STRING_ARG (2) _INTL_MAY_RETURN_STRING_ARG (3);
 #endif
 
 
@@ -251,57 +254,58 @@ extern char *dcngettext (const char *__domainname,
    If DOMAINNAME is null, return the current default.
    If DOMAINNAME is "", reset to the default of "messages".  */
 #ifdef _INTL_REDIRECT_INLINE
-extern char *libintl_textdomain (const char *__domainname);
-static inline char *textdomain (const char *__domainname)
-{
-  return libintl_textdomain (__domainname);
-}
+  extern char *libintl_textdomain (const char *__domainname);
+  static inline char *textdomain (const char *__domainname)
+  {
+    return libintl_textdomain (__domainname);
+  }
 #else
 #ifdef _INTL_REDIRECT_MACROS
 # define textdomain libintl_textdomain
 #endif
-extern char *textdomain (const char *__domainname)
-       _INTL_ASM (libintl_textdomain);
+  extern char *textdomain (const char *__domainname)
+    _INTL_ASM (libintl_textdomain);
 #endif
 
 /* Specify that the DOMAINNAME message catalog will be found
    in DIRNAME rather than in the system locale data base.  */
 #ifdef _INTL_REDIRECT_INLINE
-extern char *libintl_bindtextdomain (const char *__domainname,
-                                     const char *__dirname);
-static inline char *bindtextdomain (const char *__domainname,
-                                    const char *__dirname)
-{
-  return libintl_bindtextdomain (__domainname, __dirname);
-}
+  extern char *libintl_bindtextdomain (const char *__domainname,
+				       const char *__dirname);
+  static inline char *bindtextdomain (const char *__domainname,
+				      const char *__dirname)
+  {
+    return libintl_bindtextdomain (__domainname, __dirname);
+  }
 #else
 #ifdef _INTL_REDIRECT_MACROS
 # define bindtextdomain libintl_bindtextdomain
 #endif
-extern char *bindtextdomain (const char *__domainname, const char *__dirname)
-       _INTL_ASM (libintl_bindtextdomain);
+  extern char *bindtextdomain (const char *__domainname,
+			       const char *__dirname)
+    _INTL_ASM (libintl_bindtextdomain);
 #endif
 
 /* Specify the character encoding in which the messages from the
    DOMAINNAME message catalog will be returned.  */
 #ifdef _INTL_REDIRECT_INLINE
-extern char *libintl_bind_textdomain_codeset (const char *__domainname,
-                                              const char *__codeset);
-static inline char *bind_textdomain_codeset (const char *__domainname,
-                                             const char *__codeset)
-{
-  return libintl_bind_textdomain_codeset (__domainname, __codeset);
-}
+  extern char *libintl_bind_textdomain_codeset (const char *__domainname,
+						const char *__codeset);
+  static inline char *bind_textdomain_codeset (const char *__domainname,
+					       const char *__codeset)
+  {
+    return libintl_bind_textdomain_codeset (__domainname, __codeset);
+  }
 #else
 #ifdef _INTL_REDIRECT_MACROS
 # define bind_textdomain_codeset libintl_bind_textdomain_codeset
 #endif
-extern char *bind_textdomain_codeset (const char *__domainname,
-                                      const char *__codeset)
-       _INTL_ASM (libintl_bind_textdomain_codeset);
+  extern char *bind_textdomain_codeset (const char *__domainname,
+					const char *__codeset)
+    _INTL_ASM (libintl_bind_textdomain_codeset);
 #endif
 
-#endif /* IN_LIBGLOCALE */
+#endif				/* IN_LIBGLOCALE */
 
 
 /* Support for format strings with positions in *printf(), following the
@@ -324,18 +328,18 @@ extern char *bind_textdomain_codeset (const char *__domainname,
 # include <varargs.h>
 #endif
 
-#if !(defined fprintf && defined _GL_STDIO_H) /* don't override gnulib */
+#if !(defined fprintf && defined _GL_STDIO_H)	/* don't override gnulib */
 #undef fprintf
 #define fprintf libintl_fprintf
-extern int fprintf (FILE *, const char *, ...);
+  extern int fprintf (FILE *, const char *, ...);
 #endif
-#if !(defined vfprintf && defined _GL_STDIO_H) /* don't override gnulib */
+#if !(defined vfprintf && defined _GL_STDIO_H)	/* don't override gnulib */
 #undef vfprintf
 #define vfprintf libintl_vfprintf
-extern int vfprintf (FILE *, const char *, va_list);
+  extern int vfprintf (FILE *, const char *, va_list);
 #endif
 
-#if !(defined printf && defined _GL_STDIO_H) /* don't override gnulib */
+#if !(defined printf && defined _GL_STDIO_H)	/* don't override gnulib */
 #undef printf
 #if defined __NetBSD__ || defined __BEOS__ || defined __CYGWIN__ || defined __MINGW32__
 /* Don't break __attribute__((format(printf,M,N))).
@@ -350,51 +354,51 @@ extern int vfprintf (FILE *, const char *, va_list);
 # define libintl_printf __printf__
 #endif
 #define printf libintl_printf
-extern int printf (const char *, ...);
+  extern int printf (const char *, ...);
 #endif
-#if !(defined vprintf && defined _GL_STDIO_H) /* don't override gnulib */
+#if !(defined vprintf && defined _GL_STDIO_H)	/* don't override gnulib */
 #undef vprintf
 #define vprintf libintl_vprintf
-extern int vprintf (const char *, va_list);
+  extern int vprintf (const char *, va_list);
 #endif
 
-#if !(defined sprintf && defined _GL_STDIO_H) /* don't override gnulib */
+#if !(defined sprintf && defined _GL_STDIO_H)	/* don't override gnulib */
 #undef sprintf
 #define sprintf libintl_sprintf
-extern int sprintf (char *, const char *, ...);
+  extern int sprintf (char *, const char *, ...);
 #endif
-#if !(defined vsprintf && defined _GL_STDIO_H) /* don't override gnulib */
+#if !(defined vsprintf && defined _GL_STDIO_H)	/* don't override gnulib */
 #undef vsprintf
 #define vsprintf libintl_vsprintf
-extern int vsprintf (char *, const char *, va_list);
+  extern int vsprintf (char *, const char *, va_list);
 #endif
 
 #if @HAVE_SNPRINTF@
 
-#if !(defined snprintf && defined _GL_STDIO_H) /* don't override gnulib */
+#if !(defined snprintf && defined _GL_STDIO_H)	/* don't override gnulib */
 #undef snprintf
 #define snprintf libintl_snprintf
-extern int snprintf (char *, size_t, const char *, ...);
+  extern int snprintf (char *, size_t, const char *, ...);
 #endif
-#if !(defined vsnprintf && defined _GL_STDIO_H) /* don't override gnulib */
+#if !(defined vsnprintf && defined _GL_STDIO_H)	/* don't override gnulib */
 #undef vsnprintf
 #define vsnprintf libintl_vsnprintf
-extern int vsnprintf (char *, size_t, const char *, va_list);
+  extern int vsnprintf (char *, size_t, const char *, va_list);
 #endif
 
 #endif
 
 #if @HAVE_ASPRINTF@
 
-#if !(defined asprintf && defined _GL_STDIO_H) /* don't override gnulib */
+#if !(defined asprintf && defined _GL_STDIO_H)	/* don't override gnulib */
 #undef asprintf
 #define asprintf libintl_asprintf
-extern int asprintf (char **, const char *, ...);
+  extern int asprintf (char **, const char *, ...);
 #endif
-#if !(defined vasprintf && defined _GL_STDIO_H) /* don't override gnulib */
+#if !(defined vasprintf && defined _GL_STDIO_H)	/* don't override gnulib */
 #undef vasprintf
 #define vasprintf libintl_vasprintf
-extern int vasprintf (char **, const char *, va_list);
+  extern int vasprintf (char **, const char *, va_list);
 #endif
 
 #endif
@@ -403,24 +407,24 @@ extern int vasprintf (char **, const char *, va_list);
 
 #undef fwprintf
 #define fwprintf libintl_fwprintf
-extern int fwprintf (FILE *, const wchar_t *, ...);
+  extern int fwprintf (FILE *, const wchar_t *, ...);
 #undef vfwprintf
 #define vfwprintf libintl_vfwprintf
-extern int vfwprintf (FILE *, const wchar_t *, va_list);
+  extern int vfwprintf (FILE *, const wchar_t *, va_list);
 
 #undef wprintf
 #define wprintf libintl_wprintf
-extern int wprintf (const wchar_t *, ...);
+  extern int wprintf (const wchar_t *, ...);
 #undef vwprintf
 #define vwprintf libintl_vwprintf
-extern int vwprintf (const wchar_t *, va_list);
+  extern int vwprintf (const wchar_t *, va_list);
 
 #undef swprintf
 #define swprintf libintl_swprintf
-extern int swprintf (wchar_t *, size_t, const wchar_t *, ...);
+  extern int swprintf (wchar_t *, size_t, const wchar_t *, ...);
 #undef vswprintf
 #define vswprintf libintl_vswprintf
-extern int vswprintf (wchar_t *, size_t, const wchar_t *, va_list);
+  extern int vswprintf (wchar_t *, size_t, const wchar_t *, va_list);
 
 #endif
 
@@ -430,17 +434,17 @@ extern int vswprintf (wchar_t *, size_t, const wchar_t *, va_list);
 /* Support for the locale chosen by the user.  */
 #if (defined __APPLE__ && defined __MACH__) || defined _WIN32 || defined __WIN32__ || defined __CYGWIN__
 
-#ifndef GNULIB_defined_setlocale /* don't override gnulib */
+#ifndef GNULIB_defined_setlocale	/* don't override gnulib */
 #undef setlocale
 #define setlocale libintl_setlocale
-extern char *setlocale (int, const char *);
+  extern char *setlocale (int, const char *);
 #endif
 
 #if @HAVE_NEWLOCALE@
 
 #undef newlocale
 #define newlocale libintl_newlocale
-extern locale_t newlocale (int, const char *, locale_t);
+  extern locale_t newlocale (int, const char *, locale_t);
 
 #endif
 
@@ -455,13 +459,13 @@ extern locale_t newlocale (int, const char *, locale_t);
    prefixes should be directory names without trailing slash (i.e. use ""
    instead of "/").  */
 #define libintl_set_relocation_prefix libintl_set_relocation_prefix
-extern void
-       libintl_set_relocation_prefix (const char *orig_prefix,
-                                      const char *curr_prefix);
+  extern void
+    libintl_set_relocation_prefix (const char *orig_prefix,
+				   const char *curr_prefix);
 
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif /* libintl.h */
+#endif				/* libintl.h */

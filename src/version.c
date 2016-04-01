@@ -23,7 +23,7 @@
 #undef __LIBMHO_INTERNAL
 
 void
-print_version()
+print_version ()
 {
-	printf("%s v%s\n", PACKAGE_NAME, PACKAGE_VERSION);
+  printf ("%s v%s\n", PACKAGE_NAME, PACKAGE_VERSION);
 }

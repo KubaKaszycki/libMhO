@@ -44,7 +44,7 @@
 # endif
 # if defined __sun && HAVE_GETLOCALENAME_L
 /* Solaris >= 12.  */
-extern char * getlocalename_l(int, locale_t);
+extern char *getlocalename_l (int, locale_t);
 # endif
 #endif
 
@@ -64,7 +64,7 @@ extern char * getlocalename_l(int, locale_t);
 # endif
 #endif
 
-#if defined WINDOWS_NATIVE || defined __CYGWIN__ /* Native Windows or Cygwin */
+#if defined WINDOWS_NATIVE || defined __CYGWIN__	/* Native Windows or Cygwin */
 # define WIN32_LEAN_AND_MEAN
 # include <windows.h>
 # include <winnls.h>
@@ -1148,7 +1148,7 @@ extern char * getlocalename_l(int, locale_t);
 # if !defined IN_LIBINTL
 static
 # endif
-void
+  void
 gl_locale_name_canonicalize (char *name)
 {
   /* This conversion is based on a posting by
@@ -1160,180 +1160,192 @@ gl_locale_name_canonicalize (char *name)
      Therefore we do it ourselves, using a table based on the results of the
      Mac OS X 10.3.8 function
      CFLocaleCreateCanonicalLocaleIdentifierFromString().  */
-  typedef struct { const char legacy[21+1]; const char unixy[5+1]; }
-          legacy_entry;
+  typedef struct
+  {
+    const char legacy[21 + 1];
+    const char unixy[5 + 1];
+  }
+  legacy_entry;
   static const legacy_entry legacy_table[] = {
-    { "Afrikaans",             "af" },
-    { "Albanian",              "sq" },
-    { "Amharic",               "am" },
-    { "Arabic",                "ar" },
-    { "Armenian",              "hy" },
-    { "Assamese",              "as" },
-    { "Aymara",                "ay" },
-    { "Azerbaijani",           "az" },
-    { "Basque",                "eu" },
-    { "Belarusian",            "be" },
-    { "Belorussian",           "be" },
-    { "Bengali",               "bn" },
-    { "Brazilian Portugese",   "pt_BR" },
-    { "Brazilian Portuguese",  "pt_BR" },
-    { "Breton",                "br" },
-    { "Bulgarian",             "bg" },
-    { "Burmese",               "my" },
-    { "Byelorussian",          "be" },
-    { "Catalan",               "ca" },
-    { "Chewa",                 "ny" },
-    { "Chichewa",              "ny" },
-    { "Chinese",               "zh" },
-    { "Chinese, Simplified",   "zh_CN" },
-    { "Chinese, Traditional",  "zh_TW" },
-    { "Chinese, Tradtional",   "zh_TW" },
-    { "Croatian",              "hr" },
-    { "Czech",                 "cs" },
-    { "Danish",                "da" },
-    { "Dutch",                 "nl" },
-    { "Dzongkha",              "dz" },
-    { "English",               "en" },
-    { "Esperanto",             "eo" },
-    { "Estonian",              "et" },
-    { "Faroese",               "fo" },
-    { "Farsi",                 "fa" },
-    { "Finnish",               "fi" },
-    { "Flemish",               "nl_BE" },
-    { "French",                "fr" },
-    { "Galician",              "gl" },
-    { "Gallegan",              "gl" },
-    { "Georgian",              "ka" },
-    { "German",                "de" },
-    { "Greek",                 "el" },
-    { "Greenlandic",           "kl" },
-    { "Guarani",               "gn" },
-    { "Gujarati",              "gu" },
-    { "Hawaiian",              "haw" }, /* Yes, "haw", not "cpe".  */
-    { "Hebrew",                "he" },
-    { "Hindi",                 "hi" },
-    { "Hungarian",             "hu" },
-    { "Icelandic",             "is" },
-    { "Indonesian",            "id" },
-    { "Inuktitut",             "iu" },
-    { "Irish",                 "ga" },
-    { "Italian",               "it" },
-    { "Japanese",              "ja" },
-    { "Javanese",              "jv" },
-    { "Kalaallisut",           "kl" },
-    { "Kannada",               "kn" },
-    { "Kashmiri",              "ks" },
-    { "Kazakh",                "kk" },
-    { "Khmer",                 "km" },
-    { "Kinyarwanda",           "rw" },
-    { "Kirghiz",               "ky" },
-    { "Korean",                "ko" },
-    { "Kurdish",               "ku" },
-    { "Latin",                 "la" },
-    { "Latvian",               "lv" },
-    { "Lithuanian",            "lt" },
-    { "Macedonian",            "mk" },
-    { "Malagasy",              "mg" },
-    { "Malay",                 "ms" },
-    { "Malayalam",             "ml" },
-    { "Maltese",               "mt" },
-    { "Manx",                  "gv" },
-    { "Marathi",               "mr" },
-    { "Moldavian",             "mo" },
-    { "Mongolian",             "mn" },
-    { "Nepali",                "ne" },
-    { "Norwegian",             "nb" }, /* Yes, "nb", not the obsolete "no".  */
-    { "Nyanja",                "ny" },
-    { "Nynorsk",               "nn" },
-    { "Oriya",                 "or" },
-    { "Oromo",                 "om" },
-    { "Panjabi",               "pa" },
-    { "Pashto",                "ps" },
-    { "Persian",               "fa" },
-    { "Polish",                "pl" },
-    { "Portuguese",            "pt" },
-    { "Portuguese, Brazilian", "pt_BR" },
-    { "Punjabi",               "pa" },
-    { "Pushto",                "ps" },
-    { "Quechua",               "qu" },
-    { "Romanian",              "ro" },
-    { "Ruanda",                "rw" },
-    { "Rundi",                 "rn" },
-    { "Russian",               "ru" },
-    { "Sami",                  "se_NO" }, /* Not just "se".  */
-    { "Sanskrit",              "sa" },
-    { "Scottish",              "gd" },
-    { "Serbian",               "sr" },
-    { "Simplified Chinese",    "zh_CN" },
-    { "Sindhi",                "sd" },
-    { "Sinhalese",             "si" },
-    { "Slovak",                "sk" },
-    { "Slovenian",             "sl" },
-    { "Somali",                "so" },
-    { "Spanish",               "es" },
-    { "Sundanese",             "su" },
-    { "Swahili",               "sw" },
-    { "Swedish",               "sv" },
-    { "Tagalog",               "tl" },
-    { "Tajik",                 "tg" },
-    { "Tajiki",                "tg" },
-    { "Tamil",                 "ta" },
-    { "Tatar",                 "tt" },
-    { "Telugu",                "te" },
-    { "Thai",                  "th" },
-    { "Tibetan",               "bo" },
-    { "Tigrinya",              "ti" },
-    { "Tongan",                "to" },
-    { "Traditional Chinese",   "zh_TW" },
-    { "Turkish",               "tr" },
-    { "Turkmen",               "tk" },
-    { "Uighur",                "ug" },
-    { "Ukrainian",             "uk" },
-    { "Urdu",                  "ur" },
-    { "Uzbek",                 "uz" },
-    { "Vietnamese",            "vi" },
-    { "Welsh",                 "cy" },
-    { "Yiddish",               "yi" }
+    {"Afrikaans", "af"},
+    {"Albanian", "sq"},
+    {"Amharic", "am"},
+    {"Arabic", "ar"},
+    {"Armenian", "hy"},
+    {"Assamese", "as"},
+    {"Aymara", "ay"},
+    {"Azerbaijani", "az"},
+    {"Basque", "eu"},
+    {"Belarusian", "be"},
+    {"Belorussian", "be"},
+    {"Bengali", "bn"},
+    {"Brazilian Portugese", "pt_BR"},
+    {"Brazilian Portuguese", "pt_BR"},
+    {"Breton", "br"},
+    {"Bulgarian", "bg"},
+    {"Burmese", "my"},
+    {"Byelorussian", "be"},
+    {"Catalan", "ca"},
+    {"Chewa", "ny"},
+    {"Chichewa", "ny"},
+    {"Chinese", "zh"},
+    {"Chinese, Simplified", "zh_CN"},
+    {"Chinese, Traditional", "zh_TW"},
+    {"Chinese, Tradtional", "zh_TW"},
+    {"Croatian", "hr"},
+    {"Czech", "cs"},
+    {"Danish", "da"},
+    {"Dutch", "nl"},
+    {"Dzongkha", "dz"},
+    {"English", "en"},
+    {"Esperanto", "eo"},
+    {"Estonian", "et"},
+    {"Faroese", "fo"},
+    {"Farsi", "fa"},
+    {"Finnish", "fi"},
+    {"Flemish", "nl_BE"},
+    {"French", "fr"},
+    {"Galician", "gl"},
+    {"Gallegan", "gl"},
+    {"Georgian", "ka"},
+    {"German", "de"},
+    {"Greek", "el"},
+    {"Greenlandic", "kl"},
+    {"Guarani", "gn"},
+    {"Gujarati", "gu"},
+    {"Hawaiian", "haw"},	/* Yes, "haw", not "cpe".  */
+    {"Hebrew", "he"},
+    {"Hindi", "hi"},
+    {"Hungarian", "hu"},
+    {"Icelandic", "is"},
+    {"Indonesian", "id"},
+    {"Inuktitut", "iu"},
+    {"Irish", "ga"},
+    {"Italian", "it"},
+    {"Japanese", "ja"},
+    {"Javanese", "jv"},
+    {"Kalaallisut", "kl"},
+    {"Kannada", "kn"},
+    {"Kashmiri", "ks"},
+    {"Kazakh", "kk"},
+    {"Khmer", "km"},
+    {"Kinyarwanda", "rw"},
+    {"Kirghiz", "ky"},
+    {"Korean", "ko"},
+    {"Kurdish", "ku"},
+    {"Latin", "la"},
+    {"Latvian", "lv"},
+    {"Lithuanian", "lt"},
+    {"Macedonian", "mk"},
+    {"Malagasy", "mg"},
+    {"Malay", "ms"},
+    {"Malayalam", "ml"},
+    {"Maltese", "mt"},
+    {"Manx", "gv"},
+    {"Marathi", "mr"},
+    {"Moldavian", "mo"},
+    {"Mongolian", "mn"},
+    {"Nepali", "ne"},
+    {"Norwegian", "nb"},	/* Yes, "nb", not the obsolete "no".  */
+    {"Nyanja", "ny"},
+    {"Nynorsk", "nn"},
+    {"Oriya", "or"},
+    {"Oromo", "om"},
+    {"Panjabi", "pa"},
+    {"Pashto", "ps"},
+    {"Persian", "fa"},
+    {"Polish", "pl"},
+    {"Portuguese", "pt"},
+    {"Portuguese, Brazilian", "pt_BR"},
+    {"Punjabi", "pa"},
+    {"Pushto", "ps"},
+    {"Quechua", "qu"},
+    {"Romanian", "ro"},
+    {"Ruanda", "rw"},
+    {"Rundi", "rn"},
+    {"Russian", "ru"},
+    {"Sami", "se_NO"},		/* Not just "se".  */
+    {"Sanskrit", "sa"},
+    {"Scottish", "gd"},
+    {"Serbian", "sr"},
+    {"Simplified Chinese", "zh_CN"},
+    {"Sindhi", "sd"},
+    {"Sinhalese", "si"},
+    {"Slovak", "sk"},
+    {"Slovenian", "sl"},
+    {"Somali", "so"},
+    {"Spanish", "es"},
+    {"Sundanese", "su"},
+    {"Swahili", "sw"},
+    {"Swedish", "sv"},
+    {"Tagalog", "tl"},
+    {"Tajik", "tg"},
+    {"Tajiki", "tg"},
+    {"Tamil", "ta"},
+    {"Tatar", "tt"},
+    {"Telugu", "te"},
+    {"Thai", "th"},
+    {"Tibetan", "bo"},
+    {"Tigrinya", "ti"},
+    {"Tongan", "to"},
+    {"Traditional Chinese", "zh_TW"},
+    {"Turkish", "tr"},
+    {"Turkmen", "tk"},
+    {"Uighur", "ug"},
+    {"Ukrainian", "uk"},
+    {"Urdu", "ur"},
+    {"Uzbek", "uz"},
+    {"Vietnamese", "vi"},
+    {"Welsh", "cy"},
+    {"Yiddish", "yi"}
   };
 
   /* Convert new-style locale names with language tags (ISO 639 and ISO 15924)
      to Unix (ISO 639 and ISO 3166) names.  */
-  typedef struct { const char langtag[7+1]; const char unixy[12+1]; }
-          langtag_entry;
+  typedef struct
+  {
+    const char langtag[7 + 1];
+    const char unixy[12 + 1];
+  }
+  langtag_entry;
   static const langtag_entry langtag_table[] = {
     /* Mac OS X has "az-Arab", "az-Cyrl", "az-Latn".
        The default script for az on Unix is Latin.  */
-    { "az-Latn", "az" },
+    {"az-Latn", "az"},
     /* Mac OS X has "ga-dots".  Does not yet exist on Unix.  */
-    { "ga-dots", "ga" },
+    {"ga-dots", "ga"},
     /* Mac OS X has "kk-Cyrl".  Does not yet exist on Unix.  */
     /* Mac OS X has "mn-Cyrl", "mn-Mong".
        The default script for mn on Unix is Cyrillic.  */
-    { "mn-Cyrl", "mn" },
+    {"mn-Cyrl", "mn"},
     /* Mac OS X has "ms-Arab", "ms-Latn".
        The default script for ms on Unix is Latin.  */
-    { "ms-Latn", "ms" },
+    {"ms-Latn", "ms"},
     /* Mac OS X has "tg-Cyrl".
        The default script for tg on Unix is Cyrillic.  */
-    { "tg-Cyrl", "tg" },
+    {"tg-Cyrl", "tg"},
     /* Mac OS X has "tk-Cyrl".  Does not yet exist on Unix.  */
     /* Mac OS X has "tt-Cyrl".
        The default script for tt on Unix is Cyrillic.  */
-    { "tt-Cyrl", "tt" },
+    {"tt-Cyrl", "tt"},
     /* Mac OS X has "zh-Hans", "zh-Hant".
        Country codes are used to distinguish these on Unix.  */
-    { "zh-Hans", "zh_CN" },
-    { "zh-Hant", "zh_TW" }
+    {"zh-Hans", "zh_CN"},
+    {"zh-Hant", "zh_TW"}
   };
 
   /* Convert script names (ISO 15924) to Unix conventions.
      See http://www.unicode.org/iso15924/iso15924-codes.html  */
-  typedef struct { const char script[4+1]; const char unixy[9+1]; }
-          script_entry;
+  typedef struct
+  {
+    const char script[4 + 1];
+    const char unixy[9 + 1];
+  }
+  script_entry;
   static const script_entry script_table[] = {
-    { "Arab", "arabic" },
-    { "Cyrl", "cyrillic" },
-    { "Mong", "mongolian" }
+    {"Arab", "arabic"},
+    {"Cyrl", "cyrillic"},
+    {"Mong", "mongolian"}
   };
 
   /* Step 1: Convert using legacy_table.  */
@@ -1343,21 +1355,21 @@ gl_locale_name_canonicalize (char *name)
       i1 = 0;
       i2 = sizeof (legacy_table) / sizeof (legacy_entry);
       while (i2 - i1 > 1)
-        {
-          /* At this point we know that if name occurs in legacy_table,
-             its index must be >= i1 and < i2.  */
-          unsigned int i = (i1 + i2) >> 1;
-          const legacy_entry *p = &legacy_table[i];
-          if (strcmp (name, p->legacy) < 0)
-            i2 = i;
-          else
-            i1 = i;
-        }
+	{
+	  /* At this point we know that if name occurs in legacy_table,
+	     its index must be >= i1 and < i2.  */
+	  unsigned int i = (i1 + i2) >> 1;
+	  const legacy_entry *p = &legacy_table[i];
+	  if (strcmp (name, p->legacy) < 0)
+	    i2 = i;
+	  else
+	    i1 = i;
+	}
       if (strcmp (name, legacy_table[i1].legacy) == 0)
-        {
-          strcpy (name, legacy_table[i1].unixy);
-          return;
-        }
+	{
+	  strcpy (name, legacy_table[i1].unixy);
+	  return;
+	}
     }
 
   /* Step 2: Convert using langtag_table and script_table.  */
@@ -1367,41 +1379,41 @@ gl_locale_name_canonicalize (char *name)
       i1 = 0;
       i2 = sizeof (langtag_table) / sizeof (langtag_entry);
       while (i2 - i1 > 1)
-        {
-          /* At this point we know that if name occurs in langtag_table,
-             its index must be >= i1 and < i2.  */
-          unsigned int i = (i1 + i2) >> 1;
-          const langtag_entry *p = &langtag_table[i];
-          if (strcmp (name, p->langtag) < 0)
-            i2 = i;
-          else
-            i1 = i;
-        }
+	{
+	  /* At this point we know that if name occurs in langtag_table,
+	     its index must be >= i1 and < i2.  */
+	  unsigned int i = (i1 + i2) >> 1;
+	  const langtag_entry *p = &langtag_table[i];
+	  if (strcmp (name, p->langtag) < 0)
+	    i2 = i;
+	  else
+	    i1 = i;
+	}
       if (strcmp (name, langtag_table[i1].langtag) == 0)
-        {
-          strcpy (name, langtag_table[i1].unixy);
-          return;
-        }
+	{
+	  strcpy (name, langtag_table[i1].unixy);
+	  return;
+	}
 
       i1 = 0;
       i2 = sizeof (script_table) / sizeof (script_entry);
       while (i2 - i1 > 1)
-        {
-          /* At this point we know that if (name + 3) occurs in script_table,
-             its index must be >= i1 and < i2.  */
-          unsigned int i = (i1 + i2) >> 1;
-          const script_entry *p = &script_table[i];
-          if (strcmp (name + 3, p->script) < 0)
-            i2 = i;
-          else
-            i1 = i;
-        }
+	{
+	  /* At this point we know that if (name + 3) occurs in script_table,
+	     its index must be >= i1 and < i2.  */
+	  unsigned int i = (i1 + i2) >> 1;
+	  const script_entry *p = &script_table[i];
+	  if (strcmp (name + 3, p->script) < 0)
+	    i2 = i;
+	  else
+	    i1 = i;
+	}
       if (strcmp (name + 3, script_table[i1].script) == 0)
-        {
-          name[2] = '@';
-          strcpy (name + 3, script_table[i1].unixy);
-          return;
-        }
+	{
+	  name[2] = '@';
+	  strcpy (name + 3, script_table[i1].unixy);
+	  return;
+	}
     }
 
   /* Step 3: Convert new-style dash to Unix underscore. */
@@ -1409,14 +1421,14 @@ gl_locale_name_canonicalize (char *name)
     char *p;
     for (p = name; *p != '\0'; p++)
       if (*p == '-')
-        *p = '_';
+	*p = '_';
   }
 }
 
 #endif
 
 
-#if defined WINDOWS_NATIVE || defined __CYGWIN__ /* Native Windows or Cygwin */
+#if defined WINDOWS_NATIVE || defined __CYGWIN__	/* Native Windows or Cygwin */
 
 /* Canonicalize a Windows native locale name to a Unix locale name.
    NAME is a sufficiently large buffer.
@@ -1425,7 +1437,7 @@ gl_locale_name_canonicalize (char *name)
 # if !defined IN_LIBINTL
 static
 # endif
-void
+  void
 gl_locale_name_canonicalize (char *name)
 {
   /* FIXME: This is probably incomplete: it does not handle "zh-Hans" and
@@ -1435,19 +1447,19 @@ gl_locale_name_canonicalize (char *name)
   for (p = name; *p != '\0'; p++)
     if (*p == '-')
       {
-        *p = '_';
-        p++;
-        for (; *p != '\0'; p++)
-          {
-            if (*p >= 'a' && *p <= 'z')
-              *p += 'A' - 'a';
-            if (*p == '-')
-              {
-                *p = '\0';
-                return;
-              }
-          }
-        return;
+	*p = '_';
+	p++;
+	for (; *p != '\0'; p++)
+	  {
+	    if (*p >= 'a' && *p <= 'z')
+	      *p += 'A' - 'a';
+	    if (*p == '-')
+	      {
+		*p = '\0';
+		return;
+	      }
+	  }
+	return;
       }
 }
 
@@ -1467,12 +1479,12 @@ gl_locale_name_from_win32_LANGID (LANGID langid)
          On Windows95/98/ME, GetLocaleInfoA returns some incorrect results.
          But we don't need to support systems that are so old.  */
       if (GetLocaleInfoA (MAKELCID (langid, SORT_DEFAULT), LOCALE_SNAME,
-                          namebuf, sizeof (namebuf) - 1))
-        {
-          /* Convert it to a Unix locale name.  */
-          gl_locale_name_canonicalize (namebuf);
-          return namebuf;
-        }
+			  namebuf, sizeof (namebuf) - 1))
+	{
+	  /* Convert it to a Unix locale name.  */
+	  gl_locale_name_canonicalize (namebuf);
+	  return namebuf;
+	}
     }
   /* Internet Explorer has an LCID to RFC3066 name mapping stored in
      HKEY_CLASSES_ROOT\Mime\Database\Rfc1766.  But we better don't use that
@@ -1493,1008 +1505,1289 @@ gl_locale_name_from_win32_LANGID (LANGID langid)
     switch (primary)
       {
       case LANG_AFRIKAANS:
-        switch (sub)
-          {
-          case SUBLANG_AFRIKAANS_SOUTH_AFRICA: return "af_ZA";
-          }
-        return "af";
+	switch (sub)
+	  {
+	  case SUBLANG_AFRIKAANS_SOUTH_AFRICA:
+	    return "af_ZA";
+	  }
+	return "af";
       case LANG_ALBANIAN:
-        switch (sub)
-          {
-          case SUBLANG_ALBANIAN_ALBANIA: return "sq_AL";
-          }
-        return "sq";
+	switch (sub)
+	  {
+	  case SUBLANG_ALBANIAN_ALBANIA:
+	    return "sq_AL";
+	  }
+	return "sq";
       case LANG_ALSATIAN:
-        switch (sub)
-          {
-          case SUBLANG_ALSATIAN_FRANCE: return "gsw_FR";
-          }
-        return "gsw";
+	switch (sub)
+	  {
+	  case SUBLANG_ALSATIAN_FRANCE:
+	    return "gsw_FR";
+	  }
+	return "gsw";
       case LANG_AMHARIC:
-        switch (sub)
-          {
-          case SUBLANG_AMHARIC_ETHIOPIA: return "am_ET";
-          }
-        return "am";
+	switch (sub)
+	  {
+	  case SUBLANG_AMHARIC_ETHIOPIA:
+	    return "am_ET";
+	  }
+	return "am";
       case LANG_ARABIC:
-        switch (sub)
-          {
-          case SUBLANG_ARABIC_SAUDI_ARABIA: return "ar_SA";
-          case SUBLANG_ARABIC_IRAQ: return "ar_IQ";
-          case SUBLANG_ARABIC_EGYPT: return "ar_EG";
-          case SUBLANG_ARABIC_LIBYA: return "ar_LY";
-          case SUBLANG_ARABIC_ALGERIA: return "ar_DZ";
-          case SUBLANG_ARABIC_MOROCCO: return "ar_MA";
-          case SUBLANG_ARABIC_TUNISIA: return "ar_TN";
-          case SUBLANG_ARABIC_OMAN: return "ar_OM";
-          case SUBLANG_ARABIC_YEMEN: return "ar_YE";
-          case SUBLANG_ARABIC_SYRIA: return "ar_SY";
-          case SUBLANG_ARABIC_JORDAN: return "ar_JO";
-          case SUBLANG_ARABIC_LEBANON: return "ar_LB";
-          case SUBLANG_ARABIC_KUWAIT: return "ar_KW";
-          case SUBLANG_ARABIC_UAE: return "ar_AE";
-          case SUBLANG_ARABIC_BAHRAIN: return "ar_BH";
-          case SUBLANG_ARABIC_QATAR: return "ar_QA";
-          }
-        return "ar";
+	switch (sub)
+	  {
+	  case SUBLANG_ARABIC_SAUDI_ARABIA:
+	    return "ar_SA";
+	  case SUBLANG_ARABIC_IRAQ:
+	    return "ar_IQ";
+	  case SUBLANG_ARABIC_EGYPT:
+	    return "ar_EG";
+	  case SUBLANG_ARABIC_LIBYA:
+	    return "ar_LY";
+	  case SUBLANG_ARABIC_ALGERIA:
+	    return "ar_DZ";
+	  case SUBLANG_ARABIC_MOROCCO:
+	    return "ar_MA";
+	  case SUBLANG_ARABIC_TUNISIA:
+	    return "ar_TN";
+	  case SUBLANG_ARABIC_OMAN:
+	    return "ar_OM";
+	  case SUBLANG_ARABIC_YEMEN:
+	    return "ar_YE";
+	  case SUBLANG_ARABIC_SYRIA:
+	    return "ar_SY";
+	  case SUBLANG_ARABIC_JORDAN:
+	    return "ar_JO";
+	  case SUBLANG_ARABIC_LEBANON:
+	    return "ar_LB";
+	  case SUBLANG_ARABIC_KUWAIT:
+	    return "ar_KW";
+	  case SUBLANG_ARABIC_UAE:
+	    return "ar_AE";
+	  case SUBLANG_ARABIC_BAHRAIN:
+	    return "ar_BH";
+	  case SUBLANG_ARABIC_QATAR:
+	    return "ar_QA";
+	  }
+	return "ar";
       case LANG_ARMENIAN:
-        switch (sub)
-          {
-          case SUBLANG_ARMENIAN_ARMENIA: return "hy_AM";
-          }
-        return "hy";
+	switch (sub)
+	  {
+	  case SUBLANG_ARMENIAN_ARMENIA:
+	    return "hy_AM";
+	  }
+	return "hy";
       case LANG_ASSAMESE:
-        switch (sub)
-          {
-          case SUBLANG_ASSAMESE_INDIA: return "as_IN";
-          }
-        return "as";
+	switch (sub)
+	  {
+	  case SUBLANG_ASSAMESE_INDIA:
+	    return "as_IN";
+	  }
+	return "as";
       case LANG_AZERI:
-        switch (sub)
-          {
-          /* FIXME: Adjust this when Azerbaijani locales appear on Unix.  */
-          case 0x1e: return "az@latin";
-          case SUBLANG_AZERI_LATIN: return "az_AZ@latin";
-          case 0x1d: return "az@cyrillic";
-          case SUBLANG_AZERI_CYRILLIC: return "az_AZ@cyrillic";
-          }
-        return "az";
+	switch (sub)
+	  {
+	    /* FIXME: Adjust this when Azerbaijani locales appear on Unix.  */
+	  case 0x1e:
+	    return "az@latin";
+	  case SUBLANG_AZERI_LATIN:
+	    return "az_AZ@latin";
+	  case 0x1d:
+	    return "az@cyrillic";
+	  case SUBLANG_AZERI_CYRILLIC:
+	    return "az_AZ@cyrillic";
+	  }
+	return "az";
       case LANG_BASHKIR:
-        switch (sub)
-          {
-          case SUBLANG_BASHKIR_RUSSIA: return "ba_RU";
-          }
-        return "ba";
+	switch (sub)
+	  {
+	  case SUBLANG_BASHKIR_RUSSIA:
+	    return "ba_RU";
+	  }
+	return "ba";
       case LANG_BASQUE:
-        switch (sub)
-          {
-          case SUBLANG_BASQUE_BASQUE: return "eu_ES";
-          }
-        return "eu"; /* Ambiguous: could be "eu_ES" or "eu_FR".  */
+	switch (sub)
+	  {
+	  case SUBLANG_BASQUE_BASQUE:
+	    return "eu_ES";
+	  }
+	return "eu";		/* Ambiguous: could be "eu_ES" or "eu_FR".  */
       case LANG_BELARUSIAN:
-        switch (sub)
-          {
-          case SUBLANG_BELARUSIAN_BELARUS: return "be_BY";
-          }
-        return "be";
+	switch (sub)
+	  {
+	  case SUBLANG_BELARUSIAN_BELARUS:
+	    return "be_BY";
+	  }
+	return "be";
       case LANG_BENGALI:
-        switch (sub)
-          {
-          case SUBLANG_BENGALI_INDIA: return "bn_IN";
-          case SUBLANG_BENGALI_BANGLADESH: return "bn_BD";
-          }
-        return "bn";
+	switch (sub)
+	  {
+	  case SUBLANG_BENGALI_INDIA:
+	    return "bn_IN";
+	  case SUBLANG_BENGALI_BANGLADESH:
+	    return "bn_BD";
+	  }
+	return "bn";
       case LANG_BRETON:
-        switch (sub)
-          {
-          case SUBLANG_BRETON_FRANCE: return "br_FR";
-          }
-        return "br";
+	switch (sub)
+	  {
+	  case SUBLANG_BRETON_FRANCE:
+	    return "br_FR";
+	  }
+	return "br";
       case LANG_BULGARIAN:
-        switch (sub)
-          {
-          case SUBLANG_BULGARIAN_BULGARIA: return "bg_BG";
-          }
-        return "bg";
+	switch (sub)
+	  {
+	  case SUBLANG_BULGARIAN_BULGARIA:
+	    return "bg_BG";
+	  }
+	return "bg";
       case LANG_BURMESE:
-        switch (sub)
-          {
-          case SUBLANG_DEFAULT: return "my_MM";
-          }
-        return "my";
+	switch (sub)
+	  {
+	  case SUBLANG_DEFAULT:
+	    return "my_MM";
+	  }
+	return "my";
       case LANG_CAMBODIAN:
-        switch (sub)
-          {
-          case SUBLANG_CAMBODIAN_CAMBODIA: return "km_KH";
-          }
-        return "km";
+	switch (sub)
+	  {
+	  case SUBLANG_CAMBODIAN_CAMBODIA:
+	    return "km_KH";
+	  }
+	return "km";
       case LANG_CATALAN:
-        switch (sub)
-          {
-          case SUBLANG_CATALAN_SPAIN: return "ca_ES";
-          }
-        return "ca";
+	switch (sub)
+	  {
+	  case SUBLANG_CATALAN_SPAIN:
+	    return "ca_ES";
+	  }
+	return "ca";
       case LANG_CHEROKEE:
-        switch (sub)
-          {
-          case SUBLANG_DEFAULT: return "chr_US";
-          }
-        return "chr";
+	switch (sub)
+	  {
+	  case SUBLANG_DEFAULT:
+	    return "chr_US";
+	  }
+	return "chr";
       case LANG_CHINESE:
-        switch (sub)
-          {
-          case SUBLANG_CHINESE_TRADITIONAL: case 0x1f: return "zh_TW";
-          case SUBLANG_CHINESE_SIMPLIFIED: case 0x00: return "zh_CN";
-          case SUBLANG_CHINESE_HONGKONG: return "zh_HK"; /* traditional */
-          case SUBLANG_CHINESE_SINGAPORE: return "zh_SG"; /* simplified */
-          case SUBLANG_CHINESE_MACAU: return "zh_MO"; /* traditional */
-          }
-        return "zh";
+	switch (sub)
+	  {
+	  case SUBLANG_CHINESE_TRADITIONAL:
+	  case 0x1f:
+	    return "zh_TW";
+	  case SUBLANG_CHINESE_SIMPLIFIED:
+	  case 0x00:
+	    return "zh_CN";
+	  case SUBLANG_CHINESE_HONGKONG:
+	    return "zh_HK";	/* traditional */
+	  case SUBLANG_CHINESE_SINGAPORE:
+	    return "zh_SG";	/* simplified */
+	  case SUBLANG_CHINESE_MACAU:
+	    return "zh_MO";	/* traditional */
+	  }
+	return "zh";
       case LANG_CORSICAN:
-        switch (sub)
-          {
-          case SUBLANG_CORSICAN_FRANCE: return "co_FR";
-          }
-        return "co";
-      case LANG_CROATIAN:      /* LANG_CROATIAN == LANG_SERBIAN == LANG_BOSNIAN
-                                * What used to be called Serbo-Croatian
-                                * should really now be two separate
-                                * languages because of political reasons.
-                                * (Says tml, who knows nothing about Serbian
-                                * or Croatian.)
-                                * (I can feel those flames coming already.)
-                                */
-        switch (sub)
-          {
-          /* Croatian */
-          case 0x00: return "hr";
-          case SUBLANG_CROATIAN_CROATIA: return "hr_HR";
-          case SUBLANG_CROATIAN_BOSNIA_HERZEGOVINA_LATIN: return "hr_BA";
-          /* Serbian */
-          case 0x1f: return "sr";
-          case 0x1c: return "sr"; /* latin */
-          case SUBLANG_SERBIAN_LATIN: return "sr_CS"; /* latin */
-          case 0x09: return "sr_RS"; /* latin */
-          case 0x0b: return "sr_ME"; /* latin */
-          case 0x06: return "sr_BA"; /* latin */
-          case 0x1b: return "sr@cyrillic";
-          case SUBLANG_SERBIAN_CYRILLIC: return "sr_CS@cyrillic";
-          case 0x0a: return "sr_RS@cyrillic";
-          case 0x0c: return "sr_ME@cyrillic";
-          case 0x07: return "sr_BA@cyrillic";
-          /* Bosnian */
-          case 0x1e: return "bs";
-          case 0x1a: return "bs"; /* latin */
-          case SUBLANG_BOSNIAN_BOSNIA_HERZEGOVINA_LATIN: return "bs_BA"; /* latin */
-          case 0x19: return "bs@cyrillic";
-          case SUBLANG_BOSNIAN_BOSNIA_HERZEGOVINA_CYRILLIC: return "bs_BA@cyrillic";
-          }
-        return "hr";
+	switch (sub)
+	  {
+	  case SUBLANG_CORSICAN_FRANCE:
+	    return "co_FR";
+	  }
+	return "co";
+      case LANG_CROATIAN:	/* LANG_CROATIAN == LANG_SERBIAN == LANG_BOSNIAN
+				 * What used to be called Serbo-Croatian
+				 * should really now be two separate
+				 * languages because of political reasons.
+				 * (Says tml, who knows nothing about Serbian
+				 * or Croatian.)
+				 * (I can feel those flames coming already.)
+				 */
+	switch (sub)
+	  {
+	    /* Croatian */
+	  case 0x00:
+	    return "hr";
+	  case SUBLANG_CROATIAN_CROATIA:
+	    return "hr_HR";
+	  case SUBLANG_CROATIAN_BOSNIA_HERZEGOVINA_LATIN:
+	    return "hr_BA";
+	    /* Serbian */
+	  case 0x1f:
+	    return "sr";
+	  case 0x1c:
+	    return "sr";	/* latin */
+	  case SUBLANG_SERBIAN_LATIN:
+	    return "sr_CS";	/* latin */
+	  case 0x09:
+	    return "sr_RS";	/* latin */
+	  case 0x0b:
+	    return "sr_ME";	/* latin */
+	  case 0x06:
+	    return "sr_BA";	/* latin */
+	  case 0x1b:
+	    return "sr@cyrillic";
+	  case SUBLANG_SERBIAN_CYRILLIC:
+	    return "sr_CS@cyrillic";
+	  case 0x0a:
+	    return "sr_RS@cyrillic";
+	  case 0x0c:
+	    return "sr_ME@cyrillic";
+	  case 0x07:
+	    return "sr_BA@cyrillic";
+	    /* Bosnian */
+	  case 0x1e:
+	    return "bs";
+	  case 0x1a:
+	    return "bs";	/* latin */
+	  case SUBLANG_BOSNIAN_BOSNIA_HERZEGOVINA_LATIN:
+	    return "bs_BA";	/* latin */
+	  case 0x19:
+	    return "bs@cyrillic";
+	  case SUBLANG_BOSNIAN_BOSNIA_HERZEGOVINA_CYRILLIC:
+	    return "bs_BA@cyrillic";
+	  }
+	return "hr";
       case LANG_CZECH:
-        switch (sub)
-          {
-          case SUBLANG_CZECH_CZECH_REPUBLIC: return "cs_CZ";
-          }
-        return "cs";
+	switch (sub)
+	  {
+	  case SUBLANG_CZECH_CZECH_REPUBLIC:
+	    return "cs_CZ";
+	  }
+	return "cs";
       case LANG_DANISH:
-        switch (sub)
-          {
-          case SUBLANG_DANISH_DENMARK: return "da_DK";
-          }
-        return "da";
+	switch (sub)
+	  {
+	  case SUBLANG_DANISH_DENMARK:
+	    return "da_DK";
+	  }
+	return "da";
       case LANG_DARI:
-        /* FIXME: Adjust this when such locales appear on Unix.  */
-        switch (sub)
-          {
-          case SUBLANG_DARI_AFGHANISTAN: return "prs_AF";
-          }
-        return "prs";
+	/* FIXME: Adjust this when such locales appear on Unix.  */
+	switch (sub)
+	  {
+	  case SUBLANG_DARI_AFGHANISTAN:
+	    return "prs_AF";
+	  }
+	return "prs";
       case LANG_DIVEHI:
-        switch (sub)
-          {
-          case SUBLANG_DIVEHI_MALDIVES: return "dv_MV";
-          }
-        return "dv";
+	switch (sub)
+	  {
+	  case SUBLANG_DIVEHI_MALDIVES:
+	    return "dv_MV";
+	  }
+	return "dv";
       case LANG_DUTCH:
-        switch (sub)
-          {
-          case SUBLANG_DUTCH: return "nl_NL";
-          case SUBLANG_DUTCH_BELGIAN: /* FLEMISH, VLAAMS */ return "nl_BE";
-          case SUBLANG_DUTCH_SURINAM: return "nl_SR";
-          }
-        return "nl";
+	switch (sub)
+	  {
+	  case SUBLANG_DUTCH:
+	    return "nl_NL";
+	  case SUBLANG_DUTCH_BELGIAN:	/* FLEMISH, VLAAMS */
+	    return "nl_BE";
+	  case SUBLANG_DUTCH_SURINAM:
+	    return "nl_SR";
+	  }
+	return "nl";
       case LANG_EDO:
-        switch (sub)
-          {
-          case SUBLANG_DEFAULT: return "bin_NG";
-          }
-        return "bin";
+	switch (sub)
+	  {
+	  case SUBLANG_DEFAULT:
+	    return "bin_NG";
+	  }
+	return "bin";
       case LANG_ENGLISH:
-        switch (sub)
-          {
-          /* SUBLANG_ENGLISH_US == SUBLANG_DEFAULT. Heh. I thought
-           * English was the language spoken in England.
-           * Oh well.
-           */
-          case SUBLANG_ENGLISH_US: return "en_US";
-          case SUBLANG_ENGLISH_UK: return "en_GB";
-          case SUBLANG_ENGLISH_AUS: return "en_AU";
-          case SUBLANG_ENGLISH_CAN: return "en_CA";
-          case SUBLANG_ENGLISH_NZ: return "en_NZ";
-          case SUBLANG_ENGLISH_EIRE: return "en_IE";
-          case SUBLANG_ENGLISH_SOUTH_AFRICA: return "en_ZA";
-          case SUBLANG_ENGLISH_JAMAICA: return "en_JM";
-          case SUBLANG_ENGLISH_CARIBBEAN: return "en_GD"; /* Grenada? */
-          case SUBLANG_ENGLISH_BELIZE: return "en_BZ";
-          case SUBLANG_ENGLISH_TRINIDAD: return "en_TT";
-          case SUBLANG_ENGLISH_ZIMBABWE: return "en_ZW";
-          case SUBLANG_ENGLISH_PHILIPPINES: return "en_PH";
-          case SUBLANG_ENGLISH_INDONESIA: return "en_ID";
-          case SUBLANG_ENGLISH_HONGKONG: return "en_HK";
-          case SUBLANG_ENGLISH_INDIA: return "en_IN";
-          case SUBLANG_ENGLISH_MALAYSIA: return "en_MY";
-          case SUBLANG_ENGLISH_SINGAPORE: return "en_SG";
-          }
-        return "en";
+	switch (sub)
+	  {
+	    /* SUBLANG_ENGLISH_US == SUBLANG_DEFAULT. Heh. I thought
+	     * English was the language spoken in England.
+	     * Oh well.
+	     */
+	  case SUBLANG_ENGLISH_US:
+	    return "en_US";
+	  case SUBLANG_ENGLISH_UK:
+	    return "en_GB";
+	  case SUBLANG_ENGLISH_AUS:
+	    return "en_AU";
+	  case SUBLANG_ENGLISH_CAN:
+	    return "en_CA";
+	  case SUBLANG_ENGLISH_NZ:
+	    return "en_NZ";
+	  case SUBLANG_ENGLISH_EIRE:
+	    return "en_IE";
+	  case SUBLANG_ENGLISH_SOUTH_AFRICA:
+	    return "en_ZA";
+	  case SUBLANG_ENGLISH_JAMAICA:
+	    return "en_JM";
+	  case SUBLANG_ENGLISH_CARIBBEAN:
+	    return "en_GD";	/* Grenada? */
+	  case SUBLANG_ENGLISH_BELIZE:
+	    return "en_BZ";
+	  case SUBLANG_ENGLISH_TRINIDAD:
+	    return "en_TT";
+	  case SUBLANG_ENGLISH_ZIMBABWE:
+	    return "en_ZW";
+	  case SUBLANG_ENGLISH_PHILIPPINES:
+	    return "en_PH";
+	  case SUBLANG_ENGLISH_INDONESIA:
+	    return "en_ID";
+	  case SUBLANG_ENGLISH_HONGKONG:
+	    return "en_HK";
+	  case SUBLANG_ENGLISH_INDIA:
+	    return "en_IN";
+	  case SUBLANG_ENGLISH_MALAYSIA:
+	    return "en_MY";
+	  case SUBLANG_ENGLISH_SINGAPORE:
+	    return "en_SG";
+	  }
+	return "en";
       case LANG_ESTONIAN:
-        switch (sub)
-          {
-          case SUBLANG_ESTONIAN_ESTONIA: return "et_EE";
-          }
-        return "et";
+	switch (sub)
+	  {
+	  case SUBLANG_ESTONIAN_ESTONIA:
+	    return "et_EE";
+	  }
+	return "et";
       case LANG_FAEROESE:
-        switch (sub)
-          {
-          case SUBLANG_FAEROESE_FAROE_ISLANDS: return "fo_FO";
-          }
-        return "fo";
+	switch (sub)
+	  {
+	  case SUBLANG_FAEROESE_FAROE_ISLANDS:
+	    return "fo_FO";
+	  }
+	return "fo";
       case LANG_FARSI:
-        switch (sub)
-          {
-          case SUBLANG_FARSI_IRAN: return "fa_IR";
-          }
-        return "fa";
+	switch (sub)
+	  {
+	  case SUBLANG_FARSI_IRAN:
+	    return "fa_IR";
+	  }
+	return "fa";
       case LANG_FINNISH:
-        switch (sub)
-          {
-          case SUBLANG_FINNISH_FINLAND: return "fi_FI";
-          }
-        return "fi";
+	switch (sub)
+	  {
+	  case SUBLANG_FINNISH_FINLAND:
+	    return "fi_FI";
+	  }
+	return "fi";
       case LANG_FRENCH:
-        switch (sub)
-          {
-          case SUBLANG_FRENCH: return "fr_FR";
-          case SUBLANG_FRENCH_BELGIAN: /* WALLOON */ return "fr_BE";
-          case SUBLANG_FRENCH_CANADIAN: return "fr_CA";
-          case SUBLANG_FRENCH_SWISS: return "fr_CH";
-          case SUBLANG_FRENCH_LUXEMBOURG: return "fr_LU";
-          case SUBLANG_FRENCH_MONACO: return "fr_MC";
-          case SUBLANG_FRENCH_WESTINDIES: return "fr"; /* Caribbean? */
-          case SUBLANG_FRENCH_REUNION: return "fr_RE";
-          case SUBLANG_FRENCH_CONGO: return "fr_CG";
-          case SUBLANG_FRENCH_SENEGAL: return "fr_SN";
-          case SUBLANG_FRENCH_CAMEROON: return "fr_CM";
-          case SUBLANG_FRENCH_COTEDIVOIRE: return "fr_CI";
-          case SUBLANG_FRENCH_MALI: return "fr_ML";
-          case SUBLANG_FRENCH_MOROCCO: return "fr_MA";
-          case SUBLANG_FRENCH_HAITI: return "fr_HT";
-          }
-        return "fr";
+	switch (sub)
+	  {
+	  case SUBLANG_FRENCH:
+	    return "fr_FR";
+	  case SUBLANG_FRENCH_BELGIAN:	/* WALLOON */
+	    return "fr_BE";
+	  case SUBLANG_FRENCH_CANADIAN:
+	    return "fr_CA";
+	  case SUBLANG_FRENCH_SWISS:
+	    return "fr_CH";
+	  case SUBLANG_FRENCH_LUXEMBOURG:
+	    return "fr_LU";
+	  case SUBLANG_FRENCH_MONACO:
+	    return "fr_MC";
+	  case SUBLANG_FRENCH_WESTINDIES:
+	    return "fr";	/* Caribbean? */
+	  case SUBLANG_FRENCH_REUNION:
+	    return "fr_RE";
+	  case SUBLANG_FRENCH_CONGO:
+	    return "fr_CG";
+	  case SUBLANG_FRENCH_SENEGAL:
+	    return "fr_SN";
+	  case SUBLANG_FRENCH_CAMEROON:
+	    return "fr_CM";
+	  case SUBLANG_FRENCH_COTEDIVOIRE:
+	    return "fr_CI";
+	  case SUBLANG_FRENCH_MALI:
+	    return "fr_ML";
+	  case SUBLANG_FRENCH_MOROCCO:
+	    return "fr_MA";
+	  case SUBLANG_FRENCH_HAITI:
+	    return "fr_HT";
+	  }
+	return "fr";
       case LANG_FRISIAN:
-        switch (sub)
-          {
-          case SUBLANG_FRISIAN_NETHERLANDS: return "fy_NL";
-          }
-        return "fy";
+	switch (sub)
+	  {
+	  case SUBLANG_FRISIAN_NETHERLANDS:
+	    return "fy_NL";
+	  }
+	return "fy";
       case LANG_FULFULDE:
-        /* Spoken in Nigeria, Guinea, Senegal, Mali, Niger, Cameroon, Benin.  */
-        switch (sub)
-          {
-          case SUBLANG_DEFAULT: return "ff_NG";
-          }
-        return "ff";
+	/* Spoken in Nigeria, Guinea, Senegal, Mali, Niger, Cameroon, Benin.  */
+	switch (sub)
+	  {
+	  case SUBLANG_DEFAULT:
+	    return "ff_NG";
+	  }
+	return "ff";
       case LANG_GAELIC:
-        switch (sub)
-          {
-          case 0x01: /* SCOTTISH */
-            /* old, superseded by LANG_SCOTTISH_GAELIC */
-            return "gd_GB";
-          case SUBLANG_IRISH_IRELAND: return "ga_IE";
-          }
-        return "ga";
+	switch (sub)
+	  {
+	  case 0x01:		/* SCOTTISH */
+	    /* old, superseded by LANG_SCOTTISH_GAELIC */
+	    return "gd_GB";
+	  case SUBLANG_IRISH_IRELAND:
+	    return "ga_IE";
+	  }
+	return "ga";
       case LANG_GALICIAN:
-        switch (sub)
-          {
-          case SUBLANG_GALICIAN_SPAIN: return "gl_ES";
-          }
-        return "gl";
+	switch (sub)
+	  {
+	  case SUBLANG_GALICIAN_SPAIN:
+	    return "gl_ES";
+	  }
+	return "gl";
       case LANG_GEORGIAN:
-        switch (sub)
-          {
-          case SUBLANG_GEORGIAN_GEORGIA: return "ka_GE";
-          }
-        return "ka";
+	switch (sub)
+	  {
+	  case SUBLANG_GEORGIAN_GEORGIA:
+	    return "ka_GE";
+	  }
+	return "ka";
       case LANG_GERMAN:
-        switch (sub)
-          {
-          case SUBLANG_GERMAN: return "de_DE";
-          case SUBLANG_GERMAN_SWISS: return "de_CH";
-          case SUBLANG_GERMAN_AUSTRIAN: return "de_AT";
-          case SUBLANG_GERMAN_LUXEMBOURG: return "de_LU";
-          case SUBLANG_GERMAN_LIECHTENSTEIN: return "de_LI";
-          }
-        return "de";
+	switch (sub)
+	  {
+	  case SUBLANG_GERMAN:
+	    return "de_DE";
+	  case SUBLANG_GERMAN_SWISS:
+	    return "de_CH";
+	  case SUBLANG_GERMAN_AUSTRIAN:
+	    return "de_AT";
+	  case SUBLANG_GERMAN_LUXEMBOURG:
+	    return "de_LU";
+	  case SUBLANG_GERMAN_LIECHTENSTEIN:
+	    return "de_LI";
+	  }
+	return "de";
       case LANG_GREEK:
-        switch (sub)
-          {
-          case SUBLANG_GREEK_GREECE: return "el_GR";
-          }
-        return "el";
+	switch (sub)
+	  {
+	  case SUBLANG_GREEK_GREECE:
+	    return "el_GR";
+	  }
+	return "el";
       case LANG_GREENLANDIC:
-        switch (sub)
-          {
-          case SUBLANG_GREENLANDIC_GREENLAND: return "kl_GL";
-          }
-        return "kl";
+	switch (sub)
+	  {
+	  case SUBLANG_GREENLANDIC_GREENLAND:
+	    return "kl_GL";
+	  }
+	return "kl";
       case LANG_GUARANI:
-        switch (sub)
-          {
-          case SUBLANG_DEFAULT: return "gn_PY";
-          }
-        return "gn";
+	switch (sub)
+	  {
+	  case SUBLANG_DEFAULT:
+	    return "gn_PY";
+	  }
+	return "gn";
       case LANG_GUJARATI:
-        switch (sub)
-          {
-          case SUBLANG_GUJARATI_INDIA: return "gu_IN";
-          }
-        return "gu";
+	switch (sub)
+	  {
+	  case SUBLANG_GUJARATI_INDIA:
+	    return "gu_IN";
+	  }
+	return "gu";
       case LANG_HAUSA:
-        switch (sub)
-          {
-          case 0x1f: return "ha";
-          case SUBLANG_HAUSA_NIGERIA_LATIN: return "ha_NG";
-          }
-        return "ha";
+	switch (sub)
+	  {
+	  case 0x1f:
+	    return "ha";
+	  case SUBLANG_HAUSA_NIGERIA_LATIN:
+	    return "ha_NG";
+	  }
+	return "ha";
       case LANG_HAWAIIAN:
-        /* FIXME: Do they mean Hawaiian ("haw_US", 1000 speakers)
-           or Hawaii Creole English ("cpe_US", 600000 speakers)?  */
-        switch (sub)
-          {
-          case SUBLANG_DEFAULT: return "cpe_US";
-          }
-        return "cpe";
+	/* FIXME: Do they mean Hawaiian ("haw_US", 1000 speakers)
+	   or Hawaii Creole English ("cpe_US", 600000 speakers)?  */
+	switch (sub)
+	  {
+	  case SUBLANG_DEFAULT:
+	    return "cpe_US";
+	  }
+	return "cpe";
       case LANG_HEBREW:
-        switch (sub)
-          {
-          case SUBLANG_HEBREW_ISRAEL: return "he_IL";
-          }
-        return "he";
+	switch (sub)
+	  {
+	  case SUBLANG_HEBREW_ISRAEL:
+	    return "he_IL";
+	  }
+	return "he";
       case LANG_HINDI:
-        switch (sub)
-          {
-          case SUBLANG_HINDI_INDIA: return "hi_IN";
-          }
-        return "hi";
+	switch (sub)
+	  {
+	  case SUBLANG_HINDI_INDIA:
+	    return "hi_IN";
+	  }
+	return "hi";
       case LANG_HUNGARIAN:
-        switch (sub)
-          {
-          case SUBLANG_HUNGARIAN_HUNGARY: return "hu_HU";
-          }
-        return "hu";
+	switch (sub)
+	  {
+	  case SUBLANG_HUNGARIAN_HUNGARY:
+	    return "hu_HU";
+	  }
+	return "hu";
       case LANG_IBIBIO:
-        switch (sub)
-          {
-          case SUBLANG_DEFAULT: return "nic_NG";
-          }
-        return "nic";
+	switch (sub)
+	  {
+	  case SUBLANG_DEFAULT:
+	    return "nic_NG";
+	  }
+	return "nic";
       case LANG_ICELANDIC:
-        switch (sub)
-          {
-          case SUBLANG_ICELANDIC_ICELAND: return "is_IS";
-          }
-        return "is";
+	switch (sub)
+	  {
+	  case SUBLANG_ICELANDIC_ICELAND:
+	    return "is_IS";
+	  }
+	return "is";
       case LANG_IGBO:
-        switch (sub)
-          {
-          case SUBLANG_IGBO_NIGERIA: return "ig_NG";
-          }
-        return "ig";
+	switch (sub)
+	  {
+	  case SUBLANG_IGBO_NIGERIA:
+	    return "ig_NG";
+	  }
+	return "ig";
       case LANG_INDONESIAN:
-        switch (sub)
-          {
-          case SUBLANG_INDONESIAN_INDONESIA: return "id_ID";
-          }
-        return "id";
+	switch (sub)
+	  {
+	  case SUBLANG_INDONESIAN_INDONESIA:
+	    return "id_ID";
+	  }
+	return "id";
       case LANG_INUKTITUT:
-        switch (sub)
-          {
-          case 0x1e: return "iu"; /* syllabic */
-          case SUBLANG_INUKTITUT_CANADA: return "iu_CA"; /* syllabic */
-          case 0x1f: return "iu@latin";
-          case SUBLANG_INUKTITUT_CANADA_LATIN: return "iu_CA@latin";
-          }
-        return "iu";
+	switch (sub)
+	  {
+	  case 0x1e:
+	    return "iu";	/* syllabic */
+	  case SUBLANG_INUKTITUT_CANADA:
+	    return "iu_CA";	/* syllabic */
+	  case 0x1f:
+	    return "iu@latin";
+	  case SUBLANG_INUKTITUT_CANADA_LATIN:
+	    return "iu_CA@latin";
+	  }
+	return "iu";
       case LANG_ITALIAN:
-        switch (sub)
-          {
-          case SUBLANG_ITALIAN: return "it_IT";
-          case SUBLANG_ITALIAN_SWISS: return "it_CH";
-          }
-        return "it";
+	switch (sub)
+	  {
+	  case SUBLANG_ITALIAN:
+	    return "it_IT";
+	  case SUBLANG_ITALIAN_SWISS:
+	    return "it_CH";
+	  }
+	return "it";
       case LANG_JAPANESE:
-        switch (sub)
-          {
-          case SUBLANG_JAPANESE_JAPAN: return "ja_JP";
-          }
-        return "ja";
+	switch (sub)
+	  {
+	  case SUBLANG_JAPANESE_JAPAN:
+	    return "ja_JP";
+	  }
+	return "ja";
       case LANG_KANNADA:
-        switch (sub)
-          {
-          case SUBLANG_KANNADA_INDIA: return "kn_IN";
-          }
-        return "kn";
+	switch (sub)
+	  {
+	  case SUBLANG_KANNADA_INDIA:
+	    return "kn_IN";
+	  }
+	return "kn";
       case LANG_KANURI:
-        switch (sub)
-          {
-          case SUBLANG_DEFAULT: return "kr_NG";
-          }
-        return "kr";
+	switch (sub)
+	  {
+	  case SUBLANG_DEFAULT:
+	    return "kr_NG";
+	  }
+	return "kr";
       case LANG_KASHMIRI:
-        switch (sub)
-          {
-          case SUBLANG_DEFAULT: return "ks_PK";
-          case SUBLANG_KASHMIRI_INDIA: return "ks_IN";
-          }
-        return "ks";
+	switch (sub)
+	  {
+	  case SUBLANG_DEFAULT:
+	    return "ks_PK";
+	  case SUBLANG_KASHMIRI_INDIA:
+	    return "ks_IN";
+	  }
+	return "ks";
       case LANG_KAZAK:
-        switch (sub)
-          {
-          case SUBLANG_KAZAK_KAZAKHSTAN: return "kk_KZ";
-          }
-        return "kk";
+	switch (sub)
+	  {
+	  case SUBLANG_KAZAK_KAZAKHSTAN:
+	    return "kk_KZ";
+	  }
+	return "kk";
       case LANG_KICHE:
-        /* FIXME: Adjust this when such locales appear on Unix.  */
-        switch (sub)
-          {
-          case SUBLANG_KICHE_GUATEMALA: return "qut_GT";
-          }
-        return "qut";
+	/* FIXME: Adjust this when such locales appear on Unix.  */
+	switch (sub)
+	  {
+	  case SUBLANG_KICHE_GUATEMALA:
+	    return "qut_GT";
+	  }
+	return "qut";
       case LANG_KINYARWANDA:
-        switch (sub)
-          {
-          case SUBLANG_KINYARWANDA_RWANDA: return "rw_RW";
-          }
-        return "rw";
+	switch (sub)
+	  {
+	  case SUBLANG_KINYARWANDA_RWANDA:
+	    return "rw_RW";
+	  }
+	return "rw";
       case LANG_KONKANI:
-        /* FIXME: Adjust this when such locales appear on Unix.  */
-        switch (sub)
-          {
-          case SUBLANG_KONKANI_INDIA: return "kok_IN";
-          }
-        return "kok";
+	/* FIXME: Adjust this when such locales appear on Unix.  */
+	switch (sub)
+	  {
+	  case SUBLANG_KONKANI_INDIA:
+	    return "kok_IN";
+	  }
+	return "kok";
       case LANG_KOREAN:
-        switch (sub)
-          {
-          case SUBLANG_DEFAULT: return "ko_KR";
-          }
-        return "ko";
+	switch (sub)
+	  {
+	  case SUBLANG_DEFAULT:
+	    return "ko_KR";
+	  }
+	return "ko";
       case LANG_KYRGYZ:
-        switch (sub)
-          {
-          case SUBLANG_KYRGYZ_KYRGYZSTAN: return "ky_KG";
-          }
-        return "ky";
+	switch (sub)
+	  {
+	  case SUBLANG_KYRGYZ_KYRGYZSTAN:
+	    return "ky_KG";
+	  }
+	return "ky";
       case LANG_LAO:
-        switch (sub)
-          {
-          case SUBLANG_LAO_LAOS: return "lo_LA";
-          }
-        return "lo";
+	switch (sub)
+	  {
+	  case SUBLANG_LAO_LAOS:
+	    return "lo_LA";
+	  }
+	return "lo";
       case LANG_LATIN:
-        switch (sub)
-          {
-          case SUBLANG_DEFAULT: return "la_VA";
-          }
-        return "la";
+	switch (sub)
+	  {
+	  case SUBLANG_DEFAULT:
+	    return "la_VA";
+	  }
+	return "la";
       case LANG_LATVIAN:
-        switch (sub)
-          {
-          case SUBLANG_LATVIAN_LATVIA: return "lv_LV";
-          }
-        return "lv";
+	switch (sub)
+	  {
+	  case SUBLANG_LATVIAN_LATVIA:
+	    return "lv_LV";
+	  }
+	return "lv";
       case LANG_LITHUANIAN:
-        switch (sub)
-          {
-          case SUBLANG_LITHUANIAN_LITHUANIA: return "lt_LT";
-          }
-        return "lt";
+	switch (sub)
+	  {
+	  case SUBLANG_LITHUANIAN_LITHUANIA:
+	    return "lt_LT";
+	  }
+	return "lt";
       case LANG_LUXEMBOURGISH:
-        switch (sub)
-          {
-          case SUBLANG_LUXEMBOURGISH_LUXEMBOURG: return "lb_LU";
-          }
-        return "lb";
+	switch (sub)
+	  {
+	  case SUBLANG_LUXEMBOURGISH_LUXEMBOURG:
+	    return "lb_LU";
+	  }
+	return "lb";
       case LANG_MACEDONIAN:
-        switch (sub)
-          {
-          case SUBLANG_MACEDONIAN_MACEDONIA: return "mk_MK";
-          }
-        return "mk";
+	switch (sub)
+	  {
+	  case SUBLANG_MACEDONIAN_MACEDONIA:
+	    return "mk_MK";
+	  }
+	return "mk";
       case LANG_MALAY:
-        switch (sub)
-          {
-          case SUBLANG_MALAY_MALAYSIA: return "ms_MY";
-          case SUBLANG_MALAY_BRUNEI_DARUSSALAM: return "ms_BN";
-          }
-        return "ms";
+	switch (sub)
+	  {
+	  case SUBLANG_MALAY_MALAYSIA:
+	    return "ms_MY";
+	  case SUBLANG_MALAY_BRUNEI_DARUSSALAM:
+	    return "ms_BN";
+	  }
+	return "ms";
       case LANG_MALAYALAM:
-        switch (sub)
-          {
-          case SUBLANG_MALAYALAM_INDIA: return "ml_IN";
-          }
-        return "ml";
+	switch (sub)
+	  {
+	  case SUBLANG_MALAYALAM_INDIA:
+	    return "ml_IN";
+	  }
+	return "ml";
       case LANG_MALTESE:
-        switch (sub)
-          {
-          case SUBLANG_MALTESE_MALTA: return "mt_MT";
-          }
-        return "mt";
+	switch (sub)
+	  {
+	  case SUBLANG_MALTESE_MALTA:
+	    return "mt_MT";
+	  }
+	return "mt";
       case LANG_MANIPURI:
-        /* FIXME: Adjust this when such locales appear on Unix.  */
-        switch (sub)
-          {
-          case SUBLANG_DEFAULT: return "mni_IN";
-          }
-        return "mni";
+	/* FIXME: Adjust this when such locales appear on Unix.  */
+	switch (sub)
+	  {
+	  case SUBLANG_DEFAULT:
+	    return "mni_IN";
+	  }
+	return "mni";
       case LANG_MAORI:
-        switch (sub)
-          {
-          case SUBLANG_MAORI_NEW_ZEALAND: return "mi_NZ";
-          }
-        return "mi";
+	switch (sub)
+	  {
+	  case SUBLANG_MAORI_NEW_ZEALAND:
+	    return "mi_NZ";
+	  }
+	return "mi";
       case LANG_MAPUDUNGUN:
-        switch (sub)
-          {
-          case SUBLANG_MAPUDUNGUN_CHILE: return "arn_CL";
-          }
-        return "arn";
+	switch (sub)
+	  {
+	  case SUBLANG_MAPUDUNGUN_CHILE:
+	    return "arn_CL";
+	  }
+	return "arn";
       case LANG_MARATHI:
-        switch (sub)
-          {
-          case SUBLANG_MARATHI_INDIA: return "mr_IN";
-          }
-        return "mr";
+	switch (sub)
+	  {
+	  case SUBLANG_MARATHI_INDIA:
+	    return "mr_IN";
+	  }
+	return "mr";
       case LANG_MOHAWK:
-        switch (sub)
-          {
-          case SUBLANG_MOHAWK_CANADA: return "moh_CA";
-          }
-        return "moh";
+	switch (sub)
+	  {
+	  case SUBLANG_MOHAWK_CANADA:
+	    return "moh_CA";
+	  }
+	return "moh";
       case LANG_MONGOLIAN:
-        switch (sub)
-          {
-          case SUBLANG_MONGOLIAN_CYRILLIC_MONGOLIA: case 0x1e: return "mn_MN";
-          case SUBLANG_MONGOLIAN_PRC: case 0x1f: return "mn_CN";
-          }
-        return "mn"; /* Ambiguous: could be "mn_CN" or "mn_MN".  */
+	switch (sub)
+	  {
+	  case SUBLANG_MONGOLIAN_CYRILLIC_MONGOLIA:
+	  case 0x1e:
+	    return "mn_MN";
+	  case SUBLANG_MONGOLIAN_PRC:
+	  case 0x1f:
+	    return "mn_CN";
+	  }
+	return "mn";		/* Ambiguous: could be "mn_CN" or "mn_MN".  */
       case LANG_NEPALI:
-        switch (sub)
-          {
-          case SUBLANG_NEPALI_NEPAL: return "ne_NP";
-          case SUBLANG_NEPALI_INDIA: return "ne_IN";
-          }
-        return "ne";
+	switch (sub)
+	  {
+	  case SUBLANG_NEPALI_NEPAL:
+	    return "ne_NP";
+	  case SUBLANG_NEPALI_INDIA:
+	    return "ne_IN";
+	  }
+	return "ne";
       case LANG_NORWEGIAN:
-        switch (sub)
-          {
-          case 0x1f: return "nb";
-          case SUBLANG_NORWEGIAN_BOKMAL: return "nb_NO";
-          case 0x1e: return "nn";
-          case SUBLANG_NORWEGIAN_NYNORSK: return "nn_NO";
-          }
-        return "no";
+	switch (sub)
+	  {
+	  case 0x1f:
+	    return "nb";
+	  case SUBLANG_NORWEGIAN_BOKMAL:
+	    return "nb_NO";
+	  case 0x1e:
+	    return "nn";
+	  case SUBLANG_NORWEGIAN_NYNORSK:
+	    return "nn_NO";
+	  }
+	return "no";
       case LANG_OCCITAN:
-        switch (sub)
-          {
-          case SUBLANG_OCCITAN_FRANCE: return "oc_FR";
-          }
-        return "oc";
+	switch (sub)
+	  {
+	  case SUBLANG_OCCITAN_FRANCE:
+	    return "oc_FR";
+	  }
+	return "oc";
       case LANG_ORIYA:
-        switch (sub)
-          {
-          case SUBLANG_ORIYA_INDIA: return "or_IN";
-          }
-        return "or";
+	switch (sub)
+	  {
+	  case SUBLANG_ORIYA_INDIA:
+	    return "or_IN";
+	  }
+	return "or";
       case LANG_OROMO:
-        switch (sub)
-          {
-          case SUBLANG_DEFAULT: return "om_ET";
-          }
-        return "om";
+	switch (sub)
+	  {
+	  case SUBLANG_DEFAULT:
+	    return "om_ET";
+	  }
+	return "om";
       case LANG_PAPIAMENTU:
-        switch (sub)
-          {
-          case SUBLANG_DEFAULT: return "pap_AN";
-          }
-        return "pap";
+	switch (sub)
+	  {
+	  case SUBLANG_DEFAULT:
+	    return "pap_AN";
+	  }
+	return "pap";
       case LANG_PASHTO:
-        switch (sub)
-          {
-          case SUBLANG_PASHTO_AFGHANISTAN: return "ps_AF";
-          }
-        return "ps"; /* Ambiguous: could be "ps_PK" or "ps_AF".  */
+	switch (sub)
+	  {
+	  case SUBLANG_PASHTO_AFGHANISTAN:
+	    return "ps_AF";
+	  }
+	return "ps";		/* Ambiguous: could be "ps_PK" or "ps_AF".  */
       case LANG_POLISH:
-        switch (sub)
-          {
-          case SUBLANG_POLISH_POLAND: return "pl_PL";
-          }
-        return "pl";
+	switch (sub)
+	  {
+	  case SUBLANG_POLISH_POLAND:
+	    return "pl_PL";
+	  }
+	return "pl";
       case LANG_PORTUGUESE:
-        switch (sub)
-          {
-          /* Hmm. SUBLANG_PORTUGUESE_BRAZILIAN == SUBLANG_DEFAULT.
-             Same phenomenon as SUBLANG_ENGLISH_US == SUBLANG_DEFAULT. */
-          case SUBLANG_PORTUGUESE_BRAZILIAN: return "pt_BR";
-          case SUBLANG_PORTUGUESE: return "pt_PT";
-          }
-        return "pt";
+	switch (sub)
+	  {
+	    /* Hmm. SUBLANG_PORTUGUESE_BRAZILIAN == SUBLANG_DEFAULT.
+	       Same phenomenon as SUBLANG_ENGLISH_US == SUBLANG_DEFAULT. */
+	  case SUBLANG_PORTUGUESE_BRAZILIAN:
+	    return "pt_BR";
+	  case SUBLANG_PORTUGUESE:
+	    return "pt_PT";
+	  }
+	return "pt";
       case LANG_PUNJABI:
-        switch (sub)
-          {
-          case SUBLANG_PUNJABI_INDIA: return "pa_IN"; /* Gurmukhi script */
-          case SUBLANG_PUNJABI_PAKISTAN: return "pa_PK"; /* Arabic script */
-          }
-        return "pa";
+	switch (sub)
+	  {
+	  case SUBLANG_PUNJABI_INDIA:
+	    return "pa_IN";	/* Gurmukhi script */
+	  case SUBLANG_PUNJABI_PAKISTAN:
+	    return "pa_PK";	/* Arabic script */
+	  }
+	return "pa";
       case LANG_QUECHUA:
-        /* Note: Microsoft uses the non-ISO language code "quz".  */
-        switch (sub)
-          {
-          case SUBLANG_QUECHUA_BOLIVIA: return "qu_BO";
-          case SUBLANG_QUECHUA_ECUADOR: return "qu_EC";
-          case SUBLANG_QUECHUA_PERU: return "qu_PE";
-          }
-        return "qu";
+	/* Note: Microsoft uses the non-ISO language code "quz".  */
+	switch (sub)
+	  {
+	  case SUBLANG_QUECHUA_BOLIVIA:
+	    return "qu_BO";
+	  case SUBLANG_QUECHUA_ECUADOR:
+	    return "qu_EC";
+	  case SUBLANG_QUECHUA_PERU:
+	    return "qu_PE";
+	  }
+	return "qu";
       case LANG_ROMANIAN:
-        switch (sub)
-          {
-          case SUBLANG_ROMANIAN_ROMANIA: return "ro_RO";
-          case SUBLANG_ROMANIAN_MOLDOVA: return "ro_MD";
-          }
-        return "ro";
+	switch (sub)
+	  {
+	  case SUBLANG_ROMANIAN_ROMANIA:
+	    return "ro_RO";
+	  case SUBLANG_ROMANIAN_MOLDOVA:
+	    return "ro_MD";
+	  }
+	return "ro";
       case LANG_ROMANSH:
-        switch (sub)
-          {
-          case SUBLANG_ROMANSH_SWITZERLAND: return "rm_CH";
-          }
-        return "rm";
+	switch (sub)
+	  {
+	  case SUBLANG_ROMANSH_SWITZERLAND:
+	    return "rm_CH";
+	  }
+	return "rm";
       case LANG_RUSSIAN:
-        switch (sub)
-          {
-          case SUBLANG_RUSSIAN_RUSSIA: return "ru_RU";
-          case SUBLANG_RUSSIAN_MOLDAVIA: return "ru_MD";
-          }
-        return "ru"; /* Ambiguous: could be "ru_RU" or "ru_UA" or "ru_MD".  */
+	switch (sub)
+	  {
+	  case SUBLANG_RUSSIAN_RUSSIA:
+	    return "ru_RU";
+	  case SUBLANG_RUSSIAN_MOLDAVIA:
+	    return "ru_MD";
+	  }
+	return "ru";		/* Ambiguous: could be "ru_RU" or "ru_UA" or "ru_MD".  */
       case LANG_SAMI:
-        switch (sub)
-          {
-          /* Northern Sami */
-          case 0x00: return "se";
-          case SUBLANG_SAMI_NORTHERN_NORWAY: return "se_NO";
-          case SUBLANG_SAMI_NORTHERN_SWEDEN: return "se_SE";
-          case SUBLANG_SAMI_NORTHERN_FINLAND: return "se_FI";
-          /* Lule Sami */
-          case 0x1f: return "smj";
-          case SUBLANG_SAMI_LULE_NORWAY: return "smj_NO";
-          case SUBLANG_SAMI_LULE_SWEDEN: return "smj_SE";
-          /* Southern Sami */
-          case 0x1e: return "sma";
-          case SUBLANG_SAMI_SOUTHERN_NORWAY: return "sma_NO";
-          case SUBLANG_SAMI_SOUTHERN_SWEDEN: return "sma_SE";
-          /* Skolt Sami */
-          case 0x1d: return "sms";
-          case SUBLANG_SAMI_SKOLT_FINLAND: return "sms_FI";
-          /* Inari Sami */
-          case 0x1c: return "smn";
-          case SUBLANG_SAMI_INARI_FINLAND: return "smn_FI";
-          }
-        return "se"; /* or "smi"? */
+	switch (sub)
+	  {
+	    /* Northern Sami */
+	  case 0x00:
+	    return "se";
+	  case SUBLANG_SAMI_NORTHERN_NORWAY:
+	    return "se_NO";
+	  case SUBLANG_SAMI_NORTHERN_SWEDEN:
+	    return "se_SE";
+	  case SUBLANG_SAMI_NORTHERN_FINLAND:
+	    return "se_FI";
+	    /* Lule Sami */
+	  case 0x1f:
+	    return "smj";
+	  case SUBLANG_SAMI_LULE_NORWAY:
+	    return "smj_NO";
+	  case SUBLANG_SAMI_LULE_SWEDEN:
+	    return "smj_SE";
+	    /* Southern Sami */
+	  case 0x1e:
+	    return "sma";
+	  case SUBLANG_SAMI_SOUTHERN_NORWAY:
+	    return "sma_NO";
+	  case SUBLANG_SAMI_SOUTHERN_SWEDEN:
+	    return "sma_SE";
+	    /* Skolt Sami */
+	  case 0x1d:
+	    return "sms";
+	  case SUBLANG_SAMI_SKOLT_FINLAND:
+	    return "sms_FI";
+	    /* Inari Sami */
+	  case 0x1c:
+	    return "smn";
+	  case SUBLANG_SAMI_INARI_FINLAND:
+	    return "smn_FI";
+	  }
+	return "se";		/* or "smi"? */
       case LANG_SANSKRIT:
-        switch (sub)
-          {
-          case SUBLANG_SANSKRIT_INDIA: return "sa_IN";
-          }
-        return "sa";
+	switch (sub)
+	  {
+	  case SUBLANG_SANSKRIT_INDIA:
+	    return "sa_IN";
+	  }
+	return "sa";
       case LANG_SCOTTISH_GAELIC:
-        switch (sub)
-          {
-          case SUBLANG_DEFAULT: return "gd_GB";
-          }
-        return "gd";
+	switch (sub)
+	  {
+	  case SUBLANG_DEFAULT:
+	    return "gd_GB";
+	  }
+	return "gd";
       case LANG_SINDHI:
-        switch (sub)
-          {
-          case SUBLANG_SINDHI_INDIA: return "sd_IN";
-          case SUBLANG_SINDHI_PAKISTAN: return "sd_PK";
-          /*case SUBLANG_SINDHI_AFGHANISTAN: return "sd_AF";*/
-          }
-        return "sd";
+	switch (sub)
+	  {
+	  case SUBLANG_SINDHI_INDIA:
+	    return "sd_IN";
+	  case SUBLANG_SINDHI_PAKISTAN:
+	    return "sd_PK";
+	    /*case SUBLANG_SINDHI_AFGHANISTAN: return "sd_AF"; */
+	  }
+	return "sd";
       case LANG_SINHALESE:
-        switch (sub)
-          {
-          case SUBLANG_SINHALESE_SRI_LANKA: return "si_LK";
-          }
-        return "si";
+	switch (sub)
+	  {
+	  case SUBLANG_SINHALESE_SRI_LANKA:
+	    return "si_LK";
+	  }
+	return "si";
       case LANG_SLOVAK:
-        switch (sub)
-          {
-          case SUBLANG_SLOVAK_SLOVAKIA: return "sk_SK";
-          }
-        return "sk";
+	switch (sub)
+	  {
+	  case SUBLANG_SLOVAK_SLOVAKIA:
+	    return "sk_SK";
+	  }
+	return "sk";
       case LANG_SLOVENIAN:
-        switch (sub)
-          {
-          case SUBLANG_SLOVENIAN_SLOVENIA: return "sl_SI";
-          }
-        return "sl";
+	switch (sub)
+	  {
+	  case SUBLANG_SLOVENIAN_SLOVENIA:
+	    return "sl_SI";
+	  }
+	return "sl";
       case LANG_SOMALI:
-        switch (sub)
-          {
-          case SUBLANG_DEFAULT: return "so_SO";
-          }
-        return "so";
+	switch (sub)
+	  {
+	  case SUBLANG_DEFAULT:
+	    return "so_SO";
+	  }
+	return "so";
       case LANG_SORBIAN:
-        /* FIXME: Adjust this when such locales appear on Unix.  */
-        switch (sub)
-          {
-          /* Upper Sorbian */
-          case 0x00: return "hsb";
-          case SUBLANG_UPPER_SORBIAN_GERMANY: return "hsb_DE";
-          /* Lower Sorbian */
-          case 0x1f: return "dsb";
-          case SUBLANG_LOWER_SORBIAN_GERMANY: return "dsb_DE";
-          }
-        return "wen";
+	/* FIXME: Adjust this when such locales appear on Unix.  */
+	switch (sub)
+	  {
+	    /* Upper Sorbian */
+	  case 0x00:
+	    return "hsb";
+	  case SUBLANG_UPPER_SORBIAN_GERMANY:
+	    return "hsb_DE";
+	    /* Lower Sorbian */
+	  case 0x1f:
+	    return "dsb";
+	  case SUBLANG_LOWER_SORBIAN_GERMANY:
+	    return "dsb_DE";
+	  }
+	return "wen";
       case LANG_SOTHO:
-        /* <http://www.microsoft.com/globaldev/reference/lcid-all.mspx> calls
-           it "Sepedi"; according to
-           <http://www.ethnologue.com/show_language.asp?code=nso>
-           <http://www.ethnologue.com/show_language.asp?code=sot>
-           it's the same as Northern Sotho.  */
-        switch (sub)
-          {
-          case SUBLANG_SOTHO_SOUTH_AFRICA: return "nso_ZA";
-          }
-        return "nso";
+	/* <http://www.microsoft.com/globaldev/reference/lcid-all.mspx> calls
+	   it "Sepedi"; according to
+	   <http://www.ethnologue.com/show_language.asp?code=nso>
+	   <http://www.ethnologue.com/show_language.asp?code=sot>
+	   it's the same as Northern Sotho.  */
+	switch (sub)
+	  {
+	  case SUBLANG_SOTHO_SOUTH_AFRICA:
+	    return "nso_ZA";
+	  }
+	return "nso";
       case LANG_SPANISH:
-        switch (sub)
-          {
-          case SUBLANG_SPANISH: return "es_ES";
-          case SUBLANG_SPANISH_MEXICAN: return "es_MX";
-          case SUBLANG_SPANISH_MODERN:
-            return "es_ES@modern";      /* not seen on Unix */
-          case SUBLANG_SPANISH_GUATEMALA: return "es_GT";
-          case SUBLANG_SPANISH_COSTA_RICA: return "es_CR";
-          case SUBLANG_SPANISH_PANAMA: return "es_PA";
-          case SUBLANG_SPANISH_DOMINICAN_REPUBLIC: return "es_DO";
-          case SUBLANG_SPANISH_VENEZUELA: return "es_VE";
-          case SUBLANG_SPANISH_COLOMBIA: return "es_CO";
-          case SUBLANG_SPANISH_PERU: return "es_PE";
-          case SUBLANG_SPANISH_ARGENTINA: return "es_AR";
-          case SUBLANG_SPANISH_ECUADOR: return "es_EC";
-          case SUBLANG_SPANISH_CHILE: return "es_CL";
-          case SUBLANG_SPANISH_URUGUAY: return "es_UY";
-          case SUBLANG_SPANISH_PARAGUAY: return "es_PY";
-          case SUBLANG_SPANISH_BOLIVIA: return "es_BO";
-          case SUBLANG_SPANISH_EL_SALVADOR: return "es_SV";
-          case SUBLANG_SPANISH_HONDURAS: return "es_HN";
-          case SUBLANG_SPANISH_NICARAGUA: return "es_NI";
-          case SUBLANG_SPANISH_PUERTO_RICO: return "es_PR";
-          case SUBLANG_SPANISH_US: return "es_US";
-          }
-        return "es";
+	switch (sub)
+	  {
+	  case SUBLANG_SPANISH:
+	    return "es_ES";
+	  case SUBLANG_SPANISH_MEXICAN:
+	    return "es_MX";
+	  case SUBLANG_SPANISH_MODERN:
+	    return "es_ES@modern";	/* not seen on Unix */
+	  case SUBLANG_SPANISH_GUATEMALA:
+	    return "es_GT";
+	  case SUBLANG_SPANISH_COSTA_RICA:
+	    return "es_CR";
+	  case SUBLANG_SPANISH_PANAMA:
+	    return "es_PA";
+	  case SUBLANG_SPANISH_DOMINICAN_REPUBLIC:
+	    return "es_DO";
+	  case SUBLANG_SPANISH_VENEZUELA:
+	    return "es_VE";
+	  case SUBLANG_SPANISH_COLOMBIA:
+	    return "es_CO";
+	  case SUBLANG_SPANISH_PERU:
+	    return "es_PE";
+	  case SUBLANG_SPANISH_ARGENTINA:
+	    return "es_AR";
+	  case SUBLANG_SPANISH_ECUADOR:
+	    return "es_EC";
+	  case SUBLANG_SPANISH_CHILE:
+	    return "es_CL";
+	  case SUBLANG_SPANISH_URUGUAY:
+	    return "es_UY";
+	  case SUBLANG_SPANISH_PARAGUAY:
+	    return "es_PY";
+	  case SUBLANG_SPANISH_BOLIVIA:
+	    return "es_BO";
+	  case SUBLANG_SPANISH_EL_SALVADOR:
+	    return "es_SV";
+	  case SUBLANG_SPANISH_HONDURAS:
+	    return "es_HN";
+	  case SUBLANG_SPANISH_NICARAGUA:
+	    return "es_NI";
+	  case SUBLANG_SPANISH_PUERTO_RICO:
+	    return "es_PR";
+	  case SUBLANG_SPANISH_US:
+	    return "es_US";
+	  }
+	return "es";
       case LANG_SUTU:
-        switch (sub)
-          {
-          case SUBLANG_DEFAULT: return "bnt_TZ"; /* or "st_LS" or "nso_ZA"? */
-          }
-        return "bnt";
+	switch (sub)
+	  {
+	  case SUBLANG_DEFAULT:
+	    return "bnt_TZ";	/* or "st_LS" or "nso_ZA"? */
+	  }
+	return "bnt";
       case LANG_SWAHILI:
-        switch (sub)
-          {
-          case SUBLANG_SWAHILI_KENYA: return "sw_KE";
-          }
-        return "sw";
+	switch (sub)
+	  {
+	  case SUBLANG_SWAHILI_KENYA:
+	    return "sw_KE";
+	  }
+	return "sw";
       case LANG_SWEDISH:
-        switch (sub)
-          {
-          case SUBLANG_SWEDISH_SWEDEN: return "sv_SE";
-          case SUBLANG_SWEDISH_FINLAND: return "sv_FI";
-          }
-        return "sv";
+	switch (sub)
+	  {
+	  case SUBLANG_SWEDISH_SWEDEN:
+	    return "sv_SE";
+	  case SUBLANG_SWEDISH_FINLAND:
+	    return "sv_FI";
+	  }
+	return "sv";
       case LANG_SYRIAC:
-        switch (sub)
-          {
-          case SUBLANG_SYRIAC_SYRIA: return "syr_SY"; /* An extinct language.  */
-          }
-        return "syr";
+	switch (sub)
+	  {
+	  case SUBLANG_SYRIAC_SYRIA:
+	    return "syr_SY";	/* An extinct language.  */
+	  }
+	return "syr";
       case LANG_TAGALOG:
-        switch (sub)
-          {
-          case SUBLANG_TAGALOG_PHILIPPINES: return "tl_PH"; /* or "fil_PH"? */
-          }
-        return "tl"; /* or "fil"? */
+	switch (sub)
+	  {
+	  case SUBLANG_TAGALOG_PHILIPPINES:
+	    return "tl_PH";	/* or "fil_PH"? */
+	  }
+	return "tl";		/* or "fil"? */
       case LANG_TAJIK:
-        switch (sub)
-          {
-          case 0x1f: return "tg";
-          case SUBLANG_TAJIK_TAJIKISTAN: return "tg_TJ";
-          }
-        return "tg";
+	switch (sub)
+	  {
+	  case 0x1f:
+	    return "tg";
+	  case SUBLANG_TAJIK_TAJIKISTAN:
+	    return "tg_TJ";
+	  }
+	return "tg";
       case LANG_TAMAZIGHT:
-        /* Note: Microsoft uses the non-ISO language code "tmz".  */
-        switch (sub)
-          {
-          /* FIXME: Adjust this when Tamazight locales appear on Unix.  */
-          case SUBLANG_TAMAZIGHT_ARABIC: return "ber_MA@arabic";
-          case 0x1f: return "ber@latin";
-          case SUBLANG_TAMAZIGHT_ALGERIA_LATIN: return "ber_DZ@latin";
-          }
-        return "ber";
+	/* Note: Microsoft uses the non-ISO language code "tmz".  */
+	switch (sub)
+	  {
+	    /* FIXME: Adjust this when Tamazight locales appear on Unix.  */
+	  case SUBLANG_TAMAZIGHT_ARABIC:
+	    return "ber_MA@arabic";
+	  case 0x1f:
+	    return "ber@latin";
+	  case SUBLANG_TAMAZIGHT_ALGERIA_LATIN:
+	    return "ber_DZ@latin";
+	  }
+	return "ber";
       case LANG_TAMIL:
-        switch (sub)
-          {
-          case SUBLANG_TAMIL_INDIA: return "ta_IN";
-          }
-        return "ta"; /* Ambiguous: could be "ta_IN" or "ta_LK" or "ta_SG".  */
+	switch (sub)
+	  {
+	  case SUBLANG_TAMIL_INDIA:
+	    return "ta_IN";
+	  }
+	return "ta";		/* Ambiguous: could be "ta_IN" or "ta_LK" or "ta_SG".  */
       case LANG_TATAR:
-        switch (sub)
-          {
-          case SUBLANG_TATAR_RUSSIA: return "tt_RU";
-          }
-        return "tt";
+	switch (sub)
+	  {
+	  case SUBLANG_TATAR_RUSSIA:
+	    return "tt_RU";
+	  }
+	return "tt";
       case LANG_TELUGU:
-        switch (sub)
-          {
-          case SUBLANG_TELUGU_INDIA: return "te_IN";
-          }
-        return "te";
+	switch (sub)
+	  {
+	  case SUBLANG_TELUGU_INDIA:
+	    return "te_IN";
+	  }
+	return "te";
       case LANG_THAI:
-        switch (sub)
-          {
-          case SUBLANG_THAI_THAILAND: return "th_TH";
-          }
-        return "th";
+	switch (sub)
+	  {
+	  case SUBLANG_THAI_THAILAND:
+	    return "th_TH";
+	  }
+	return "th";
       case LANG_TIBETAN:
-        switch (sub)
-          {
-          case SUBLANG_TIBETAN_PRC:
-            /* Most Tibetans would not like "bo_CN".  But Tibet does not yet
-               have a country code of its own.  */
-            return "bo";
-          case SUBLANG_TIBETAN_BHUTAN: return "bo_BT";
-          }
-        return "bo";
+	switch (sub)
+	  {
+	  case SUBLANG_TIBETAN_PRC:
+	    /* Most Tibetans would not like "bo_CN".  But Tibet does not yet
+	       have a country code of its own.  */
+	    return "bo";
+	  case SUBLANG_TIBETAN_BHUTAN:
+	    return "bo_BT";
+	  }
+	return "bo";
       case LANG_TIGRINYA:
-        switch (sub)
-          {
-          case SUBLANG_TIGRINYA_ETHIOPIA: return "ti_ET";
-          case SUBLANG_TIGRINYA_ERITREA: return "ti_ER";
-          }
-        return "ti";
+	switch (sub)
+	  {
+	  case SUBLANG_TIGRINYA_ETHIOPIA:
+	    return "ti_ET";
+	  case SUBLANG_TIGRINYA_ERITREA:
+	    return "ti_ER";
+	  }
+	return "ti";
       case LANG_TSONGA:
-        switch (sub)
-          {
-          case SUBLANG_DEFAULT: return "ts_ZA";
-          }
-        return "ts";
+	switch (sub)
+	  {
+	  case SUBLANG_DEFAULT:
+	    return "ts_ZA";
+	  }
+	return "ts";
       case LANG_TSWANA:
-        /* Spoken in South Africa, Botswana.  */
-        switch (sub)
-          {
-          case SUBLANG_TSWANA_SOUTH_AFRICA: return "tn_ZA";
-          }
-        return "tn";
+	/* Spoken in South Africa, Botswana.  */
+	switch (sub)
+	  {
+	  case SUBLANG_TSWANA_SOUTH_AFRICA:
+	    return "tn_ZA";
+	  }
+	return "tn";
       case LANG_TURKISH:
-        switch (sub)
-          {
-          case SUBLANG_TURKISH_TURKEY: return "tr_TR";
-          }
-        return "tr";
+	switch (sub)
+	  {
+	  case SUBLANG_TURKISH_TURKEY:
+	    return "tr_TR";
+	  }
+	return "tr";
       case LANG_TURKMEN:
-        switch (sub)
-          {
-          case SUBLANG_TURKMEN_TURKMENISTAN: return "tk_TM";
-          }
-        return "tk";
+	switch (sub)
+	  {
+	  case SUBLANG_TURKMEN_TURKMENISTAN:
+	    return "tk_TM";
+	  }
+	return "tk";
       case LANG_UIGHUR:
-        switch (sub)
-          {
-          case SUBLANG_UIGHUR_PRC: return "ug_CN";
-          }
-        return "ug";
+	switch (sub)
+	  {
+	  case SUBLANG_UIGHUR_PRC:
+	    return "ug_CN";
+	  }
+	return "ug";
       case LANG_UKRAINIAN:
-        switch (sub)
-          {
-          case SUBLANG_UKRAINIAN_UKRAINE: return "uk_UA";
-          }
-        return "uk";
+	switch (sub)
+	  {
+	  case SUBLANG_UKRAINIAN_UKRAINE:
+	    return "uk_UA";
+	  }
+	return "uk";
       case LANG_URDU:
-        switch (sub)
-          {
-          case SUBLANG_URDU_PAKISTAN: return "ur_PK";
-          case SUBLANG_URDU_INDIA: return "ur_IN";
-          }
-        return "ur";
+	switch (sub)
+	  {
+	  case SUBLANG_URDU_PAKISTAN:
+	    return "ur_PK";
+	  case SUBLANG_URDU_INDIA:
+	    return "ur_IN";
+	  }
+	return "ur";
       case LANG_UZBEK:
-        switch (sub)
-          {
-          case 0x1f: return "uz";
-          case SUBLANG_UZBEK_LATIN: return "uz_UZ";
-          case 0x1e: return "uz@cyrillic";
-          case SUBLANG_UZBEK_CYRILLIC: return "uz_UZ@cyrillic";
-          }
-        return "uz";
+	switch (sub)
+	  {
+	  case 0x1f:
+	    return "uz";
+	  case SUBLANG_UZBEK_LATIN:
+	    return "uz_UZ";
+	  case 0x1e:
+	    return "uz@cyrillic";
+	  case SUBLANG_UZBEK_CYRILLIC:
+	    return "uz_UZ@cyrillic";
+	  }
+	return "uz";
       case LANG_VENDA:
-        switch (sub)
-          {
-          case SUBLANG_DEFAULT: return "ve_ZA";
-          }
-        return "ve";
+	switch (sub)
+	  {
+	  case SUBLANG_DEFAULT:
+	    return "ve_ZA";
+	  }
+	return "ve";
       case LANG_VIETNAMESE:
-        switch (sub)
-          {
-          case SUBLANG_VIETNAMESE_VIETNAM: return "vi_VN";
-          }
-        return "vi";
+	switch (sub)
+	  {
+	  case SUBLANG_VIETNAMESE_VIETNAM:
+	    return "vi_VN";
+	  }
+	return "vi";
       case LANG_WELSH:
-        switch (sub)
-          {
-          case SUBLANG_WELSH_UNITED_KINGDOM: return "cy_GB";
-          }
-        return "cy";
+	switch (sub)
+	  {
+	  case SUBLANG_WELSH_UNITED_KINGDOM:
+	    return "cy_GB";
+	  }
+	return "cy";
       case LANG_WOLOF:
-        switch (sub)
-          {
-          case SUBLANG_WOLOF_SENEGAL: return "wo_SN";
-          }
-        return "wo";
+	switch (sub)
+	  {
+	  case SUBLANG_WOLOF_SENEGAL:
+	    return "wo_SN";
+	  }
+	return "wo";
       case LANG_XHOSA:
-        switch (sub)
-          {
-          case SUBLANG_XHOSA_SOUTH_AFRICA: return "xh_ZA";
-          }
-        return "xh";
+	switch (sub)
+	  {
+	  case SUBLANG_XHOSA_SOUTH_AFRICA:
+	    return "xh_ZA";
+	  }
+	return "xh";
       case LANG_YAKUT:
-        switch (sub)
-          {
-          case SUBLANG_YAKUT_RUSSIA: return "sah_RU";
-          }
-        return "sah";
+	switch (sub)
+	  {
+	  case SUBLANG_YAKUT_RUSSIA:
+	    return "sah_RU";
+	  }
+	return "sah";
       case LANG_YI:
-        switch (sub)
-          {
-          case SUBLANG_YI_PRC: return "ii_CN";
-          }
-        return "ii";
+	switch (sub)
+	  {
+	  case SUBLANG_YI_PRC:
+	    return "ii_CN";
+	  }
+	return "ii";
       case LANG_YIDDISH:
-        switch (sub)
-          {
-          case SUBLANG_DEFAULT: return "yi_IL";
-          }
-        return "yi";
+	switch (sub)
+	  {
+	  case SUBLANG_DEFAULT:
+	    return "yi_IL";
+	  }
+	return "yi";
       case LANG_YORUBA:
-        switch (sub)
-          {
-          case SUBLANG_YORUBA_NIGERIA: return "yo_NG";
-          }
-        return "yo";
+	switch (sub)
+	  {
+	  case SUBLANG_YORUBA_NIGERIA:
+	    return "yo_NG";
+	  }
+	return "yo";
       case LANG_ZULU:
-        switch (sub)
-          {
-          case SUBLANG_ZULU_SOUTH_AFRICA: return "zu_ZA";
-          }
-        return "zu";
-      default: return "C";
+	switch (sub)
+	  {
+	  case SUBLANG_ZULU_SOUTH_AFRICA:
+	    return "zu_ZA";
+	  }
+	return "zu";
+      default:
+	return "C";
       }
   }
 }
@@ -2529,35 +2822,32 @@ enum_locales_fn (LPTSTR locale_num_str)
   LCID try_lcid = strtoul (locale_num_str, &endp, 16);
 
   if (GetLocaleInfo (try_lcid, LOCALE_SENGLANGUAGE,
-                    locval, LOCALE_NAME_MAX_LENGTH))
+		     locval, LOCALE_NAME_MAX_LENGTH))
     {
       strcat (locval, "_");
       if (GetLocaleInfo (try_lcid, LOCALE_SENGCOUNTRY,
-                        locval + strlen (locval), LOCALE_NAME_MAX_LENGTH))
-       {
-         size_t locval_len = strlen (locval);
+			 locval + strlen (locval), LOCALE_NAME_MAX_LENGTH))
+	{
+	  size_t locval_len = strlen (locval);
 
-         if (strncmp (locval, lname, locval_len) == 0
-             && (lname[locval_len] == '.'
-                 || lname[locval_len] == '\0'))
-           {
-             found_lcid = try_lcid;
-             return FALSE;
-           }
-       }
+	  if (strncmp (locval, lname, locval_len) == 0
+	      && (lname[locval_len] == '.' || lname[locval_len] == '\0'))
+	    {
+	      found_lcid = try_lcid;
+	      return FALSE;
+	    }
+	}
     }
   return TRUE;
 }
 
 /* This lock protects the get_lcid against multiple simultaneous calls.  */
-gl_lock_define_initialized(static, get_lcid_lock)
-
+gl_lock_define_initialized (static, get_lcid_lock)
 /* Return the Locale ID (LCID) number given the locale's name, a
    string, in LOCALE_NAME.  This works by enumerating all the locales
    supported by the system, until we find one whose name matches
    LOCALE_NAME.  */
-static LCID
-get_lcid (const char *locale_name)
+     static LCID get_lcid (const char *locale_name)
 {
   /* A simple cache.  */
   static LCID last_lcid;
@@ -2588,7 +2878,7 @@ get_lcid (const char *locale_name)
 #endif
 
 
-#if HAVE_USELOCALE /* glibc, Solaris >= 12 or Mac OS X */
+#if HAVE_USELOCALE		/* glibc, Solaris >= 12 or Mac OS X */
 
 /* Simple hash set of strings.  We don't want to drag in lots of hash table
    code here.  */
@@ -2615,23 +2905,21 @@ string_hash (const void *x)
 
 /* A node in a hash bucket collision list.  */
 struct hash_node
-  {
-    struct hash_node * volatile next;
-    char contents[100]; /* has variable size */
-  };
+{
+  struct hash_node *volatile next;
+  char contents[100];		/* has variable size */
+};
 
 # define HASH_TABLE_SIZE 257
-static struct hash_node * volatile struniq_hash_table[HASH_TABLE_SIZE]
-  /* = { NULL, ..., NULL } */;
+static struct hash_node *volatile struniq_hash_table[HASH_TABLE_SIZE]
+  /* = { NULL, ..., NULL } */ ;
 
 /* This lock protects the struniq_hash_table against multiple simultaneous
    insertions.  */
-gl_lock_define_initialized(static, struniq_lock)
-
+gl_lock_define_initialized (static, struniq_lock)
 /* Store a copy of the given string in a string pool with indefinite extent.
    Return a pointer to this copy.  */
-static const char *
-struniq (const char *string)
+     static const char *struniq (const char *string)
 {
   size_t hashcode = string_hash (string);
   size_t slot = hashcode % HASH_TABLE_SIZE;
@@ -2656,15 +2944,15 @@ struniq (const char *string)
   for (p = struniq_hash_table[slot]; p != NULL; p = p->next)
     if (strcmp (p->contents, string) == 0)
       {
-        free (new_node);
-        new_node = p;
-        goto done;
+	free (new_node);
+	new_node = p;
+	goto done;
       }
   /* Really insert new_node into the hash table.  Fill new_node entirely first,
      because other threads may be iterating over the linked list.  */
   new_node->next = struniq_hash_table[slot];
   struniq_hash_table[slot] = new_node;
- done:
+done:
   /* Unlock after new_node is inserted.  */
   gl_lock_unlock (struniq_lock);
   return new_node->contents;
@@ -2689,49 +2977,49 @@ gl_locale_name_thread_unsafe (int category, const char *categoryname)
     if (thread_locale != LC_GLOBAL_LOCALE)
       {
 #  if __GLIBC__ >= 2 && !defined __UCLIBC__
-        /* Work around an incorrect definition of the _NL_LOCALE_NAME macro in
-           glibc < 2.12.
-           See <http://sourceware.org/bugzilla/show_bug.cgi?id=10968>.  */
-        const char *name =
-          nl_langinfo (_NL_ITEM ((category), _NL_ITEM_INDEX (-1)));
-        if (name[0] == '\0')
-          /* Fallback code for glibc < 2.4, which did not implement
-             nl_langinfo (_NL_LOCALE_NAME (category)).  */
-          name = thread_locale->__names[category];
-        return name;
+	/* Work around an incorrect definition of the _NL_LOCALE_NAME macro in
+	   glibc < 2.12.
+	   See <http://sourceware.org/bugzilla/show_bug.cgi?id=10968>.  */
+	const char *name =
+	  nl_langinfo (_NL_ITEM ((category), _NL_ITEM_INDEX (-1)));
+	if (name[0] == '\0')
+	  /* Fallback code for glibc < 2.4, which did not implement
+	     nl_langinfo (_NL_LOCALE_NAME (category)).  */
+	  name = thread_locale->__names[category];
+	return name;
 #  elif defined __FreeBSD__ || (defined __APPLE__ && defined __MACH__)
-        /* FreeBSD, Mac OS X */
-        int mask;
+	/* FreeBSD, Mac OS X */
+	int mask;
 
-        switch (category)
-          {
-          case LC_CTYPE:
-            mask = LC_CTYPE_MASK;
-            break;
-          case LC_NUMERIC:
-            mask = LC_NUMERIC_MASK;
-            break;
-          case LC_TIME:
-            mask = LC_TIME_MASK;
-            break;
-          case LC_COLLATE:
-            mask = LC_COLLATE_MASK;
-            break;
-          case LC_MONETARY:
-            mask = LC_MONETARY_MASK;
-            break;
-          case LC_MESSAGES:
-            mask = LC_MESSAGES_MASK;
-            break;
-          default: /* We shouldn't get here.  */
-            return "";
-          }
-        return querylocale (mask, thread_locale);
+	switch (category)
+	  {
+	  case LC_CTYPE:
+	    mask = LC_CTYPE_MASK;
+	    break;
+	  case LC_NUMERIC:
+	    mask = LC_NUMERIC_MASK;
+	    break;
+	  case LC_TIME:
+	    mask = LC_TIME_MASK;
+	    break;
+	  case LC_COLLATE:
+	    mask = LC_COLLATE_MASK;
+	    break;
+	  case LC_MONETARY:
+	    mask = LC_MONETARY_MASK;
+	    break;
+	  case LC_MESSAGES:
+	    mask = LC_MESSAGES_MASK;
+	    break;
+	  default:		/* We shouldn't get here.  */
+	    return "";
+	  }
+	return querylocale (mask, thread_locale);
 #  elif defined __sun && HAVE_GETLOCALENAME_L
-        /* Solaris >= 12.  */
-        return getlocalename_l (category, thread_locale);
+	/* Solaris >= 12.  */
+	return getlocalename_l (category, thread_locale);
 #  elif defined __ANDROID__
-        return MB_CUR_MAX == 4 ? "C.UTF-8" : "C";
+	return MB_CUR_MAX == 4 ? "C.UTF-8" : "C";
 #  endif
       }
   }
@@ -2755,11 +3043,11 @@ gl_locale_name_thread (int category, const char *categoryname)
       LCID lcid = 0;
 
       /* If CATEGORY is LC_ALL, the result might be a semi-colon
-        separated list of locales.  We need only one, so we take the
-        one corresponding to LC_CTYPE, as the most important for
-        character translations.  */
+         separated list of locales.  We need only one, so we take the
+         one corresponding to LC_CTYPE, as the most important for
+         character translations.  */
       if (strchr (locname, ';'))
-       locname = setlocale (LC_CTYPE, NULL);
+	locname = setlocale (LC_CTYPE, NULL);
 
       /* Convert locale name to LCID.  We don't want to use
          LocaleNameToLCID because (a) it is only available since Vista,
@@ -2767,7 +3055,7 @@ gl_locale_name_thread (int category, const char *categoryname)
       lcid = get_lcid (locname);
 
       if (lcid > 0)
-        return gl_locale_name_from_win32_LCID (lcid);
+	return gl_locale_name_from_win32_LCID (lcid);
     }
 #endif
   return NULL;
@@ -2793,19 +3081,19 @@ gl_locale_name_posix (int category, const char *categoryname)
 #else
   /* On other systems we ignore what setlocale reports and instead look at the
      environment variables directly.  This is necessary
-       1. on systems which have a facility for customizing the default locale
-          (Mac OS X, native Windows, Cygwin) and where the system's setlocale()
-          function ignores this default locale (Mac OS X, Cygwin), in two cases:
-          a. when the user missed to use the setlocale() override from libintl
-             (for example by not including <libintl.h>),
-          b. when setlocale supports only the "C" locale, such as on Cygwin
-             1.5.x.  In this case even the override from libintl cannot help.
-       2. on all systems where setlocale supports only the "C" locale.  */
+     1. on systems which have a facility for customizing the default locale
+     (Mac OS X, native Windows, Cygwin) and where the system's setlocale()
+     function ignores this default locale (Mac OS X, Cygwin), in two cases:
+     a. when the user missed to use the setlocale() override from libintl
+     (for example by not including <libintl.h>),
+     b. when setlocale supports only the "C" locale, such as on Cygwin
+     1.5.x.  In this case even the override from libintl cannot help.
+     2. on all systems where setlocale supports only the "C" locale.  */
   /* Strictly speaking, it is a POSIX violation to look at the environment
      variables regardless whether setlocale has been called or not.  POSIX
      says:
-         "For C-language programs, the POSIX locale shall be the
-          default locale when the setlocale() function is not called."
+     "For C-language programs, the POSIX locale shall be the
+     default locale when the setlocale() function is not called."
      But we assume that all programs that use internationalized APIs call
      setlocale (LC_ALL, "").  */
   return gl_locale_name_environ (category, categoryname);
@@ -2835,11 +3123,11 @@ gl_locale_name_environ (int category, const char *categoryname)
       if (strcmp (retval, "UTF-8") != 0)
 #endif
 #if defined __CYGWIN__
-      /* Cygwin.
-         Ignore dummy LANG value set by ~/.profile.  */
-      if (strcmp (retval, "C.UTF-8") != 0)
+	/* Cygwin.
+	   Ignore dummy LANG value set by ~/.profile.  */
+	if (strcmp (retval, "C.UTF-8") != 0)
 #endif
-        return retval;
+	  return retval;
     }
 
   return NULL;
@@ -2850,31 +3138,31 @@ gl_locale_name_default (void)
 {
   /* POSIX:2001 says:
      "All implementations shall define a locale as the default locale, to be
-      invoked when no environment variables are set, or set to the empty
-      string.  This default locale can be the POSIX locale or any other
-      implementation-defined locale.  Some implementations may provide
-      facilities for local installation administrators to set the default
-      locale, customizing it for each location.  POSIX:2001 does not require
-      such a facility.
+     invoked when no environment variables are set, or set to the empty
+     string.  This default locale can be the POSIX locale or any other
+     implementation-defined locale.  Some implementations may provide
+     facilities for local installation administrators to set the default
+     locale, customizing it for each location.  POSIX:2001 does not require
+     such a facility.
 
      The systems with such a facility are Mac OS X and Windows: They provide a
      GUI that allows the user to choose a locale.
-       - On Mac OS X, by default, none of LC_* or LANG are set.  Starting with
-         Mac OS X 10.4 or 10.5, LANG is set for processes launched by the
-         'Terminal' application (but sometimes to an incorrect value "UTF-8").
-         When no environment variable is set, setlocale (LC_ALL, "") uses the
-         "C" locale.
-       - On native Windows, by default, none of LC_* or LANG are set.
-         When no environment variable is set, setlocale (LC_ALL, "") uses the
-         locale chosen by the user.
-       - On Cygwin 1.5.x, by default, none of LC_* or LANG are set.
-         When no environment variable is set, setlocale (LC_ALL, "") uses the
-         "C" locale.
-       - On Cygwin 1.7, by default, LANG is set to "C.UTF-8" when the default
-         ~/.profile is executed.
-         When no environment variable is set, setlocale (LC_ALL, "") uses the
-         "C.UTF-8" locale, which operates in the same way as the "C" locale.
-  */
+     - On Mac OS X, by default, none of LC_* or LANG are set.  Starting with
+     Mac OS X 10.4 or 10.5, LANG is set for processes launched by the
+     'Terminal' application (but sometimes to an incorrect value "UTF-8").
+     When no environment variable is set, setlocale (LC_ALL, "") uses the
+     "C" locale.
+     - On native Windows, by default, none of LC_* or LANG are set.
+     When no environment variable is set, setlocale (LC_ALL, "") uses the
+     locale chosen by the user.
+     - On Cygwin 1.5.x, by default, none of LC_* or LANG are set.
+     When no environment variable is set, setlocale (LC_ALL, "") uses the
+     "C" locale.
+     - On Cygwin 1.7, by default, LANG is set to "C.UTF-8" when the default
+     ~/.profile is executed.
+     When no environment variable is set, setlocale (LC_ALL, "") uses the
+     "C.UTF-8" locale, which operates in the same way as the "C" locale.
+   */
 
 #if !(HAVE_CFLOCALECOPYCURRENT || HAVE_CFPREFERENCESCOPYAPPVALUE || defined WINDOWS_NATIVE || defined __CYGWIN__)
 
@@ -2897,41 +3185,40 @@ gl_locale_name_default (void)
 
     if (cached_localename == NULL)
       {
-        char namebuf[256];
-#  if HAVE_CFLOCALECOPYCURRENT /* Mac OS X 10.3 or newer */
-        CFLocaleRef locale = CFLocaleCopyCurrent ();
-        CFStringRef name = CFLocaleGetIdentifier (locale);
+	char namebuf[256];
+#  if HAVE_CFLOCALECOPYCURRENT	/* Mac OS X 10.3 or newer */
+	CFLocaleRef locale = CFLocaleCopyCurrent ();
+	CFStringRef name = CFLocaleGetIdentifier (locale);
 
-        if (CFStringGetCString (name, namebuf, sizeof (namebuf),
-                                kCFStringEncodingASCII))
-          {
-            gl_locale_name_canonicalize (namebuf);
-            cached_localename = strdup (namebuf);
-          }
-        CFRelease (locale);
-#  elif HAVE_CFPREFERENCESCOPYAPPVALUE /* Mac OS X 10.2 or newer */
-        CFTypeRef value =
-          CFPreferencesCopyAppValue (CFSTR ("AppleLocale"),
-                                     kCFPreferencesCurrentApplication);
-        if (value != NULL
-            && CFGetTypeID (value) == CFStringGetTypeID ()
-            && CFStringGetCString ((CFStringRef)value,
-                                   namebuf, sizeof (namebuf),
-                                   kCFStringEncodingASCII))
-          {
-            gl_locale_name_canonicalize (namebuf);
-            cached_localename = strdup (namebuf);
-          }
+	if (CFStringGetCString (name, namebuf, sizeof (namebuf),
+				kCFStringEncodingASCII))
+	  {
+	    gl_locale_name_canonicalize (namebuf);
+	    cached_localename = strdup (namebuf);
+	  }
+	CFRelease (locale);
+#  elif HAVE_CFPREFERENCESCOPYAPPVALUE	/* Mac OS X 10.2 or newer */
+	CFTypeRef value = CFPreferencesCopyAppValue (CFSTR ("AppleLocale"),
+						     kCFPreferencesCurrentApplication);
+	if (value != NULL
+	    && CFGetTypeID (value) == CFStringGetTypeID ()
+	    && CFStringGetCString ((CFStringRef) value,
+				   namebuf, sizeof (namebuf),
+				   kCFStringEncodingASCII))
+	  {
+	    gl_locale_name_canonicalize (namebuf);
+	    cached_localename = strdup (namebuf);
+	  }
 #  endif
-        if (cached_localename == NULL)
-          cached_localename = "C";
+	if (cached_localename == NULL)
+	  cached_localename = "C";
       }
     return cached_localename;
   }
 
 # endif
 
-# if defined WINDOWS_NATIVE || defined __CYGWIN__ /* Native Windows or Cygwin */
+# if defined WINDOWS_NATIVE || defined __CYGWIN__	/* Native Windows or Cygwin */
   {
     LCID lcid;
 

@@ -122,7 +122,7 @@ static size_t curr_prefix_len;
    instead of "/").  */
 static void
 set_this_relocation_prefix (const char *orig_prefix_arg,
-                            const char *curr_prefix_arg)
+			    const char *curr_prefix_arg)
 {
   if (orig_prefix_arg != NULL && curr_prefix_arg != NULL
       /* Optimization: if orig_prefix and curr_prefix are equal, the
@@ -138,14 +138,14 @@ set_this_relocation_prefix (const char *orig_prefix_arg,
 #ifdef NO_XMALLOC
       if (memory != NULL)
 #endif
-        {
-          memcpy (memory, orig_prefix_arg, orig_prefix_len + 1);
-          orig_prefix = memory;
-          memory += orig_prefix_len + 1;
-          memcpy (memory, curr_prefix_arg, curr_prefix_len + 1);
-          curr_prefix = memory;
-          return;
-        }
+	{
+	  memcpy (memory, orig_prefix_arg, orig_prefix_len + 1);
+	  orig_prefix = memory;
+	  memory += orig_prefix_len + 1;
+	  memcpy (memory, curr_prefix_arg, curr_prefix_len + 1);
+	  curr_prefix = memory;
+	  return;
+	}
     }
   orig_prefix = NULL;
   curr_prefix = NULL;
@@ -159,7 +159,8 @@ set_this_relocation_prefix (const char *orig_prefix_arg,
    prefixes should be directory names without trailing slash (i.e. use ""
    instead of "/").  */
 void
-set_relocation_prefix (const char *orig_prefix_arg, const char *curr_prefix_arg)
+set_relocation_prefix (const char *orig_prefix_arg,
+		       const char *curr_prefix_arg)
 {
   set_this_relocation_prefix (orig_prefix_arg, curr_prefix_arg);
 
@@ -188,8 +189,7 @@ static
 #endif
 char *
 compute_curr_prefix (const char *orig_installprefix,
-                     const char *orig_installdir,
-                     const char *curr_pathname)
+		     const char *orig_installdir, const char *curr_pathname)
 {
   char *curr_installdir;
   const char *rel_installdir;
@@ -200,23 +200,24 @@ compute_curr_prefix (const char *orig_installprefix,
   /* Determine the relative installation directory, relative to the prefix.
      This is simply the difference between orig_installprefix and
      orig_installdir.  */
-  if (strncmp (orig_installprefix, orig_installdir, strlen (orig_installprefix))
-      != 0)
+  if (strncmp
+      (orig_installprefix, orig_installdir, strlen (orig_installprefix)) != 0)
     /* Shouldn't happen - nothing should be installed outside $(prefix).  */
     return NULL;
   rel_installdir = orig_installdir + strlen (orig_installprefix);
 
   /* Determine the current installation directory.  */
   {
-    const char *p_base = curr_pathname + FILE_SYSTEM_PREFIX_LEN (curr_pathname);
+    const char *p_base =
+      curr_pathname + FILE_SYSTEM_PREFIX_LEN (curr_pathname);
     const char *p = curr_pathname + strlen (curr_pathname);
     char *q;
 
     while (p > p_base)
       {
-        p--;
-        if (ISSLASH (*p))
-          break;
+	p--;
+	if (ISSLASH (*p))
+	  break;
       }
 
     q = (char *) xmalloc (p - curr_pathname + 1);
@@ -239,46 +240,46 @@ compute_curr_prefix (const char *orig_installprefix,
 
     while (rp > rel_installdir && cp > cp_base)
       {
-        bool same = false;
-        const char *rpi = rp;
-        const char *cpi = cp;
+	bool same = false;
+	const char *rpi = rp;
+	const char *cpi = cp;
 
-        while (rpi > rel_installdir && cpi > cp_base)
-          {
-            rpi--;
-            cpi--;
-            if (ISSLASH (*rpi) || ISSLASH (*cpi))
-              {
-                if (ISSLASH (*rpi) && ISSLASH (*cpi))
-                  same = true;
-                break;
-              }
-            /* Do case-insensitive comparison if the file system is always or
-               often case-insensitive.  It's better to accept the comparison
-               if the difference is only in case, rather than to fail.  */
+	while (rpi > rel_installdir && cpi > cp_base)
+	  {
+	    rpi--;
+	    cpi--;
+	    if (ISSLASH (*rpi) || ISSLASH (*cpi))
+	      {
+		if (ISSLASH (*rpi) && ISSLASH (*cpi))
+		  same = true;
+		break;
+	      }
+	    /* Do case-insensitive comparison if the file system is always or
+	       often case-insensitive.  It's better to accept the comparison
+	       if the difference is only in case, rather than to fail.  */
 #if defined _WIN32 || defined __WIN32__ || defined __CYGWIN__ || defined __EMX__ || defined __DJGPP__
-            /* Native Windows, Cygwin, OS/2, DOS - case insignificant file system */
-            if ((*rpi >= 'a' && *rpi <= 'z' ? *rpi - 'a' + 'A' : *rpi)
-                != (*cpi >= 'a' && *cpi <= 'z' ? *cpi - 'a' + 'A' : *cpi))
-              break;
+	    /* Native Windows, Cygwin, OS/2, DOS - case insignificant file system */
+	    if ((*rpi >= 'a' && *rpi <= 'z' ? *rpi - 'a' + 'A' : *rpi)
+		!= (*cpi >= 'a' && *cpi <= 'z' ? *cpi - 'a' + 'A' : *cpi))
+	      break;
 #else
-            if (*rpi != *cpi)
-              break;
+	    if (*rpi != *cpi)
+	      break;
 #endif
-          }
-        if (!same)
-          break;
-        /* The last pathname component was the same.  opi and cpi now point
-           to the slash before it.  */
-        rp = rpi;
-        cp = cpi;
+	  }
+	if (!same)
+	  break;
+	/* The last pathname component was the same.  opi and cpi now point
+	   to the slash before it.  */
+	rp = rpi;
+	cp = cpi;
       }
 
     if (rp > rel_installdir)
       {
-        /* Unexpected: The curr_installdir does not end with rel_installdir.  */
-        free (curr_installdir);
-        return NULL;
+	/* Unexpected: The curr_installdir does not end with rel_installdir.  */
+	free (curr_installdir);
+	return NULL;
       }
 
     {
@@ -288,10 +289,10 @@ compute_curr_prefix (const char *orig_installprefix,
       curr_prefix = (char *) xmalloc (curr_prefix_len + 1);
 #ifdef NO_XMALLOC
       if (curr_prefix == NULL)
-        {
-          free (curr_installdir);
-          return NULL;
-        }
+	{
+	  free (curr_installdir);
+	  return NULL;
+	}
 #endif
       memcpy (curr_prefix, curr_installdir, curr_prefix_len);
       curr_prefix[curr_prefix_len] = '\0';
@@ -330,12 +331,12 @@ DllMain (HINSTANCE module_handle, DWORD event, LPVOID reserved)
       static char location[MAX_PATH];
 
       if (!GetModuleFileName (module_handle, location, sizeof (location)))
-        /* Shouldn't happen.  */
-        return FALSE;
+	/* Shouldn't happen.  */
+	return FALSE;
 
       if (!IS_PATH_WITH_DIR (location))
-        /* Shouldn't happen.  */
-        return FALSE;
+	/* Shouldn't happen.  */
+	return FALSE;
 
       shared_library_fullname = strdup (location);
     }
@@ -345,7 +346,7 @@ DllMain (HINSTANCE module_handle, DWORD event, LPVOID reserved)
 
 #elif defined __EMX__
 
-extern int  _CRT_init (void);
+extern int _CRT_init (void);
 extern void _CRT_term (void);
 extern void __ctordtorInit (void);
 extern void __ctordtorTerm (void);
@@ -357,26 +358,26 @@ _DLL_InitTerm (unsigned long hModule, unsigned long ulFlag)
 
   switch (ulFlag)
     {
-      case 0:
-        if (_CRT_init () == -1)
-          return 0;
+    case 0:
+      if (_CRT_init () == -1)
+	return 0;
 
-        __ctordtorInit();
+      __ctordtorInit ();
 
-        /* See http://cyberkinetica.homeunix.net/os2tk45/cp1/1247_L2H_DosQueryModuleNameSy.html
-           for specification of DosQueryModuleName(). */
-        if (DosQueryModuleName (hModule, sizeof (location), location))
-          return 0;
+      /* See http://cyberkinetica.homeunix.net/os2tk45/cp1/1247_L2H_DosQueryModuleNameSy.html
+         for specification of DosQueryModuleName(). */
+      if (DosQueryModuleName (hModule, sizeof (location), location))
+	return 0;
 
-        _fnslashify (location);
-        shared_library_fullname = strdup (location);
-        break;
+      _fnslashify (location);
+      shared_library_fullname = strdup (location);
+      break;
 
-      case 1:
-        __ctordtorTerm();
+    case 1:
+      __ctordtorTerm ();
 
-        _CRT_term ();
-        break;
+      _CRT_term ();
+      break;
     }
 
   return 1;
@@ -401,37 +402,38 @@ find_shared_library_fullname ()
     {
       unsigned long address = (unsigned long) &find_shared_library_fullname;
       for (;;)
-        {
-          unsigned long start, end;
-          int c;
+	{
+	  unsigned long start, end;
+	  int c;
 
-          if (fscanf (fp, "%lx-%lx", &start, &end) != 2)
-            break;
-          if (address >= start && address <= end - 1)
-            {
-              /* Found it.  Now see if this line contains a filename.  */
-              while (c = getc (fp), c != EOF && c != '\n' && c != '/')
-                continue;
-              if (c == '/')
-                {
-                  size_t size;
-                  int len;
+	  if (fscanf (fp, "%lx-%lx", &start, &end) != 2)
+	    break;
+	  if (address >= start && address <= end - 1)
+	    {
+	      /* Found it.  Now see if this line contains a filename.  */
+	      while (c = getc (fp), c != EOF && c != '\n' && c != '/')
+		continue;
+	      if (c == '/')
+		{
+		  size_t size;
+		  int len;
 
-                  ungetc (c, fp);
-                  shared_library_fullname = NULL; size = 0;
-                  len = getline (&shared_library_fullname, &size, fp);
-                  if (len >= 0)
-                    {
-                      /* Success: filled shared_library_fullname.  */
-                      if (len > 0 && shared_library_fullname[len - 1] == '\n')
-                        shared_library_fullname[len - 1] = '\0';
-                    }
-                }
-              break;
-            }
-          while (c = getc (fp), c != EOF && c != '\n')
-            continue;
-        }
+		  ungetc (c, fp);
+		  shared_library_fullname = NULL;
+		  size = 0;
+		  len = getline (&shared_library_fullname, &size, fp);
+		  if (len >= 0)
+		    {
+		      /* Success: filled shared_library_fullname.  */
+		      if (len > 0 && shared_library_fullname[len - 1] == '\n')
+			shared_library_fullname[len - 1] = '\0';
+		    }
+		}
+	      break;
+	    }
+	  while (c = getc (fp), c != EOF && c != '\n')
+	    continue;
+	}
       fclose (fp);
     }
 #endif
@@ -485,16 +487,15 @@ relocate (const char *pathname)
       char *curr_prefix_better;
 
       curr_prefix_better =
-        compute_curr_prefix (orig_installprefix, orig_installdir,
-                             get_shared_library_fullname ());
+	compute_curr_prefix (orig_installprefix, orig_installdir,
+			     get_shared_library_fullname ());
 
       set_relocation_prefix (orig_installprefix,
-                             curr_prefix_better != NULL
-                             ? curr_prefix_better
-                             : curr_prefix);
+			     curr_prefix_better != NULL
+			     ? curr_prefix_better : curr_prefix);
 
       if (curr_prefix_better != NULL)
-        free (curr_prefix_better);
+	free (curr_prefix_better);
 
       initialized = 1;
     }
@@ -508,34 +509,34 @@ relocate (const char *pathname)
       && strncmp (pathname, orig_prefix, orig_prefix_len) == 0)
     {
       if (pathname[orig_prefix_len] == '\0')
-        {
-          /* pathname equals orig_prefix.  */
-          char *result = (char *) xmalloc (strlen (curr_prefix) + 1);
+	{
+	  /* pathname equals orig_prefix.  */
+	  char *result = (char *) xmalloc (strlen (curr_prefix) + 1);
 
 #ifdef NO_XMALLOC
-          if (result != NULL)
+	  if (result != NULL)
 #endif
-            {
-              strcpy (result, curr_prefix);
-              return result;
-            }
-        }
+	    {
+	      strcpy (result, curr_prefix);
+	      return result;
+	    }
+	}
       else if (ISSLASH (pathname[orig_prefix_len]))
-        {
-          /* pathname starts with orig_prefix.  */
-          const char *pathname_tail = &pathname[orig_prefix_len];
-          char *result =
-            (char *) xmalloc (curr_prefix_len + strlen (pathname_tail) + 1);
+	{
+	  /* pathname starts with orig_prefix.  */
+	  const char *pathname_tail = &pathname[orig_prefix_len];
+	  char *result =
+	    (char *) xmalloc (curr_prefix_len + strlen (pathname_tail) + 1);
 
 #ifdef NO_XMALLOC
-          if (result != NULL)
+	  if (result != NULL)
 #endif
-            {
-              memcpy (result, curr_prefix, curr_prefix_len);
-              strcpy (result + curr_prefix_len, pathname_tail);
-              return result;
-            }
-        }
+	    {
+	      memcpy (result, curr_prefix, curr_prefix_len);
+	      strcpy (result + curr_prefix_len, pathname_tail);
+	      return result;
+	    }
+	}
     }
 
 #ifdef __EMX__
@@ -544,17 +545,17 @@ relocate (const char *pathname)
       const char *unixroot = getenv ("UNIXROOT");
 
       if (unixroot && HAS_DEVICE (unixroot) && !unixroot[2])
-        {
-          char *result = (char *) xmalloc (2 + strlen (pathname) + 1);
+	{
+	  char *result = (char *) xmalloc (2 + strlen (pathname) + 1);
 #ifdef NO_XMALLOC
-          if (result != NULL)
+	  if (result != NULL)
 #endif
-            {
-              strcpy (result, unixroot);
-              strcpy (result + 2, pathname);
-              return result;
-            }
-        }
+	    {
+	      strcpy (result, unixroot);
+	      strcpy (result + 2, pathname);
+	      return result;
+	    }
+	}
     }
 #endif
 

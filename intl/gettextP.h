@@ -59,8 +59,10 @@ extern char *__bindtextdomain (const char *__domainname,
 			       const char *__dirname);
 extern char *__bind_textdomain_codeset (const char *__domainname,
 					const char *__codeset);
-extern void _nl_finddomain_subfreeres (void) attribute_hidden;
-extern void _nl_unload_domain (struct loaded_domain *__domain)
+extern void
+_nl_finddomain_subfreeres (void)
+  attribute_hidden;
+     extern void _nl_unload_domain (struct loaded_domain *__domain)
      internal_function attribute_hidden;
 #else
 /* Declare the exported libintl_* functions, in a way that allows us to
@@ -192,9 +194,7 @@ struct loaded_domain
   /* Cache of charset conversions of the translated strings.  */
   struct converted_domain *conversions;
   size_t nconversions;
-  gl_rwlock_define (, conversions_lock)
-
-  const struct expression *plural;
+    gl_rwlock_define (, conversions_lock) const struct expression *plural;
   unsigned long int nplurals;
 };
 
@@ -253,25 +253,22 @@ extern const char *_nl_locale_name_default (void);
 				       const char *categoryname); */
 #endif
 
-struct loaded_l10nfile *_nl_find_domain (const char *__dirname, char *__locale,
-					 const char *__domainname,
-					 struct binding *__domainbinding)
-     internal_function;
-void _nl_load_domain (struct loaded_l10nfile *__domain,
-		      struct binding *__domainbinding)
-     internal_function;
+struct loaded_l10nfile *
+_nl_find_domain (const char *__dirname, char *__locale,
+		 const char *__domainname, struct binding *__domainbinding)
+  internal_function;
+     void _nl_load_domain (struct loaded_l10nfile *__domain,
+			   struct binding *__domainbinding) internal_function;
 
 #ifdef IN_LIBGLOCALE
-char *_nl_find_msg (struct loaded_l10nfile *domain_file,
-		    struct binding *domainbinding, const char *encoding,
-		    const char *msgid,
-		    size_t *lengthp)
-     internal_function;
+     char *_nl_find_msg (struct loaded_l10nfile *domain_file,
+			 struct binding *domainbinding, const char *encoding,
+			 const char *msgid,
+			 size_t * lengthp) internal_function;
 #else
-char *_nl_find_msg (struct loaded_l10nfile *domain_file,
-		    struct binding *domainbinding, const char *msgid,
-		    int convert, size_t *lengthp)
-     internal_function;
+     char *_nl_find_msg (struct loaded_l10nfile *domain_file,
+			 struct binding *domainbinding, const char *msgid,
+			 int convert, size_t * lengthp) internal_function;
 #endif
 
 /* The internal variables in the standalone libintl.a must have different
@@ -283,13 +280,12 @@ char *_nl_find_msg (struct loaded_l10nfile *domain_file,
 #endif
 
 /* Contains the default location of the message catalogs.  */
-extern const char _nl_default_dirname[];
+     extern const char _nl_default_dirname[];
 #ifdef _LIBC
 libc_hidden_proto (_nl_default_dirname)
 #endif
-
 /* List with bindings of specific domains.  */
-extern struct binding *_nl_domain_bindings;
+     extern struct binding *_nl_domain_bindings;
 
 /* The internal variables in the standalone libintl.a must have different
    names than the internal variables in GNU libc, otherwise programs
@@ -300,10 +296,10 @@ extern struct binding *_nl_domain_bindings;
 #endif
 
 /* Name of the default text domain.  */
-extern const char _nl_default_default_domain[] attribute_hidden;
+     extern const char _nl_default_default_domain[] attribute_hidden;
 
 /* Default text domain in which entries for gettext(3) are to be found.  */
-extern const char *_nl_current_default_domain attribute_hidden;
+     extern const char *_nl_current_default_domain attribute_hidden;
 
 /* @@ begin of epilog @@ */
 

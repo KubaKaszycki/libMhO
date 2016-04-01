@@ -22,27 +22,28 @@
 #undef _
 #define _(x) dgettext("libmho", x)
 
-const char     *
-mho_ft2s(int ft)
+const char *
+mho_ft2s (int ft)
 {
-	switch (ft) {
-	case MHO_OBJECT:
-		return _("Object");
-	case MHO_EXECUTE:
-		return _("Executable");
-	case MHO_FVMLIB:
-		return _("FVMlib");
-	case MHO_CORE:
-		return _("Core");
-	case MHO_PRELOAD:
-		return _("Preloaded");
-	case MHO_DYLIB:
-		return _("Dynamic library");
-	case MHO_DYLINKER:
-		return _("Dynamic linker");
-	case MHO_BUNDLE:
-		return _("Bundle");
-	default:
-		return _("Unknown");
-	}
+  switch (ft)
+    {
+    case MHO_OBJECT:
+      return _("Object");
+    case MHO_EXECUTE:
+      return _("Executable");
+    case MHO_FVMLIB:
+      return _("FVMlib");
+    case MHO_CORE:
+      return _("Core");
+    case MHO_PRELOAD:
+      return _("Preloaded");
+    case MHO_DYLIB:
+      return _("Dynamic library");
+    case MHO_DYLINKER:
+      return _("Dynamic linker");
+    case MHO_BUNDLE:
+      return _("Bundle");
+    default:
+      return _("Unknown");
+    }
 }

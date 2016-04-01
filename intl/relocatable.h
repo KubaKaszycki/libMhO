@@ -19,7 +19,8 @@
 #define _RELOCATABLE_H
 
 #ifdef __cplusplus
-extern "C" {
+extern "C"
+{
 #endif
 
 
@@ -42,15 +43,14 @@ extern "C" {
    by the corresponding pathname with the current prefix instead.  Both
    prefixes should be directory names without trailing slash (i.e. use ""
    instead of "/").  */
-extern RELOCATABLE_DLL_EXPORTED void
-       set_relocation_prefix (const char *orig_prefix,
-                              const char *curr_prefix);
+  extern RELOCATABLE_DLL_EXPORTED void
+    set_relocation_prefix (const char *orig_prefix, const char *curr_prefix);
 
 /* Returns the pathname, relocated according to the current installation
    directory.
    The returned string is either PATHNAME unmodified or a freshly allocated
    string that you can free with free() after casting it to 'char *'.  */
-extern const char * relocate (const char *pathname);
+  extern const char *relocate (const char *pathname);
 
 /* Memory management: relocate() potentially allocates memory, because it has
    to construct a fresh pathname.  If this is a problem because your program
@@ -62,9 +62,9 @@ extern const char * relocate (const char *pathname);
    installation prefix, the original installation directory of a particular
    file, and the current pathname of this file.
    Returns it, freshly allocated.  Returns NULL upon failure.  */
-extern char * compute_curr_prefix (const char *orig_installprefix,
-                                   const char *orig_installdir,
-                                   const char *curr_pathname);
+  extern char *compute_curr_prefix (const char *orig_installprefix,
+				    const char *orig_installdir,
+				    const char *curr_pathname);
 
 #else
 
@@ -78,4 +78,4 @@ extern char * compute_curr_prefix (const char *orig_installprefix,
 }
 #endif
 
-#endif /* _RELOCATABLE_H */
+#endif				/* _RELOCATABLE_H */

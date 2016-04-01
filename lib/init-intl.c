@@ -23,9 +23,10 @@
 /**
  * Initialize I18n.
  */
-__attribute__((constructor)) static void __init_i18n__() {
+__attribute__ ((constructor))
+     static void __init_i18n__ ()
+{
 #ifdef ENABLE_NLS
-	setlocale(LC_ALL, NULL);
-	bindtextdomain("libmho", localedir);
+  bindtextdomain ("libmho", localedir);
 #endif
 }

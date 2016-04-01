@@ -40,23 +40,23 @@ int
 glthread_in_use (void)
 {
   static int tested;
-  static int result; /* 1: linked with -lpthread, 0: only with libc */
+  static int result;		/* 1: linked with -lpthread, 0: only with libc */
 
   if (!tested)
     {
       pthread_t thread;
 
       if (pthread_create (&thread, NULL, dummy_thread_func, NULL) != 0)
-        /* Thread creation failed.  */
-        result = 0;
+	/* Thread creation failed.  */
+	result = 0;
       else
-        {
-          /* Thread creation works.  */
-          void *retval;
-          if (pthread_join (thread, &retval) != 0)
-            abort ();
-          result = 1;
-        }
+	{
+	  /* Thread creation works.  */
+	  void *retval;
+	  if (pthread_join (thread, &retval) != 0)
+	    abort ();
+	  result = 1;
+	}
       tested = 1;
     }
   return result;

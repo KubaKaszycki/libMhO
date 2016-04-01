@@ -54,29 +54,29 @@ category_to_name (int category)
   const char *retval;
 
   switch (category)
-  {
-  case LC_COLLATE:
-    retval = "LC_COLLATE";
-    break;
-  case LC_CTYPE:
-    retval = "LC_CTYPE";
-    break;
-  case LC_MONETARY:
-    retval = "LC_MONETARY";
-    break;
-  case LC_NUMERIC:
-    retval = "LC_NUMERIC";
-    break;
-  case LC_TIME:
-    retval = "LC_TIME";
-    break;
-  case LC_MESSAGES:
-    retval = "LC_MESSAGES";
-    break;
-  default:
-    /* If you have a better idea for a default value let me know.  */
-    retval = "LC_XXX";
-  }
+    {
+    case LC_COLLATE:
+      retval = "LC_COLLATE";
+      break;
+    case LC_CTYPE:
+      retval = "LC_CTYPE";
+      break;
+    case LC_MONETARY:
+      retval = "LC_MONETARY";
+      break;
+    case LC_NUMERIC:
+      retval = "LC_NUMERIC";
+      break;
+    case LC_TIME:
+      retval = "LC_TIME";
+      break;
+    case LC_MESSAGES:
+      retval = "LC_MESSAGES";
+      break;
+    default:
+      /* If you have a better idea for a default value let me know.  */
+      retval = "LC_XXX";
+    }
 
   return retval;
 }
@@ -252,330 +252,332 @@ struct table_entry
   const char *code;
   const char *english;
 };
-static const struct table_entry language_table[] =
-  {
-    { "af", "Afrikaans" },
-    { "am", "Amharic" },
-    { "ar", "Arabic" },
-    { "arn", "Mapudungun" },
-    { "as", "Assamese" },
-    { "az@cyrillic", "Azeri (Cyrillic)" },
-    { "az@latin", "Azeri (Latin)" },
-    { "ba", "Bashkir" },
-    { "be", "Belarusian" },
-    { "ber", "Tamazight" },
-    { "ber@arabic", "Tamazight (Arabic)" },
-    { "ber@latin", "Tamazight (Latin)" },
-    { "bg", "Bulgarian" },
-    { "bin", "Edo" },
-    { "bn", "Bengali" },
-    { "bn_BD", "Bengali (Bangladesh)" },
-    { "bn_IN", "Bengali (India)" },
-    { "bnt", "Sutu" },
-    { "bo", "Tibetan" },
-    { "br", "Breton" },
-    { "bs", "BSB" }, /* "Bosnian (Latin)" */
-    { "bs@cyrillic", "BSC" }, /* Bosnian (Cyrillic) */
-    { "ca", "Catalan" },
-    { "chr", "Cherokee" },
-    { "co", "Corsican" },
-    { "cpe", "Hawaiian" },
-    { "cs", "Czech" },
-    { "cy", "Welsh" },
-    { "da", "Danish" },
-    { "de", "German" },
-    { "dsb", "Lower Sorbian" },
-    { "dv", "Divehi" },
-    { "el", "Greek" },
-    { "en", "English" },
-    { "es", "Spanish" },
-    { "et", "Estonian" },
-    { "eu", "Basque" },
-    { "fa", "Farsi" },
-    { "ff", "Fulfulde" },
-    { "fi", "Finnish" },
-    { "fo", "Faroese" }, /* "Faeroese" does not work */
-    { "fr", "French" },
-    { "fy", "Frisian" },
-    { "ga", "IRE" }, /* Gaelic (Ireland) */
-    { "gd", "Gaelic (Scotland)" },
-    { "gd", "Scottish Gaelic" },
-    { "gl", "Galician" },
-    { "gn", "Guarani" },
-    { "gsw", "Alsatian" },
-    { "gu", "Gujarati" },
-    { "ha", "Hausa" },
-    { "he", "Hebrew" },
-    { "hi", "Hindi" },
-    { "hr", "Croatian" },
-    { "hsb", "Upper Sorbian" },
-    { "hu", "Hungarian" },
-    { "hy", "Armenian" },
-    { "id", "Indonesian" },
-    { "ig", "Igbo" },
-    { "ii", "Yi" },
-    { "is", "Icelandic" },
-    { "it", "Italian" },
-    { "iu", "IUK" }, /* Inuktitut */
-    { "ja", "Japanese" },
-    { "ka", "Georgian" },
-    { "kk", "Kazakh" },
-    { "kl", "Greenlandic" },
-    { "km", "Cambodian" },
-    { "km", "Khmer" },
-    { "kn", "Kannada" },
-    { "ko", "Korean" },
-    { "kok", "Konkani" },
-    { "kr", "Kanuri" },
-    { "ks", "Kashmiri" },
-    { "ks_IN", "Kashmiri_India" },
-    { "ks_PK", "Kashmiri (Arabic)_Pakistan" },
-    { "ky", "Kyrgyz" },
-    { "la", "Latin" },
-    { "lb", "Luxembourgish" },
-    { "lo", "Lao" },
-    { "lt", "Lithuanian" },
-    { "lv", "Latvian" },
-    { "mi", "Maori" },
-    { "mk", "FYRO Macedonian" },
-    { "mk", "Macedonian" },
-    { "ml", "Malayalam" },
-    { "mn", "Mongolian" },
-    { "mni", "Manipuri" },
-    { "moh", "Mohawk" },
-    { "mr", "Marathi" },
-    { "ms", "Malay" },
-    { "mt", "Maltese" },
-    { "my", "Burmese" },
-    { "nb", "NOR" }, /* Norwegian Bokmål */
-    { "ne", "Nepali" },
-    { "nic", "Ibibio" },
-    { "nl", "Dutch" },
-    { "nn", "NON" }, /* Norwegian Nynorsk */
-    { "no", "Norwegian" },
-    { "nso", "Northern Sotho" },
-    { "nso", "Sepedi" },
-    { "oc", "Occitan" },
-    { "om", "Oromo" },
-    { "or", "Oriya" },
-    { "pa", "Punjabi" },
-    { "pap", "Papiamentu" },
-    { "pl", "Polish" },
-    { "prs", "Dari" },
-    { "ps", "Pashto" },
-    { "pt", "Portuguese" },
-    { "qu", "Quechua" },
-    { "qut", "K'iche'" },
-    { "rm", "Romansh" },
-    { "ro", "Romanian" },
-    { "ru", "Russian" },
-    { "rw", "Kinyarwanda" },
-    { "sa", "Sanskrit" },
-    { "sah", "Yakut" },
-    { "sd", "Sindhi" },
-    { "se", "Sami (Northern)" },
-    { "se", "Northern Sami" },
-    { "si", "Sinhalese" },
-    { "sk", "Slovak" },
-    { "sl", "Slovenian" },
-    { "sma", "Sami (Southern)" },
-    { "sma", "Southern Sami" },
-    { "smj", "Sami (Lule)" },
-    { "smj", "Lule Sami" },
-    { "smn", "Sami (Inari)" },
-    { "smn", "Inari Sami" },
-    { "sms", "Sami (Skolt)" },
-    { "sms", "Skolt Sami" },
-    { "so", "Somali" },
-    { "sq", "Albanian" },
-    { "sr", "Serbian (Latin)" },
-    { "sr@cyrillic", "SRB" }, /* Serbian (Cyrillic) */
-    { "sw", "Swahili" },
-    { "syr", "Syriac" },
-    { "ta", "Tamil" },
-    { "te", "Telugu" },
-    { "tg", "Tajik" },
-    { "th", "Thai" },
-    { "ti", "Tigrinya" },
-    { "tk", "Turkmen" },
-    { "tl", "Filipino" },
-    { "tn", "Tswana" },
-    { "tr", "Turkish" },
-    { "ts", "Tsonga" },
-    { "tt", "Tatar" },
-    { "ug", "Uighur" },
-    { "uk", "Ukrainian" },
-    { "ur", "Urdu" },
-    { "uz", "Uzbek" },
-    { "uz", "Uzbek (Latin)" },
-    { "uz@cyrillic", "Uzbek (Cyrillic)" },
-    { "ve", "Venda" },
-    { "vi", "Vietnamese" },
-    { "wen", "Sorbian" },
-    { "wo", "Wolof" },
-    { "xh", "Xhosa" },
-    { "yi", "Yiddish" },
-    { "yo", "Yoruba" },
-    { "zh", "Chinese" },
-    { "zu", "Zulu" }
-  };
+static const struct table_entry language_table[] = {
+  {"af", "Afrikaans"},
+  {"am", "Amharic"},
+  {"ar", "Arabic"},
+  {"arn", "Mapudungun"},
+  {"as", "Assamese"},
+  {"az@cyrillic", "Azeri (Cyrillic)"},
+  {"az@latin", "Azeri (Latin)"},
+  {"ba", "Bashkir"},
+  {"be", "Belarusian"},
+  {"ber", "Tamazight"},
+  {"ber@arabic", "Tamazight (Arabic)"},
+  {"ber@latin", "Tamazight (Latin)"},
+  {"bg", "Bulgarian"},
+  {"bin", "Edo"},
+  {"bn", "Bengali"},
+  {"bn_BD", "Bengali (Bangladesh)"},
+  {"bn_IN", "Bengali (India)"},
+  {"bnt", "Sutu"},
+  {"bo", "Tibetan"},
+  {"br", "Breton"},
+  {"bs", "BSB"},		/* "Bosnian (Latin)" */
+  {"bs@cyrillic", "BSC"},	/* Bosnian (Cyrillic) */
+  {"ca", "Catalan"},
+  {"chr", "Cherokee"},
+  {"co", "Corsican"},
+  {"cpe", "Hawaiian"},
+  {"cs", "Czech"},
+  {"cy", "Welsh"},
+  {"da", "Danish"},
+  {"de", "German"},
+  {"dsb", "Lower Sorbian"},
+  {"dv", "Divehi"},
+  {"el", "Greek"},
+  {"en", "English"},
+  {"es", "Spanish"},
+  {"et", "Estonian"},
+  {"eu", "Basque"},
+  {"fa", "Farsi"},
+  {"ff", "Fulfulde"},
+  {"fi", "Finnish"},
+  {"fo", "Faroese"},		/* "Faeroese" does not work */
+  {"fr", "French"},
+  {"fy", "Frisian"},
+  {"ga", "IRE"},		/* Gaelic (Ireland) */
+  {"gd", "Gaelic (Scotland)"},
+  {"gd", "Scottish Gaelic"},
+  {"gl", "Galician"},
+  {"gn", "Guarani"},
+  {"gsw", "Alsatian"},
+  {"gu", "Gujarati"},
+  {"ha", "Hausa"},
+  {"he", "Hebrew"},
+  {"hi", "Hindi"},
+  {"hr", "Croatian"},
+  {"hsb", "Upper Sorbian"},
+  {"hu", "Hungarian"},
+  {"hy", "Armenian"},
+  {"id", "Indonesian"},
+  {"ig", "Igbo"},
+  {"ii", "Yi"},
+  {"is", "Icelandic"},
+  {"it", "Italian"},
+  {"iu", "IUK"},		/* Inuktitut */
+  {"ja", "Japanese"},
+  {"ka", "Georgian"},
+  {"kk", "Kazakh"},
+  {"kl", "Greenlandic"},
+  {"km", "Cambodian"},
+  {"km", "Khmer"},
+  {"kn", "Kannada"},
+  {"ko", "Korean"},
+  {"kok", "Konkani"},
+  {"kr", "Kanuri"},
+  {"ks", "Kashmiri"},
+  {"ks_IN", "Kashmiri_India"},
+  {"ks_PK", "Kashmiri (Arabic)_Pakistan"},
+  {"ky", "Kyrgyz"},
+  {"la", "Latin"},
+  {"lb", "Luxembourgish"},
+  {"lo", "Lao"},
+  {"lt", "Lithuanian"},
+  {"lv", "Latvian"},
+  {"mi", "Maori"},
+  {"mk", "FYRO Macedonian"},
+  {"mk", "Macedonian"},
+  {"ml", "Malayalam"},
+  {"mn", "Mongolian"},
+  {"mni", "Manipuri"},
+  {"moh", "Mohawk"},
+  {"mr", "Marathi"},
+  {"ms", "Malay"},
+  {"mt", "Maltese"},
+  {"my", "Burmese"},
+  {"nb", "NOR"},		/* Norwegian Bokmål */
+  {"ne", "Nepali"},
+  {"nic", "Ibibio"},
+  {"nl", "Dutch"},
+  {"nn", "NON"},		/* Norwegian Nynorsk */
+  {"no", "Norwegian"},
+  {"nso", "Northern Sotho"},
+  {"nso", "Sepedi"},
+  {"oc", "Occitan"},
+  {"om", "Oromo"},
+  {"or", "Oriya"},
+  {"pa", "Punjabi"},
+  {"pap", "Papiamentu"},
+  {"pl", "Polish"},
+  {"prs", "Dari"},
+  {"ps", "Pashto"},
+  {"pt", "Portuguese"},
+  {"qu", "Quechua"},
+  {"qut", "K'iche'"},
+  {"rm", "Romansh"},
+  {"ro", "Romanian"},
+  {"ru", "Russian"},
+  {"rw", "Kinyarwanda"},
+  {"sa", "Sanskrit"},
+  {"sah", "Yakut"},
+  {"sd", "Sindhi"},
+  {"se", "Sami (Northern)"},
+  {"se", "Northern Sami"},
+  {"si", "Sinhalese"},
+  {"sk", "Slovak"},
+  {"sl", "Slovenian"},
+  {"sma", "Sami (Southern)"},
+  {"sma", "Southern Sami"},
+  {"smj", "Sami (Lule)"},
+  {"smj", "Lule Sami"},
+  {"smn", "Sami (Inari)"},
+  {"smn", "Inari Sami"},
+  {"sms", "Sami (Skolt)"},
+  {"sms", "Skolt Sami"},
+  {"so", "Somali"},
+  {"sq", "Albanian"},
+  {"sr", "Serbian (Latin)"},
+  {"sr@cyrillic", "SRB"},	/* Serbian (Cyrillic) */
+  {"sw", "Swahili"},
+  {"syr", "Syriac"},
+  {"ta", "Tamil"},
+  {"te", "Telugu"},
+  {"tg", "Tajik"},
+  {"th", "Thai"},
+  {"ti", "Tigrinya"},
+  {"tk", "Turkmen"},
+  {"tl", "Filipino"},
+  {"tn", "Tswana"},
+  {"tr", "Turkish"},
+  {"ts", "Tsonga"},
+  {"tt", "Tatar"},
+  {"ug", "Uighur"},
+  {"uk", "Ukrainian"},
+  {"ur", "Urdu"},
+  {"uz", "Uzbek"},
+  {"uz", "Uzbek (Latin)"},
+  {"uz@cyrillic", "Uzbek (Cyrillic)"},
+  {"ve", "Venda"},
+  {"vi", "Vietnamese"},
+  {"wen", "Sorbian"},
+  {"wo", "Wolof"},
+  {"xh", "Xhosa"},
+  {"yi", "Yiddish"},
+  {"yo", "Yoruba"},
+  {"zh", "Chinese"},
+  {"zu", "Zulu"}
+};
 
 /* Table from ISO 3166 country code to English name.
    Keep in sync with the gl_locale_name_from_win32_LANGID function in
    localename.c!  */
-static const struct table_entry country_table[] =
-  {
-    { "AE", "U.A.E." },
-    { "AF", "Afghanistan" },
-    { "AL", "Albania" },
-    { "AM", "Armenia" },
-    { "AN", "Netherlands Antilles" },
-    { "AR", "Argentina" },
-    { "AT", "Austria" },
-    { "AU", "Australia" },
-    { "AZ", "Azerbaijan" },
-    { "BA", "Bosnia and Herzegovina" },
-    { "BD", "Bangladesh" },
-    { "BE", "Belgium" },
-    { "BG", "Bulgaria" },
-    { "BH", "Bahrain" },
-    { "BN", "Brunei Darussalam" },
-    { "BO", "Bolivia" },
-    { "BR", "Brazil" },
-    { "BT", "Bhutan" },
-    { "BY", "Belarus" },
-    { "BZ", "Belize" },
-    { "CA", "Canada" },
-    { "CG", "Congo" },
-    { "CH", "Switzerland" },
-    { "CI", "Cote d'Ivoire" },
-    { "CL", "Chile" },
-    { "CM", "Cameroon" },
-    { "CN", "People's Republic of China" },
-    { "CO", "Colombia" },
-    { "CR", "Costa Rica" },
-    { "CS", "Serbia and Montenegro" },
-    { "CZ", "Czech Republic" },
-    { "DE", "Germany" },
-    { "DK", "Denmark" },
-    { "DO", "Dominican Republic" },
-    { "DZ", "Algeria" },
-    { "EC", "Ecuador" },
-    { "EE", "Estonia" },
-    { "EG", "Egypt" },
-    { "ER", "Eritrea" },
-    { "ES", "Spain" },
-    { "ET", "Ethiopia" },
-    { "FI", "Finland" },
-    { "FO", "Faroe Islands" },
-    { "FR", "France" },
-    { "GB", "United Kingdom" },
-    { "GD", "Caribbean" },
-    { "GE", "Georgia" },
-    { "GL", "Greenland" },
-    { "GR", "Greece" },
-    { "GT", "Guatemala" },
-    { "HK", "Hong Kong" },
-    { "HK", "Hong Kong S.A.R." },
-    { "HN", "Honduras" },
-    { "HR", "Croatia" },
-    { "HT", "Haiti" },
-    { "HU", "Hungary" },
-    { "ID", "Indonesia" },
-    { "IE", "Ireland" },
-    { "IL", "Israel" },
-    { "IN", "India" },
-    { "IQ", "Iraq" },
-    { "IR", "Iran" },
-    { "IS", "Iceland" },
-    { "IT", "Italy" },
-    { "JM", "Jamaica" },
-    { "JO", "Jordan" },
-    { "JP", "Japan" },
-    { "KE", "Kenya" },
-    { "KG", "Kyrgyzstan" },
-    { "KH", "Cambodia" },
-    { "KR", "South Korea" },
-    { "KW", "Kuwait" },
-    { "KZ", "Kazakhstan" },
-    { "LA", "Laos" },
-    { "LB", "Lebanon" },
-    { "LI", "Liechtenstein" },
-    { "LK", "Sri Lanka" },
-    { "LT", "Lithuania" },
-    { "LU", "Luxembourg" },
-    { "LV", "Latvia" },
-    { "LY", "Libya" },
-    { "MA", "Morocco" },
-    { "MC", "Principality of Monaco" },
-    { "MD", "Moldava" },
-    { "MD", "Moldova" },
-    { "ME", "Montenegro" },
-    { "MK", "Former Yugoslav Republic of Macedonia" },
-    { "ML", "Mali" },
-    { "MM", "Myanmar" },
-    { "MN", "Mongolia" },
-    { "MO", "Macau S.A.R." },
-    { "MT", "Malta" },
-    { "MV", "Maldives" },
-    { "MX", "Mexico" },
-    { "MY", "Malaysia" },
-    { "NG", "Nigeria" },
-    { "NI", "Nicaragua" },
-    { "NL", "Netherlands" },
-    { "NO", "Norway" },
-    { "NP", "Nepal" },
-    { "NZ", "New Zealand" },
-    { "OM", "Oman" },
-    { "PA", "Panama" },
-    { "PE", "Peru" },
-    { "PH", "Philippines" },
-    { "PK", "Islamic Republic of Pakistan" },
-    { "PL", "Poland" },
-    { "PR", "Puerto Rico" },
-    { "PT", "Portugal" },
-    { "PY", "Paraguay" },
-    { "QA", "Qatar" },
-    { "RE", "Reunion" },
-    { "RO", "Romania" },
-    { "RS", "Serbia" },
-    { "RU", "Russia" },
-    { "RW", "Rwanda" },
-    { "SA", "Saudi Arabia" },
-    { "SE", "Sweden" },
-    { "SG", "Singapore" },
-    { "SI", "Slovenia" },
-    { "SK", "Slovak" },
-    { "SN", "Senegal" },
-    { "SO", "Somalia" },
-    { "SR", "Suriname" },
-    { "SV", "El Salvador" },
-    { "SY", "Syria" },
-    { "TH", "Thailand" },
-    { "TJ", "Tajikistan" },
-    { "TM", "Turkmenistan" },
-    { "TN", "Tunisia" },
-    { "TR", "Turkey" },
-    { "TT", "Trinidad and Tobago" },
-    { "TW", "Taiwan" },
-    { "TZ", "Tanzania" },
-    { "UA", "Ukraine" },
-    { "US", "United States" },
-    { "UY", "Uruguay" },
-    { "VA", "Vatican" },
-    { "VE", "Venezuela" },
-    { "VN", "Viet Nam" },
-    { "YE", "Yemen" },
-    { "ZA", "South Africa" },
-    { "ZW", "Zimbabwe" }
-  };
+static const struct table_entry country_table[] = {
+  {"AE", "U.A.E."},
+  {"AF", "Afghanistan"},
+  {"AL", "Albania"},
+  {"AM", "Armenia"},
+  {"AN", "Netherlands Antilles"},
+  {"AR", "Argentina"},
+  {"AT", "Austria"},
+  {"AU", "Australia"},
+  {"AZ", "Azerbaijan"},
+  {"BA", "Bosnia and Herzegovina"},
+  {"BD", "Bangladesh"},
+  {"BE", "Belgium"},
+  {"BG", "Bulgaria"},
+  {"BH", "Bahrain"},
+  {"BN", "Brunei Darussalam"},
+  {"BO", "Bolivia"},
+  {"BR", "Brazil"},
+  {"BT", "Bhutan"},
+  {"BY", "Belarus"},
+  {"BZ", "Belize"},
+  {"CA", "Canada"},
+  {"CG", "Congo"},
+  {"CH", "Switzerland"},
+  {"CI", "Cote d'Ivoire"},
+  {"CL", "Chile"},
+  {"CM", "Cameroon"},
+  {"CN", "People's Republic of China"},
+  {"CO", "Colombia"},
+  {"CR", "Costa Rica"},
+  {"CS", "Serbia and Montenegro"},
+  {"CZ", "Czech Republic"},
+  {"DE", "Germany"},
+  {"DK", "Denmark"},
+  {"DO", "Dominican Republic"},
+  {"DZ", "Algeria"},
+  {"EC", "Ecuador"},
+  {"EE", "Estonia"},
+  {"EG", "Egypt"},
+  {"ER", "Eritrea"},
+  {"ES", "Spain"},
+  {"ET", "Ethiopia"},
+  {"FI", "Finland"},
+  {"FO", "Faroe Islands"},
+  {"FR", "France"},
+  {"GB", "United Kingdom"},
+  {"GD", "Caribbean"},
+  {"GE", "Georgia"},
+  {"GL", "Greenland"},
+  {"GR", "Greece"},
+  {"GT", "Guatemala"},
+  {"HK", "Hong Kong"},
+  {"HK", "Hong Kong S.A.R."},
+  {"HN", "Honduras"},
+  {"HR", "Croatia"},
+  {"HT", "Haiti"},
+  {"HU", "Hungary"},
+  {"ID", "Indonesia"},
+  {"IE", "Ireland"},
+  {"IL", "Israel"},
+  {"IN", "India"},
+  {"IQ", "Iraq"},
+  {"IR", "Iran"},
+  {"IS", "Iceland"},
+  {"IT", "Italy"},
+  {"JM", "Jamaica"},
+  {"JO", "Jordan"},
+  {"JP", "Japan"},
+  {"KE", "Kenya"},
+  {"KG", "Kyrgyzstan"},
+  {"KH", "Cambodia"},
+  {"KR", "South Korea"},
+  {"KW", "Kuwait"},
+  {"KZ", "Kazakhstan"},
+  {"LA", "Laos"},
+  {"LB", "Lebanon"},
+  {"LI", "Liechtenstein"},
+  {"LK", "Sri Lanka"},
+  {"LT", "Lithuania"},
+  {"LU", "Luxembourg"},
+  {"LV", "Latvia"},
+  {"LY", "Libya"},
+  {"MA", "Morocco"},
+  {"MC", "Principality of Monaco"},
+  {"MD", "Moldava"},
+  {"MD", "Moldova"},
+  {"ME", "Montenegro"},
+  {"MK", "Former Yugoslav Republic of Macedonia"},
+  {"ML", "Mali"},
+  {"MM", "Myanmar"},
+  {"MN", "Mongolia"},
+  {"MO", "Macau S.A.R."},
+  {"MT", "Malta"},
+  {"MV", "Maldives"},
+  {"MX", "Mexico"},
+  {"MY", "Malaysia"},
+  {"NG", "Nigeria"},
+  {"NI", "Nicaragua"},
+  {"NL", "Netherlands"},
+  {"NO", "Norway"},
+  {"NP", "Nepal"},
+  {"NZ", "New Zealand"},
+  {"OM", "Oman"},
+  {"PA", "Panama"},
+  {"PE", "Peru"},
+  {"PH", "Philippines"},
+  {"PK", "Islamic Republic of Pakistan"},
+  {"PL", "Poland"},
+  {"PR", "Puerto Rico"},
+  {"PT", "Portugal"},
+  {"PY", "Paraguay"},
+  {"QA", "Qatar"},
+  {"RE", "Reunion"},
+  {"RO", "Romania"},
+  {"RS", "Serbia"},
+  {"RU", "Russia"},
+  {"RW", "Rwanda"},
+  {"SA", "Saudi Arabia"},
+  {"SE", "Sweden"},
+  {"SG", "Singapore"},
+  {"SI", "Slovenia"},
+  {"SK", "Slovak"},
+  {"SN", "Senegal"},
+  {"SO", "Somalia"},
+  {"SR", "Suriname"},
+  {"SV", "El Salvador"},
+  {"SY", "Syria"},
+  {"TH", "Thailand"},
+  {"TJ", "Tajikistan"},
+  {"TM", "Turkmenistan"},
+  {"TN", "Tunisia"},
+  {"TR", "Turkey"},
+  {"TT", "Trinidad and Tobago"},
+  {"TW", "Taiwan"},
+  {"TZ", "Tanzania"},
+  {"UA", "Ukraine"},
+  {"US", "United States"},
+  {"UY", "Uruguay"},
+  {"VA", "Vatican"},
+  {"VE", "Venezuela"},
+  {"VN", "Viet Nam"},
+  {"YE", "Yemen"},
+  {"ZA", "South Africa"},
+  {"ZW", "Zimbabwe"}
+};
 
 /* Given a string STRING, find the set of indices i such that TABLE[i].code is
    the given STRING.  It is a range [lo,hi-1].  */
-typedef struct { size_t lo; size_t hi; } range_t;
+typedef struct
+{
+  size_t lo;
+  size_t hi;
+} range_t;
 static void
-search (const struct table_entry *table, size_t table_size, const char *string,
-        range_t *result)
+search (const struct table_entry *table, size_t table_size,
+	const char *string, range_t * result)
 {
   /* The table is sorted.  Perform a binary search.  */
   size_t hi = table_size;
@@ -585,47 +587,47 @@ search (const struct table_entry *table, size_t table_size, const char *string,
       /* Invariant:
          for i < lo, strcmp (table[i].code, string) < 0,
          for i >= hi, strcmp (table[i].code, string) > 0.  */
-      size_t mid = (hi + lo) >> 1; /* >= lo, < hi */
+      size_t mid = (hi + lo) >> 1;	/* >= lo, < hi */
       int cmp = strcmp (table[mid].code, string);
       if (cmp < 0)
-        lo = mid + 1;
+	lo = mid + 1;
       else if (cmp > 0)
-        hi = mid;
+	hi = mid;
       else
-        {
-          /* Found an i with
-               strcmp (language_table[i].code, string) == 0.
-             Find the entire interval of such i.  */
-          {
-            size_t i;
+	{
+	  /* Found an i with
+	     strcmp (language_table[i].code, string) == 0.
+	     Find the entire interval of such i.  */
+	  {
+	    size_t i;
 
-            for (i = mid; i > lo; )
-              {
-                i--;
-                if (strcmp (table[i].code, string) < 0)
-                  {
-                    lo = i + 1;
-                    break;
-                  }
-              }
-          }
-          {
-            size_t i;
+	    for (i = mid; i > lo;)
+	      {
+		i--;
+		if (strcmp (table[i].code, string) < 0)
+		  {
+		    lo = i + 1;
+		    break;
+		  }
+	      }
+	  }
+	  {
+	    size_t i;
 
-            for (i = mid; i < hi; i++)
-              {
-                if (strcmp (table[i].code, string) > 0)
-                  {
-                    hi = i;
-                    break;
-                  }
-              }
-          }
-          /* The set of i with
-               strcmp (language_table[i].code, string) == 0
-             is the interval [lo, hi-1].  */
-          break;
-        }
+	    for (i = mid; i < hi; i++)
+	      {
+		if (strcmp (table[i].code, string) > 0)
+		  {
+		    hi = i;
+		    break;
+		  }
+	      }
+	  }
+	  /* The set of i with
+	     strcmp (language_table[i].code, string) == 0
+	     is the interval [lo, hi-1].  */
+	  break;
+	}
     }
   result->lo = lo;
   result->hi = hi;
@@ -647,136 +649,133 @@ setlocale_unixlike (int category, const char *locale)
     return result;
 
   /* Otherwise, assume the argument is in the form
-       language[_territory][.codeset][@modifier]
+     language[_territory][.codeset][@modifier]
      and try to map it using the tables.  */
   if (strlen (locale) < sizeof (llCC_buf))
     {
       /* Second try: Remove the codeset part.  */
       {
-        const char *p = locale;
-        char *q = llCC_buf;
+	const char *p = locale;
+	char *q = llCC_buf;
 
-        /* Copy the part before the dot.  */
-        for (; *p != '\0' && *p != '.'; p++, q++)
-          *q = *p;
-        if (*p == '.')
-          /* Skip the part up to the '@', if any.  */
-          for (; *p != '\0' && *p != '@'; p++)
-            ;
-        /* Copy the part starting with '@', if any.  */
-        for (; *p != '\0'; p++, q++)
-          *q = *p;
-        *q = '\0';
+	/* Copy the part before the dot.  */
+	for (; *p != '\0' && *p != '.'; p++, q++)
+	  *q = *p;
+	if (*p == '.')
+	  /* Skip the part up to the '@', if any.  */
+	  for (; *p != '\0' && *p != '@'; p++)
+	    ;
+	/* Copy the part starting with '@', if any.  */
+	for (; *p != '\0'; p++, q++)
+	  *q = *p;
+	*q = '\0';
       }
       /* llCC_buf now contains
-           language[_territory][@modifier]
+         language[_territory][@modifier]
        */
       if (strcmp (llCC_buf, locale) != 0)
-        {
-          result = setlocale (category, llCC_buf);
-          if (result != NULL)
-            return result;
-        }
+	{
+	  result = setlocale (category, llCC_buf);
+	  if (result != NULL)
+	    return result;
+	}
       /* Look it up in language_table.  */
       {
-        range_t range;
-        size_t i;
+	range_t range;
+	size_t i;
 
-        search (language_table,
-                sizeof (language_table) / sizeof (language_table[0]),
-                llCC_buf,
-                &range);
+	search (language_table,
+		sizeof (language_table) / sizeof (language_table[0]),
+		llCC_buf, &range);
 
-        for (i = range.lo; i < range.hi; i++)
-          {
-            /* Try the replacement in language_table[i].  */
-            result = setlocale (category, language_table[i].english);
-            if (result != NULL)
-              return result;
-          }
+	for (i = range.lo; i < range.hi; i++)
+	  {
+	    /* Try the replacement in language_table[i].  */
+	    result = setlocale (category, language_table[i].english);
+	    if (result != NULL)
+	      return result;
+	  }
       }
       /* Split language[_territory][@modifier]
          into  ll_buf = language[@modifier]
          and   CC_buf = territory
        */
       {
-        const char *underscore = strchr (llCC_buf, '_');
-        if (underscore != NULL)
-          {
-            const char *territory_start = underscore + 1;
-            const char *territory_end = strchr (territory_start, '@');
-            if (territory_end == NULL)
-              territory_end = territory_start + strlen (territory_start);
+	const char *underscore = strchr (llCC_buf, '_');
+	if (underscore != NULL)
+	  {
+	    const char *territory_start = underscore + 1;
+	    const char *territory_end = strchr (territory_start, '@');
+	    if (territory_end == NULL)
+	      territory_end = territory_start + strlen (territory_start);
 
-            memcpy (ll_buf, llCC_buf, underscore - llCC_buf);
-            strcpy (ll_buf + (underscore - llCC_buf), territory_end);
+	    memcpy (ll_buf, llCC_buf, underscore - llCC_buf);
+	    strcpy (ll_buf + (underscore - llCC_buf), territory_end);
 
-            memcpy (CC_buf, territory_start, territory_end - territory_start);
-            CC_buf[territory_end - territory_start] = '\0';
+	    memcpy (CC_buf, territory_start, territory_end - territory_start);
+	    CC_buf[territory_end - territory_start] = '\0';
 
-            {
-              /* Look up ll_buf in language_table
-                 and CC_buf in country_table.  */
-              range_t language_range;
+	    {
+	      /* Look up ll_buf in language_table
+	         and CC_buf in country_table.  */
+	      range_t language_range;
 
-              search (language_table,
-                      sizeof (language_table) / sizeof (language_table[0]),
-                      ll_buf,
-                      &language_range);
-              if (language_range.lo < language_range.hi)
-                {
-                  range_t country_range;
+	      search (language_table,
+		      sizeof (language_table) / sizeof (language_table[0]),
+		      ll_buf, &language_range);
+	      if (language_range.lo < language_range.hi)
+		{
+		  range_t country_range;
 
-                  search (country_table,
-                          sizeof (country_table) / sizeof (country_table[0]),
-                          CC_buf,
-                          &country_range);
-                  if (country_range.lo < country_range.hi)
-                    {
-                      size_t i;
-                      size_t j;
+		  search (country_table,
+			  sizeof (country_table) / sizeof (country_table[0]),
+			  CC_buf, &country_range);
+		  if (country_range.lo < country_range.hi)
+		    {
+		      size_t i;
+		      size_t j;
 
-                      for (i = language_range.lo; i < language_range.hi; i++)
-                        for (j = country_range.lo; j < country_range.hi; j++)
-                          {
-                            /* Concatenate the replacements.  */
-                            const char *part1 = language_table[i].english;
-                            size_t part1_len = strlen (part1);
-                            const char *part2 = country_table[j].english;
-                            size_t part2_len = strlen (part2) + 1;
-                            char buf[64+64];
+		      for (i = language_range.lo; i < language_range.hi; i++)
+			for (j = country_range.lo; j < country_range.hi; j++)
+			  {
+			    /* Concatenate the replacements.  */
+			    const char *part1 = language_table[i].english;
+			    size_t part1_len = strlen (part1);
+			    const char *part2 = country_table[j].english;
+			    size_t part2_len = strlen (part2) + 1;
+			    char buf[64 + 64];
 
-                            if (!(part1_len + 1 + part2_len <= sizeof (buf)))
-                              abort ();
-                            memcpy (buf, part1, part1_len);
-                            buf[part1_len] = '_';
-                            memcpy (buf + part1_len + 1, part2, part2_len);
+			    if (!(part1_len + 1 + part2_len <= sizeof (buf)))
+			      abort ();
+			    memcpy (buf, part1, part1_len);
+			    buf[part1_len] = '_';
+			    memcpy (buf + part1_len + 1, part2, part2_len);
 
-                            /* Try the concatenated replacements.  */
-                            result = setlocale (category, buf);
-                            if (result != NULL)
-                              return result;
-                          }
-                    }
+			    /* Try the concatenated replacements.  */
+			    result = setlocale (category, buf);
+			    if (result != NULL)
+			      return result;
+			  }
+		    }
 
-                  /* Try omitting the country entirely.  This may set a locale
-                     corresponding to the wrong country, but is better than
-                     failing entirely.  */
-                  {
-                    size_t i;
+		  /* Try omitting the country entirely.  This may set a locale
+		     corresponding to the wrong country, but is better than
+		     failing entirely.  */
+		  {
+		    size_t i;
 
-                    for (i = language_range.lo; i < language_range.hi; i++)
-                      {
-                        /* Try only the language replacement.  */
-                        result =
-                          setlocale (category, language_table[i].english);
-                        if (result != NULL)
-                          return result;
-                      }
-                  }
-                }
-            }
-          }
+		    for (i = language_range.lo; i < language_range.hi; i++)
+		      {
+			/* Try only the language replacement.  */
+			result =
+			  setlocale (category, language_table[i].english);
+			if (result != NULL)
+			  return result;
+		      }
+		  }
+		}
+	    }
+	  }
       }
     }
 
@@ -800,10 +799,10 @@ setlocale_single (int category, const char *locale)
   if (category == LC_MESSAGES)
     {
       if (locale != NULL)
-        {
-          lc_messages_name[sizeof (lc_messages_name) - 1] = '\0';
-          strncpy (lc_messages_name, locale, sizeof (lc_messages_name) - 1);
-        }
+	{
+	  lc_messages_name[sizeof (lc_messages_name) - 1] = '\0';
+	  strncpy (lc_messages_name, locale, sizeof (lc_messages_name) - 1);
+	}
       return lc_messages_name;
     }
   else
@@ -814,152 +813,150 @@ setlocale_single (int category, const char *locale)
 #  define setlocale_single setlocale_unixlike
 # endif
 
-DLL_EXPORTED
-char *
+DLL_EXPORTED char *
 libintl_setlocale (int category, const char *locale)
 {
   if (locale != NULL && locale[0] == '\0')
     {
       /* A request to the set the current locale to the default locale.  */
       if (category == LC_ALL)
-        {
-          /* Set LC_CTYPE first.  Then the other categories.  */
-          static int const categories[] =
-            {
-              LC_NUMERIC,
-              LC_TIME,
-              LC_COLLATE,
-              LC_MONETARY,
-              LC_MESSAGES
-            };
-          char *saved_locale;
-          const char *base_name;
-          unsigned int i;
+	{
+	  /* Set LC_CTYPE first.  Then the other categories.  */
+	  static int const categories[] = {
+	    LC_NUMERIC,
+	    LC_TIME,
+	    LC_COLLATE,
+	    LC_MONETARY,
+	    LC_MESSAGES
+	  };
+	  char *saved_locale;
+	  const char *base_name;
+	  unsigned int i;
 
-          /* Back up the old locale, in case one of the steps fails.  */
-          saved_locale = setlocale (LC_ALL, NULL);
-          if (saved_locale == NULL)
-            return NULL;
-          saved_locale = strdup (saved_locale);
-          if (saved_locale == NULL)
-            return NULL;
+	  /* Back up the old locale, in case one of the steps fails.  */
+	  saved_locale = setlocale (LC_ALL, NULL);
+	  if (saved_locale == NULL)
+	    return NULL;
+	  saved_locale = strdup (saved_locale);
+	  if (saved_locale == NULL)
+	    return NULL;
 
-          /* Set LC_CTYPE category.  Set all other categories (except possibly
-             LC_MESSAGES) to the same value in the same call; this is likely to
-             save calls.  */
-          base_name =
-            gl_locale_name_environ (LC_CTYPE, category_to_name (LC_CTYPE));
-          if (base_name == NULL)
-            base_name = gl_locale_name_default ();
+	  /* Set LC_CTYPE category.  Set all other categories (except possibly
+	     LC_MESSAGES) to the same value in the same call; this is likely to
+	     save calls.  */
+	  base_name =
+	    gl_locale_name_environ (LC_CTYPE, category_to_name (LC_CTYPE));
+	  if (base_name == NULL)
+	    base_name = gl_locale_name_default ();
 
-          if (setlocale_unixlike (LC_ALL, base_name) == NULL)
-            goto fail;
+	  if (setlocale_unixlike (LC_ALL, base_name) == NULL)
+	    goto fail;
 # if (defined _WIN32 || defined __WIN32__) && ! defined __CYGWIN__
-          /* On native Windows, setlocale(LC_ALL,...) may succeed but set the
-             LC_CTYPE category to an invalid value ("C") when it does not
-             support the specified encoding.  Report a failure instead.  */
-          if (strchr (base_name, '.') != NULL
-              && strcmp (setlocale (LC_CTYPE, NULL), "C") == 0)
-            goto fail;
+	  /* On native Windows, setlocale(LC_ALL,...) may succeed but set the
+	     LC_CTYPE category to an invalid value ("C") when it does not
+	     support the specified encoding.  Report a failure instead.  */
+	  if (strchr (base_name, '.') != NULL
+	      && strcmp (setlocale (LC_CTYPE, NULL), "C") == 0)
+	    goto fail;
 # endif
 
-          for (i = 0; i < sizeof (categories) / sizeof (categories[0]); i++)
-            {
-              int cat = categories[i];
-              const char *name;
+	  for (i = 0; i < sizeof (categories) / sizeof (categories[0]); i++)
+	    {
+	      int cat = categories[i];
+	      const char *name;
 
-              name = gl_locale_name_environ (cat, category_to_name (cat));
-              if (name == NULL)
-                name = gl_locale_name_default ();
+	      name = gl_locale_name_environ (cat, category_to_name (cat));
+	      if (name == NULL)
+		name = gl_locale_name_default ();
 
-              /* If name is the same as base_name, it has already been set
-                 through the setlocale call before the loop.  */
-              if (strcmp (name, base_name) != 0
+	      /* If name is the same as base_name, it has already been set
+	         through the setlocale call before the loop.  */
+	      if (strcmp (name, base_name) != 0
 # if LC_MESSAGES == 1729
-                  || cat == LC_MESSAGES
+		  || cat == LC_MESSAGES
 # endif
-                 )
-                if (setlocale_single (cat, name) == NULL)
-                  goto fail;
-            }
+		)
+		if (setlocale_single (cat, name) == NULL)
+		  goto fail;
+	    }
 
-          /* All steps were successful.  */
-          ++_nl_msg_cat_cntr;
-          free (saved_locale);
-          return setlocale (LC_ALL, NULL);
+	  /* All steps were successful.  */
+	  ++_nl_msg_cat_cntr;
+	  free (saved_locale);
+	  return setlocale (LC_ALL, NULL);
 
-        fail:
-          if (saved_locale[0] != '\0') /* don't risk an endless recursion */
-            setlocale (LC_ALL, saved_locale);
-          free (saved_locale);
-          return NULL;
-        }
+	fail:
+	  if (saved_locale[0] != '\0')	/* don't risk an endless recursion */
+	    setlocale (LC_ALL, saved_locale);
+	  free (saved_locale);
+	  return NULL;
+	}
       else
-        {
-          char *result;
-          const char *name =
-            gl_locale_name_environ (category, category_to_name (category));
-          if (name == NULL)
-            name = gl_locale_name_default ();
+	{
+	  char *result;
+	  const char *name =
+	    gl_locale_name_environ (category, category_to_name (category));
+	  if (name == NULL)
+	    name = gl_locale_name_default ();
 
-          result = setlocale_single (category, name);
-          if (result != NULL)
-            ++_nl_msg_cat_cntr;
-          return result;
-        }
+	  result = setlocale_single (category, name);
+	  if (result != NULL)
+	    ++_nl_msg_cat_cntr;
+	  return result;
+	}
     }
   else
     {
 # if (defined _WIN32 || defined __WIN32__) && ! defined __CYGWIN__
-      if (category == LC_ALL && locale != NULL && strchr (locale, '.') != NULL)
-        {
-          char *saved_locale;
+      if (category == LC_ALL && locale != NULL
+	  && strchr (locale, '.') != NULL)
+	{
+	  char *saved_locale;
 
-          /* Back up the old locale.  */
-          saved_locale = setlocale (LC_ALL, NULL);
-          if (saved_locale == NULL)
-            return NULL;
-          saved_locale = strdup (saved_locale);
-          if (saved_locale == NULL)
-            return NULL;
+	  /* Back up the old locale.  */
+	  saved_locale = setlocale (LC_ALL, NULL);
+	  if (saved_locale == NULL)
+	    return NULL;
+	  saved_locale = strdup (saved_locale);
+	  if (saved_locale == NULL)
+	    return NULL;
 
-          if (setlocale_unixlike (LC_ALL, locale) == NULL)
-            {
-              free (saved_locale);
-              return NULL;
-            }
+	  if (setlocale_unixlike (LC_ALL, locale) == NULL)
+	    {
+	      free (saved_locale);
+	      return NULL;
+	    }
 
-          /* On native Windows, setlocale(LC_ALL,...) may succeed but set the
-             LC_CTYPE category to an invalid value ("C") when it does not
-             support the specified encoding.  Report a failure instead.  */
-          if (strcmp (setlocale (LC_CTYPE, NULL), "C") == 0)
-            {
-              if (saved_locale[0] != '\0') /* don't risk an endless recursion */
-                setlocale (LC_ALL, saved_locale);
-              free (saved_locale);
-              return NULL;
-            }
+	  /* On native Windows, setlocale(LC_ALL,...) may succeed but set the
+	     LC_CTYPE category to an invalid value ("C") when it does not
+	     support the specified encoding.  Report a failure instead.  */
+	  if (strcmp (setlocale (LC_CTYPE, NULL), "C") == 0)
+	    {
+	      if (saved_locale[0] != '\0')	/* don't risk an endless recursion */
+		setlocale (LC_ALL, saved_locale);
+	      free (saved_locale);
+	      return NULL;
+	    }
 
-          /* It was really successful.  */
-          ++_nl_msg_cat_cntr;
-          free (saved_locale);
-          return setlocale (LC_ALL, NULL);
-        }
+	  /* It was really successful.  */
+	  ++_nl_msg_cat_cntr;
+	  free (saved_locale);
+	  return setlocale (LC_ALL, NULL);
+	}
       else
 # endif
-        {
-          char *result = setlocale_single (category, locale);
-          if (result != NULL)
-            ++_nl_msg_cat_cntr;
-          return result;
-        }
+	{
+	  char *result = setlocale_single (category, locale);
+	  if (result != NULL)
+	    ++_nl_msg_cat_cntr;
+	  return result;
+	}
     }
 }
 
 # if HAVE_NEWLOCALE
 
-DLL_EXPORTED
-locale_t
+DLL_EXPORTED locale_t
 libintl_newlocale (int category_mask, const char *locale, locale_t base)
 {
   if (category_mask != 0 && locale != NULL && locale[0] == '\0')
@@ -968,97 +965,101 @@ libintl_newlocale (int category_mask, const char *locale, locale_t base)
          locale.  */
 
       /* Set LC_CTYPE first.  Then the other categories.  */
-      static struct { int cat; int mask; } const categories[] =
-        {
-          { LC_CTYPE,    LC_CTYPE_MASK },
-          { LC_NUMERIC,  LC_NUMERIC_MASK },
-          { LC_TIME,     LC_TIME_MASK },
-          { LC_COLLATE,  LC_COLLATE_MASK },
-          { LC_MONETARY, LC_MONETARY_MASK },
-          { LC_MESSAGES, LC_MESSAGES_MASK }
-        };
+      static struct
+      {
+	int cat;
+	int mask;
+      } const categories[] = {
+	{LC_CTYPE, LC_CTYPE_MASK},
+	{LC_NUMERIC, LC_NUMERIC_MASK},
+	{LC_TIME, LC_TIME_MASK},
+	{LC_COLLATE, LC_COLLATE_MASK},
+	{LC_MONETARY, LC_MONETARY_MASK},
+	{LC_MESSAGES, LC_MESSAGES_MASK}
+      };
 
       locale_t orig_base = base;
 
       if ((LC_ALL_MASK & ~category_mask) == 0)
-        {
-          const char *base_name;
-          unsigned int i;
+	{
+	  const char *base_name;
+	  unsigned int i;
 
-          /* Set LC_CTYPE category.  Set all other categories (except possibly
-             LC_MESSAGES) to the same value in the same call; this is likely to
-             save calls.  */
-          base_name =
-            gl_locale_name_environ (LC_CTYPE, category_to_name (LC_CTYPE));
-          if (base_name == NULL)
-            base_name = gl_locale_name_default ();
+	  /* Set LC_CTYPE category.  Set all other categories (except possibly
+	     LC_MESSAGES) to the same value in the same call; this is likely to
+	     save calls.  */
+	  base_name =
+	    gl_locale_name_environ (LC_CTYPE, category_to_name (LC_CTYPE));
+	  if (base_name == NULL)
+	    base_name = gl_locale_name_default ();
 
-          base = newlocale (LC_ALL_MASK, base_name, base);
-          if (base == NULL)
-            return NULL;
+	  base = newlocale (LC_ALL_MASK, base_name, base);
+	  if (base == NULL)
+	    return NULL;
 
-          for (i = 1; i < sizeof (categories) / sizeof (categories[0]); i++)
-            {
-              int category = categories[i].cat;
-              int category_mask = categories[i].mask;
-              const char *name;
+	  for (i = 1; i < sizeof (categories) / sizeof (categories[0]); i++)
+	    {
+	      int category = categories[i].cat;
+	      int category_mask = categories[i].mask;
+	      const char *name;
 
-              name =
-                gl_locale_name_environ (category, category_to_name (category));
-              if (name == NULL)
-                name = gl_locale_name_default ();
+	      name =
+		gl_locale_name_environ (category,
+					category_to_name (category));
+	      if (name == NULL)
+		name = gl_locale_name_default ();
 
-              /* If name is the same as base_name, it has already been set
-                 through the setlocale call before the loop.  */
-              if (strcmp (name, base_name) != 0)
-                {
-                  locale_t copy = newlocale (category_mask, name, base);
-                  if (copy == NULL)
-                    goto fail;
-                  /* No need to call freelocale (base) if copy != base; the
-                     newlocale function already takes care of doing it.  */
-                  base = copy;
-                }
-            }
-        }
+	      /* If name is the same as base_name, it has already been set
+	         through the setlocale call before the loop.  */
+	      if (strcmp (name, base_name) != 0)
+		{
+		  locale_t copy = newlocale (category_mask, name, base);
+		  if (copy == NULL)
+		    goto fail;
+		  /* No need to call freelocale (base) if copy != base; the
+		     newlocale function already takes care of doing it.  */
+		  base = copy;
+		}
+	    }
+	}
       else
-        {
-          unsigned int i;
+	{
+	  unsigned int i;
 
-          for (i = 0; i < sizeof (categories) / sizeof (categories[0]); i++)
-            {
-              int cat_mask = categories[i].mask;
+	  for (i = 0; i < sizeof (categories) / sizeof (categories[0]); i++)
+	    {
+	      int cat_mask = categories[i].mask;
 
-              if ((category_mask & cat_mask) != 0)
-                {
-                  int cat = categories[i].cat;
-                  const char *name;
-                  locale_t copy;
+	      if ((category_mask & cat_mask) != 0)
+		{
+		  int cat = categories[i].cat;
+		  const char *name;
+		  locale_t copy;
 
-                  name = gl_locale_name_environ (cat, category_to_name (cat));
-                  if (name == NULL)
-                    name = gl_locale_name_default ();
+		  name = gl_locale_name_environ (cat, category_to_name (cat));
+		  if (name == NULL)
+		    name = gl_locale_name_default ();
 
-                  copy = newlocale (cat_mask, name, base);
-                  if (copy == NULL)
-                    goto fail;
-                  /* No need to call freelocale (base) if copy != base; the
-                     newlocale function already takes care of doing it.  */
-                  base = copy;
-                }
-            }
-        }
+		  copy = newlocale (cat_mask, name, base);
+		  if (copy == NULL)
+		    goto fail;
+		  /* No need to call freelocale (base) if copy != base; the
+		     newlocale function already takes care of doing it.  */
+		  base = copy;
+		}
+	    }
+	}
 
       /* All steps were successful.  */
       return base;
 
     fail:
       if (base != NULL && orig_base == NULL)
-        {
-          int saved_errno = errno;
-          freelocale (base);
-          errno = saved_errno;
-        }
+	{
+	  int saved_errno = errno;
+	  freelocale (base);
+	  errno = saved_errno;
+	}
       return NULL;
     }
   else

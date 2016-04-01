@@ -45,7 +45,7 @@
 #   include <alloca.h>
 #  else
 #   ifdef _AIX
- #pragma alloca
+#pragma alloca
 #   else
 #    ifndef alloca
 char *alloca ();
@@ -479,7 +479,7 @@ char *alloca ();
 /* For those losing systems which don't have `alloca' we have to add
    some additional code emulating it.  */
 #ifdef HAVE_ALLOCA
-# define freea(p) /* nothing */
+# define freea(p)		/* nothing */
 #else
 # define alloca(n) malloc (n)
 # define freea(p) free (p)
@@ -767,8 +767,8 @@ get_sysdep_segment_value (const char *name)
     || ((__GLIBC__ > 2 || (__GLIBC__ == 2 && __GLIBC_MINOR__ >= 2)) \
         && !defined __UCLIBC__)
       /* The 'I' flag, in numeric format directives, replaces ASCII digits
-	 with the 'outdigits' defined in the LC_CTYPE locale facet.  This is
-	 used for Farsi (Persian), some Indic languages, and maybe Arabic.  */
+         with the 'outdigits' defined in the LC_CTYPE locale facet.  This is
+         used for Farsi (Persian), some Indic languages, and maybe Arabic.  */
       return "I";
 #else
       return "";
@@ -780,8 +780,7 @@ get_sysdep_segment_value (const char *name)
 
 /* Load the message catalogs specified by FILENAME.  If it is no valid
    message catalog do nothing.  */
-void
-internal_function
+void internal_function
 _nl_load_domain (struct loaded_l10nfile *domain_file,
 		 struct binding *domainbinding)
 {
@@ -805,13 +804,13 @@ _nl_load_domain (struct loaded_l10nfile *domain_file,
     {
       /* There are two possibilities:
 
-	 + this is the same thread calling again during this initialization
-	   via _nl_find_msg.  We have initialized everything this call needs.
+         + this is the same thread calling again during this initialization
+         via _nl_find_msg.  We have initialized everything this call needs.
 
-	 + this is another thread which tried to initialize this object.
-	   Not necessary anymore since if the lock is available this
-	   is finished.
-      */
+         + this is another thread which tried to initialize this object.
+         Not necessary anymore since if the lock is available this
+         is finished.
+       */
       goto done;
     }
 
@@ -837,12 +836,12 @@ _nl_load_domain (struct loaded_l10nfile *domain_file,
   /* We must know about the size of the file.  */
   if (
 #ifdef _LIBC
-      __builtin_expect (fstat64 (fd, &st) != 0, 0)
+       __builtin_expect (fstat64 (fd, &st) != 0, 0)
 #else
-      __builtin_expect (fstat (fd, &st) != 0, 0)
+       __builtin_expect (fstat (fd, &st) != 0, 0)
 #endif
-      || __builtin_expect ((size = (size_t) st.st_size) != st.st_size, 0)
-      || __builtin_expect (size < sizeof (struct mo_file_header), 0))
+       || __builtin_expect ((size = (size_t) st.st_size) != st.st_size, 0)
+       || __builtin_expect (size < sizeof (struct mo_file_header), 0))
     /* Something went wrong.  */
     goto out;
 
@@ -885,7 +884,7 @@ _nl_load_domain (struct loaded_l10nfile *domain_file,
 	      if (nb == -1 && errno == EINTR)
 		continue;
 #endif
-              free (data);
+	      free (data);
 	      goto out;
 	    }
 	  read_ptr += nb;
@@ -899,8 +898,8 @@ _nl_load_domain (struct loaded_l10nfile *domain_file,
 
   /* Using the magic number we can test whether it really is a message
      catalog file.  */
-  if (__builtin_expect (data->magic != _MAGIC && data->magic != _MAGIC_SWAPPED,
-			0))
+  if (__builtin_expect
+      (data->magic != _MAGIC && data->magic != _MAGIC_SWAPPED, 0))
     {
       /* The magic number is wrong: not a message catalog file.  */
 #ifdef HAVE_MMAP
@@ -939,7 +938,7 @@ _nl_load_domain (struct loaded_l10nfile *domain_file,
       domain->hash_tab =
 	(domain->hash_size > 2
 	 ? (const nls_uint32 *)
-	   ((char *) data + W (domain->must_swap, data->hash_tab_offset))
+	 ((char *) data + W (domain->must_swap, data->hash_tab_offset))
 	 : NULL);
       domain->must_swap_hash_tab = domain->must_swap;
 
@@ -960,8 +959,7 @@ _nl_load_domain (struct loaded_l10nfile *domain_file,
 	      /* This is invalid.  These minor revisions need a hash table.  */
 	      goto invalid;
 
-	    n_sysdep_strings =
-	      W (domain->must_swap, data->n_sysdep_strings);
+	    n_sysdep_strings = W (domain->must_swap, data->n_sysdep_strings);
 	    if (n_sysdep_strings > 0)
 	      {
 		nls_uint32 n_sysdep_segments;
@@ -1000,7 +998,8 @@ _nl_load_domain (struct loaded_l10nfile *domain_file,
 			goto invalid;
 		      }
 
-		    sysdep_segment_values[i] = get_sysdep_segment_value (name);
+		    sysdep_segment_values[i] =
+		      get_sysdep_segment_value (name);
 		  }
 
 		orig_sysdep_tab = (const nls_uint32 *)
@@ -1025,15 +1024,16 @@ _nl_load_domain (struct loaded_l10nfile *domain_file,
 		      {
 			const struct sysdep_string *sysdep_string =
 			  (const struct sysdep_string *)
-			  ((char *) data
-			   + W (domain->must_swap,
-				j == 0
-				? orig_sysdep_tab[i]
-				: trans_sysdep_tab[i]));
+			  ((char *) data + W (domain->must_swap,
+					      j == 0
+					      ? orig_sysdep_tab[i]
+					      : trans_sysdep_tab[i]));
 			size_t need = 0;
-			const struct segment_pair *p = sysdep_string->segments;
+			const struct segment_pair *p =
+			  sysdep_string->segments;
 
-			if (W (domain->must_swap, p->sysdepref) != SEGMENTS_END)
+			if (W (domain->must_swap, p->sysdepref) !=
+			    SEGMENTS_END)
 			  for (p = sysdep_string->segments;; p++)
 			    {
 			      nls_uint32 sysdepref;
@@ -1058,7 +1058,8 @@ _nl_load_domain (struct loaded_l10nfile *domain_file,
 				  break;
 				}
 
-			      need += strlen (sysdep_segment_values[sysdepref]);
+			      need +=
+				strlen (sysdep_segment_values[sysdepref]);
 			    }
 
 			needs[j] = need;
@@ -1073,7 +1074,7 @@ _nl_load_domain (struct loaded_l10nfile *domain_file,
 		      }
 		  }
 		memneed += 2 * n_inmem_sysdep_strings
-			   * sizeof (struct sysdep_string_desc);
+		  * sizeof (struct sysdep_string_desc);
 
 		if (n_inmem_sysdep_strings > 0)
 		  {
@@ -1087,10 +1088,12 @@ _nl_load_domain (struct loaded_l10nfile *domain_file,
 		    domain->malloced = mem;
 		    inmem_orig_sysdep_tab = (struct sysdep_string_desc *) mem;
 		    mem += n_inmem_sysdep_strings
-			   * sizeof (struct sysdep_string_desc);
-		    inmem_trans_sysdep_tab = (struct sysdep_string_desc *) mem;
-		    mem += n_inmem_sysdep_strings
-			   * sizeof (struct sysdep_string_desc);
+		      * sizeof (struct sysdep_string_desc);
+		    inmem_trans_sysdep_tab =
+		      (struct sysdep_string_desc *) mem;
+		    mem +=
+		      n_inmem_sysdep_strings *
+		      sizeof (struct sysdep_string_desc);
 		    inmem_hash_tab = (nls_uint32 *) mem;
 		    mem += domain->hash_size * sizeof (nls_uint32);
 
@@ -1104,11 +1107,10 @@ _nl_load_domain (struct loaded_l10nfile *domain_file,
 			  {
 			    const struct sysdep_string *sysdep_string =
 			      (const struct sysdep_string *)
-			      ((char *) data
-			       + W (domain->must_swap,
-				    j == 0
-				    ? orig_sysdep_tab[i]
-				    : trans_sysdep_tab[i]));
+			      ((char *) data + W (domain->must_swap,
+						  j == 0
+						  ? orig_sysdep_tab[i]
+						  : trans_sysdep_tab[i]));
 			    const struct segment_pair *p =
 			      sysdep_string->segments;
 
@@ -1123,10 +1125,11 @@ _nl_load_domain (struct loaded_l10nfile *domain_file,
 				  if (sysdepref == SEGMENTS_END)
 				    break;
 
-				  if (sysdep_segment_values[sysdepref] == NULL)
+				  if (sysdep_segment_values[sysdepref] ==
+				      NULL)
 				    {
 				      /* This particular string pair is
-					 invalid.  */
+				         invalid.  */
 				      valid = 0;
 				      break;
 				    }
@@ -1142,14 +1145,14 @@ _nl_load_domain (struct loaded_l10nfile *domain_file,
 			      {
 				const struct sysdep_string *sysdep_string =
 				  (const struct sysdep_string *)
-				  ((char *) data
-				   + W (domain->must_swap,
-					j == 0
-					? orig_sysdep_tab[i]
-					: trans_sysdep_tab[i]));
+				  ((char *) data + W (domain->must_swap,
+						      j == 0
+						      ? orig_sysdep_tab[i]
+						      : trans_sysdep_tab[i]));
 				const char *static_segments =
 				  (char *) data
-				  + W (domain->must_swap, sysdep_string->offset);
+				  + W (domain->must_swap,
+				       sysdep_string->offset);
 				const struct segment_pair *p =
 				  sysdep_string->segments;
 
@@ -1160,8 +1163,7 @@ _nl_load_domain (struct loaded_l10nfile *domain_file,
 				struct sysdep_string_desc *inmem_tab_entry =
 				  (j == 0
 				   ? inmem_orig_sysdep_tab
-				   : inmem_trans_sysdep_tab)
-				  + k;
+				   : inmem_trans_sysdep_tab) + k;
 
 				if (W (domain->must_swap, p->sysdepref)
 				    == SEGMENTS_END)
@@ -1169,7 +1171,8 @@ _nl_load_domain (struct loaded_l10nfile *domain_file,
 				    /* Only one static segment.  */
 				    inmem_tab_entry->length =
 				      W (domain->must_swap, p->segsize);
-				    inmem_tab_entry->pointer = static_segments;
+				    inmem_tab_entry->pointer =
+				      static_segments;
 				  }
 				else
 				  {
@@ -1185,7 +1188,8 @@ _nl_load_domain (struct loaded_l10nfile *domain_file,
 
 					if (segsize > 0)
 					  {
-					    memcpy (mem, static_segments, segsize);
+					    memcpy (mem, static_segments,
+						    segsize);
 					    mem += segsize;
 					    static_segments += segsize;
 					  }
@@ -1193,8 +1197,12 @@ _nl_load_domain (struct loaded_l10nfile *domain_file,
 					if (sysdepref == SEGMENTS_END)
 					  break;
 
-					n = strlen (sysdep_segment_values[sysdepref]);
-					memcpy (mem, sysdep_segment_values[sysdepref], n);
+					n =
+					  strlen (sysdep_segment_values
+						  [sysdepref]);
+					memcpy (mem,
+						sysdep_segment_values
+						[sysdepref], n);
 					mem += n;
 				      }
 
@@ -1226,7 +1234,8 @@ _nl_load_domain (struct loaded_l10nfile *domain_file,
 			    if (inmem_hash_tab[idx] == 0)
 			      {
 				/* Hash table entry is empty.  Use it.  */
-				inmem_hash_tab[idx] = 1 + domain->nstrings + i;
+				inmem_hash_tab[idx] =
+				  1 + domain->nstrings + i;
 				break;
 			      }
 
@@ -1304,20 +1313,19 @@ _nl_load_domain (struct loaded_l10nfile *domain_file,
     }
   EXTRACT_PLURAL_EXPRESSION (nullentry, &domain->plural, &domain->nplurals);
 
- out:
+out:
   if (fd != -1)
     close (fd);
 
   domain_file->decided = 1;
 
- done:
+done:
   __libc_lock_unlock_recursive (lock);
 }
 
 
 #ifdef _LIBC
-void
-internal_function __libc_freeres_fn_section
+void internal_function __libc_freeres_fn_section
 _nl_unload_domain (struct loaded_domain *domain)
 {
   size_t i;
@@ -1332,7 +1340,7 @@ _nl_unload_domain (struct loaded_domain *domain)
       free ((char *) convd->encoding);
       if (convd->conv_tab != NULL && convd->conv_tab != (char **) -1)
 	free (convd->conv_tab);
-      if (convd->conv != (__gconv_t) -1)
+      if (convd->conv != (__gconv_t) - 1)
 	__gconv_close (convd->conv);
     }
   free (domain->conversions);

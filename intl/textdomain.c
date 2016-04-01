@@ -56,12 +56,10 @@
 
 /* Lock variable to protect the global data in the gettext implementation.  */
 gl_rwlock_define (extern, _nl_state_lock attribute_hidden)
-
 /* Set the current default message catalog to DOMAINNAME.
    If DOMAINNAME is null, return the current default.
    If DOMAINNAME is "", reset to the default of "messages".  */
-char *
-TEXTDOMAIN (const char *domainname)
+     char *TEXTDOMAIN (const char *domainname)
 {
   char *new_domain;
   char *old_domain;
@@ -88,8 +86,8 @@ TEXTDOMAIN (const char *domainname)
   else
     {
       /* If the following malloc fails `_nl_current_default_domain'
-	 will be NULL.  This value will be returned and so signals we
-	 are out of core.  */
+         will be NULL.  This value will be returned and so signals we
+         are out of core.  */
 #if defined _LIBC || defined HAVE_STRDUP
       new_domain = strdup (domainname);
 #else
@@ -110,7 +108,8 @@ TEXTDOMAIN (const char *domainname)
     {
       ++_nl_msg_cat_cntr;
 
-      if (old_domain != new_domain && old_domain != _nl_default_default_domain)
+      if (old_domain != new_domain
+	  && old_domain != _nl_default_default_domain)
 	free (old_domain);
     }
 

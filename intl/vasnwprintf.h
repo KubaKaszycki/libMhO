@@ -24,7 +24,8 @@
 #include <stddef.h>
 
 #ifdef __cplusplus
-extern "C" {
+extern "C"
+{
 #endif
 
 /* Write formatted output to a string dynamically allocated with malloc().
@@ -34,11 +35,13 @@ extern "C" {
    if no dynamic memory allocation was necessary) and set *LENGTHP to the
    number of resulting bytes, excluding the trailing NUL.  Upon error, set
    errno and return NULL.  */
-extern wchar_t * asnwprintf (wchar_t *resultbuf, size_t *lengthp, const wchar_t *format, ...);
-extern wchar_t * vasnwprintf (wchar_t *resultbuf, size_t *lengthp, const wchar_t *format, va_list args);
+  extern wchar_t *asnwprintf (wchar_t * resultbuf, size_t * lengthp,
+			      const wchar_t * format, ...);
+  extern wchar_t *vasnwprintf (wchar_t * resultbuf, size_t * lengthp,
+			       const wchar_t * format, va_list args);
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif /* _VASNWPRINTF_H */
+#endif				/* _VASNWPRINTF_H */

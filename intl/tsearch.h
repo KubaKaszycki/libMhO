@@ -25,38 +25,39 @@
 #else
 
 #ifdef __cplusplus
-extern "C" {
+extern "C"
+{
 #endif
 
 /* See <http://www.opengroup.org/susv3xbd/search.h.html>,
        <http://www.opengroup.org/susv3xsh/tsearch.html>
    for details.  */
 
-typedef enum
-{ 
-  preorder,
-  postorder, 
-  endorder,
-  leaf
-}
-VISIT;
+  typedef enum
+  {
+    preorder,
+    postorder,
+    endorder,
+    leaf
+  }
+  VISIT;
 
 /* Searches an element in the tree *VROOTP that compares equal to KEY.
    If one is found, it is returned.  Otherwise, a new element equal to KEY
    is inserted in the tree and is returned.  */
-extern void * tsearch (const void *key, void **vrootp,
-                       int (*compar) (const void *, const void *));
+  extern void *tsearch (const void *key, void **vrootp,
+			int (*compar) (const void *, const void *));
 
 /* Searches an element in the tree *VROOTP that compares equal to KEY.
    If one is found, it is returned.  Otherwise, NULL is returned.  */
-extern void * tfind (const void *key, void *const *vrootp,
-                     int (*compar) (const void *, const void *));
+  extern void *tfind (const void *key, void *const *vrootp,
+		      int (*compar) (const void *, const void *));
 
 /* Searches an element in the tree *VROOTP that compares equal to KEY.
    If one is found, it is removed from the tree, and its parent node is
    returned.  Otherwise, NULL is returned.  */
-extern void * tdelete (const void *key, void **vrootp,
-                       int (*compar) (const void *, const void *));
+  extern void *tdelete (const void *key, void **vrootp,
+			int (*compar) (const void *, const void *));
 
 /* Perform a depth-first, left-to-right traversal of the tree VROOT.
    The ACTION function is called:
@@ -69,8 +70,8 @@ extern void * tdelete (const void *key, void **vrootp,
         pointer to the key,
      2. an indicator which visit of the node this is,
      3. the level of the node in the tree (0 for the root).  */
-extern void twalk (const void *vroot,
-                   void (*action) (const void *, VISIT, int));
+  extern void twalk (const void *vroot,
+		     void (*action) (const void *, VISIT, int));
 
 #ifdef __cplusplus
 }
@@ -78,4 +79,4 @@ extern void twalk (const void *vroot,
 
 #endif
 
-#endif /* _TSEARCH_H */
+#endif				/* _TSEARCH_H */

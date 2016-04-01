@@ -23,6 +23,6 @@
 #  warning This header is for internal use.
 # endif
 
-void            print_version();
+void print_version ();
 
 #endif

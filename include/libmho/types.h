@@ -40,333 +40,373 @@ typedef int32_t mho_vm_prot_t;
 /**
  * String table reference.
  */
-union mho_lc_str {
-	/**
-	 * String table offset.
-	*/
-	unsigned long   off;
-# ifndef __LP64__
-	/**
-	 * Memory pointer.
-	 */
-	char           *ptr;
-# endif
+union mho_lc_str
+{
+  /**
+   * String table offset.
+  */
+  unsigned long off;
+
+  /**
+   * Memory pointer.
+   */
+  char *ptr;
 };
 
 /**
  * Header of 32-bit Mach-O file.
  */
-struct mho_header {
-	/**
-	 * Magic number.
-	 */
-	uint32_t        magic;
+struct mho_header
+{
+  /**
+   * Magic number.
+   */
+  uint32_t magic;
 
-	/**
-	 * CPU type.
-	 */
-	mho_cpu_type_t  cputype;
+  /**
+   * CPU type.
+   */
+  mho_cpu_type_t cputype;
 
-	/**
-	 * CPU sub-type.
-	 */
-	mho_cpu_subtype_t cpusubtype;
+  /**
+   * CPU sub-type.
+   */
+  mho_cpu_subtype_t cpusubtype;
 
-	/**
-	 * File type.
-	 * @see MHO_OBJECT
-	 * @see MHO_EXECUTE
-	 * @see MHO_FVMLIB
-	 * @see MHO_CORE
-	 * @see MHO_PRELOAD
-	 * @see MHO_DYLIB
-	 * @see MHO_DYLINKER
-	 * @see MHO_BUNDLE
-	 */
-	uint32_t        filetype;
+  /**
+   * File type.
+   * @see MHO_OBJECT
+   * @see MHO_EXECUTE
+   * @see MHO_FVMLIB
+   * @see MHO_CORE
+   * @see MHO_PRELOAD
+   * @see MHO_DYLIB
+   * @see MHO_DYLINKER
+   * @see MHO_BUNDLE
+   */
+  uint32_t filetype;
 
-	/**
-	 * Number of load commands.
-	 */
-	uint32_t        ncmds;
+  /**
+   * Number of load commands.
+   */
+  uint32_t ncmds;
 
-	/**
-	 * Sumaric size of load commands.
-	 */
-	uint32_t        sizeofcmds;
+  /**
+   * Sumaric size of load commands.
+   */
+  uint32_t sizeofcmds;
 
-	/**
-	 * File flags.
-	 */
-	uint32_t        flags;
+  /**
+   * File flags.
+   */
+  uint32_t flags;
 };
 
-struct mho_header_64 {
-	/**
-	 * Magic number.
-	 */
-	uint32_t        magic;
+struct mho_header_64
+{
+  /**
+   * Magic number.
+   */
+  uint32_t magic;
 
-	/**
-	 * CPU type.
-	 */
-	mho_cpu_type_t  cputype;
+  /**
+   * CPU type.
+   */
+  mho_cpu_type_t cputype;
 
-	/**
-	 * CPU sub-type.
-	 */
-	mho_cpu_subtype_t cpusubtype;
+  /**
+   * CPU sub-type.
+   */
+  mho_cpu_subtype_t cpusubtype;
 
-	/**
-	 * File type.
-	 * @see MHO_OBJECT
-	 * @see MHO_EXECUTE
-	 * @see MHO_FVMLIB
-	 * @see MHO_CORE
-	 * @see MHO_PRELOAD
-	 * @see MHO_DYLIB
-	 * @see MHO_DYLINKER
-	 * @see MHO_BUNDLE
-	 */
-	uint32_t        filetype;
+  /**
+   * File type.
+   * @see MHO_OBJECT
+   * @see MHO_EXECUTE
+   * @see MHO_FVMLIB
+   * @see MHO_CORE
+   * @see MHO_PRELOAD
+   * @see MHO_DYLIB
+   * @see MHO_DYLINKER
+   * @see MHO_BUNDLE
+   */
+  uint32_t filetype;
 
-	/**
-	 * Number of load commands.
-	 */
-	uint32_t        ncmds;
+  /**
+   * Number of load commands.
+   */
+  uint32_t ncmds;
 
-	/**
-	 * Sumaric size of load commands.
-	 */
-	uint32_t        sizeofcmds;
+  /**
+   * Sumaric size of load commands.
+   */
+  uint32_t sizeofcmds;
 
-	/**
-	 * File flags.
-	 */
-	uint32_t        flags;
+  /**
+   * File flags.
+   */
+  uint32_t flags;
 
-	/**
-	 * Reserved, unused.
-	 */
-	uint32_t        reserved;
+  /**
+   * Reserved, unused.
+   */
+  uint32_t reserved;
 };
 
-struct mho_fat_header {
-	/**
-	 * Magic number.
-	 */
-	uint32_t        magic;
+struct mho_fat_header
+{
+  /**
+   * Magic number.
+   */
+  uint32_t magic;
 
-	/**
-	 * Fat architecture count.
-	 */
-	uint32_t        nfat_arch;
+  /**
+   * Fat architecture count.
+   */
+  uint32_t nfat_arch;
 };
 
-struct mho_fat_arch {
-	mho_cpu_type_t  cputype;
-	mho_cpu_subtype_t cpusubtype;
-	uint32_t        offset;
-	uint32_t        size;
-	uint32_t        alignment;
+struct mho_fat_arch
+{
+  mho_cpu_type_t cputype;
+  mho_cpu_subtype_t cpusubtype;
+  uint32_t offset;
+  uint32_t size;
+  uint32_t alignment;
 };
 
-struct mho_load_command {
-	uint32_t        cmd;
-	uint32_t        cmdsize;
+struct mho_load_command
+{
+  uint32_t cmd;
+  uint32_t cmdsize;
 };
 
-struct mho_segment_command {
-	uint32_t        cmd;
-	uint32_t        cmdsize;
-	char            segname[16];
-	uint32_t        vmaddr;
-	uint32_t        vmsize;
-	uint32_t        fileoff;
-	uint32_t        filesize;
-	mho_vm_prot_t   maxprot;
-	mho_vm_prot_t   initprot;
-	uint32_t        nsects;
-	uint32_t        flags;
+struct mho_segment_command
+{
+  uint32_t cmd;
+  uint32_t cmdsize;
+  char segname[16];
+  uint32_t vmaddr;
+  uint32_t vmsize;
+  uint32_t fileoff;
+  uint32_t filesize;
+  mho_vm_prot_t maxprot;
+  mho_vm_prot_t initprot;
+  uint32_t nsects;
+  uint32_t flags;
 };
 
-struct mho_segment_command_64 {
-	uint32_t        cmd;
-	uint32_t        cmdsize;
-	char            segname[16];
-	uint64_t        vmaddr;
-	uint64_t        vmsize;
-	uint32_t        fileoff;
-	uint32_t        filesize;
-	mho_vm_prot_t   maxprot;
-	mho_vm_prot_t   initprot;
-	uint32_t        nsects;
-	uint32_t        flags;
+struct mho_segment_command_64
+{
+  uint32_t cmd;
+  uint32_t cmdsize;
+  char segname[16];
+  uint64_t vmaddr;
+  uint64_t vmsize;
+  uint32_t fileoff;
+  uint32_t filesize;
+  mho_vm_prot_t maxprot;
+  mho_vm_prot_t initprot;
+  uint32_t nsects;
+  uint32_t flags;
 };
 
-struct mho_section {
-	char            sectname[16];
-	char            segname[16];
-	uint32_t        addr;
-	uint32_t        size;
-	uint32_t        offset;
-	uint32_t        align;
-	uint32_t        reloff;
-	uint32_t        nreloc;
-	uint32_t        flags;
-	uint32_t        reserved1;
-	uint32_t        reserved2;
+struct mho_section
+{
+  char sectname[16];
+  char segname[16];
+  uint32_t addr;
+  uint32_t size;
+  uint32_t offset;
+  uint32_t align;
+  uint32_t reloff;
+  uint32_t nreloc;
+  uint32_t flags;
+  uint32_t reserved1;
+  uint32_t reserved2;
 };
 
-struct mho_section_64 {
-	char            sectname[16];
-	char            segname[16];
-	uint64_t        addr;
-	uint64_t        size;
-	uint32_t        offset;
-	uint32_t        align;
-	uint32_t        reloff;
-	uint32_t        nreloc;
-	uint32_t        flags;
-	uint32_t        reserved1;
-	uint32_t        reserved2;
+struct mho_section_64
+{
+  char sectname[16];
+  char segname[16];
+  uint64_t addr;
+  uint64_t size;
+  uint32_t offset;
+  uint32_t align;
+  uint32_t reloff;
+  uint32_t nreloc;
+  uint32_t flags;
+  uint32_t reserved1;
+  uint32_t reserved2;
 };
 
-struct mho_fvmlib {
-	union mho_lc_str name;
-	uint32_t        minor_version;
-	uint32_t        header_addr;
+struct mho_fvmlib
+{
+  union mho_lc_str name;
+  uint32_t minor_version;
+  uint32_t header_addr;
 };
 
-struct mho_fvmlib_command {
-	uint32_t        cmd;
-	uint32_t        cmdsize;
-	struct mho_fvmlib fvmlib;
+struct mho_fvmlib_command
+{
+  uint32_t cmd;
+  uint32_t cmdsize;
+  struct mho_fvmlib fvmlib;
 };
 
-struct mho_dylib {
-	union mho_lc_str name;
-	uint32_t        timestamp;
-	uint32_t        current_version;
-	uint32_t        compatibility_version;
+struct mho_dylib
+{
+  union mho_lc_str name;
+  uint32_t timestamp;
+  uint32_t current_version;
+  uint32_t compatibility_version;
 };
 
-struct mho_dylib_command {
-	uint32_t        cmd;
-	uint32_t        cmdsize;
-	struct mho_dylib dylib;
+struct mho_dylib_command
+{
+  uint32_t cmd;
+  uint32_t cmdsize;
+  struct mho_dylib dylib;
 };
 
-struct mho_prebound_dylib_command {
-	uint32_t        cmd;
-	uint32_t        cmdsize;
-	union mho_lc_str name;
-	uint32_t        nmodules;
-	union mho_lc_str linked_modules;
+struct mho_prebound_dylib_command
+{
+  uint32_t cmd;
+  uint32_t cmdsize;
+  union mho_lc_str name;
+  uint32_t nmodules;
+  union mho_lc_str linked_modules;
 };
 
-struct mho_dylinker_command {
-	uint32_t        cmd;
-	uint32_t        cmdsize;
-	union mho_lc_str name;
+struct mho_dylinker_command
+{
+  uint32_t cmd;
+  uint32_t cmdsize;
+  union mho_lc_str name;
 };
 
-struct mho_thread_command {
-	uint32_t        cmd;
-	uint32_t        cmdsize;
+struct mho_thread_command
+{
+  uint32_t cmd;
+  uint32_t cmdsize;
 };
 
-struct mho_symtab_command {
-	uint32_t        cmd;
-	uint32_t        cmdsize;
-	uint32_t        symoff;
-	uint32_t        nsyms;
-	uint32_t        stroff;
-	uint32_t        strsize;
+struct mho_symtab_command
+{
+  uint32_t cmd;
+  uint32_t cmdsize;
+  uint32_t symoff;
+  uint32_t nsyms;
+  uint32_t stroff;
+  uint32_t strsize;
 };
 
-struct mho_dynsymtab_command {
-	uint32_t        cmd;
-	uint32_t        cmdsize;
-	uint32_t        ilocalsym;
-	uint32_t        nlocalsym;
-	uint32_t        iextdefsym;
-	uint32_t        nextdefsym;
-	uint32_t        iundefsym;
-	uint32_t        nundefsym;
-	uint32_t        tocoff;
-	uint32_t        ntoc;
-	uint32_t        modtaboff;
-	uint32_t        nmodtab;
-	uint32_t        extrefsymoff;
-	uint32_t        nextrefsyms;
-	uint32_t        indirectsymoff;
-	uint32_t        nindirectsyms;
-	uint32_t        extreloff;
-	uint32_t        nextrel;
-	uint32_t        locreloff;
-	uint32_t        nlocrel;
+struct mho_dynsymtab_command
+{
+  uint32_t cmd;
+  uint32_t cmdsize;
+  uint32_t ilocalsym;
+  uint32_t nlocalsym;
+  uint32_t iextdefsym;
+  uint32_t nextdefsym;
+  uint32_t iundefsym;
+  uint32_t nundefsym;
+  uint32_t tocoff;
+  uint32_t ntoc;
+  uint32_t modtaboff;
+  uint32_t nmodtab;
+  uint32_t extrefsymoff;
+  uint32_t nextrefsyms;
+  uint32_t indirectsymoff;
+  uint32_t nindirectsyms;
+  uint32_t extreloff;
+  uint32_t nextrel;
+  uint32_t locreloff;
+  uint32_t nlocrel;
 };
 
-struct mho_dylib_toc {
-	uint32_t        symbol_index;
-	uint32_t        module_index;
+struct mho_dylib_toc
+{
+  uint32_t symbol_index;
+  uint32_t module_index;
 };
 
-struct mho_dylib_module {
-	uint32_t        module_name;
-	uint32_t        iextdefsym;
-	uint32_t        nextdefsym;
-	uint32_t        irefsym;
-	uint32_t        nrefsym;
-	uint32_t        ilocalsym;
-	uint32_t        nlocalsym;
-	uint32_t        iextrel;
-	uint32_t        nextrel;
-	uint32_t        iinit;
-	uint32_t        ninit;
-	uint32_t        objc_module_info_addr;
-	uint32_t        objc_module_info_size;
+struct mho_dylib_module
+{
+  uint32_t module_name;
+  uint32_t iextdefsym;
+  uint32_t nextdefsym;
+  uint32_t irefsym;
+  uint32_t nrefsym;
+  uint32_t ilocalsym;
+  uint32_t nlocalsym;
+  uint32_t iextrel;
+  uint32_t nextrel;
+  uint32_t iinit;
+  uint32_t ninit;
+  uint32_t objc_module_info_addr;
+  uint32_t objc_module_info_size;
 };
 
-struct mho_dylib_module_64 {
-	uint32_t        module_name;
-	uint32_t        iextdefsym;
-	uint32_t        nextdefsym;
-	uint32_t        irefsym;
-	uint32_t        nrefsym;
-	uint32_t        ilocalsym;
-	uint32_t        nlocalsym;
-	uint32_t        iextrel;
-	uint32_t        nextrel;
-	uint32_t        iinit_iterm;
-	uint32_t        ninit_iterm;
-	uint32_t        objc_module_info_size;
-	uint64_t        objc_module_info_addr;
+struct mho_dylib_module_64
+{
+  uint32_t module_name;
+  uint32_t iextdefsym;
+  uint32_t nextdefsym;
+  uint32_t irefsym;
+  uint32_t nrefsym;
+  uint32_t ilocalsym;
+  uint32_t nlocalsym;
+  uint32_t iextrel;
+  uint32_t nextrel;
+  uint32_t iinit_iterm;
+  uint32_t ninit_iterm;
+  uint32_t objc_module_info_size;
+  uint64_t objc_module_info_addr;
 };
 
-struct mho_dylib_reference {
-	unsigned        isym:24;
-	uint8_t         flags;
+struct mho_dylib_reference
+{
+  unsigned isym:24;
+  uint8_t flags;
 };
 
-struct mho_symseg_command {
-	uint32_t        cmd;
-	uint32_t        cmdsize;
-	uint32_t        offset;
-	uint32_t        size;
+struct mho_symseg_command
+{
+  uint32_t cmd;
+  uint32_t cmdsize;
+  uint32_t offset;
+  uint32_t size;
 };
 
-struct mho_ident_command {
-	uint32_t        cmd;
-	uint32_t        cmdsize;
+struct mho_ident_command
+{
+  uint32_t cmd;
+  uint32_t cmdsize;
 };
 
-struct mho_fvmfile_command {
-	uint32_t        cmd;
-	uint32_t        cmdsize;
-	union mho_lc_str name;
-	uint32_t        header_addr;
+struct mho_fvmfile_command
+{
+  uint32_t cmd;
+  uint32_t cmdsize;
+  union mho_lc_str name;
+  uint32_t header_addr;
 };
+
+struct _mho_dyld_imagelist_entry
+{
+  void *base;			// if NULL, then end of list
+};
+
+struct mho_dyld_context
+{
+  struct _mho_dyld_imagelist_entry *image_list;
+  size_t image_list_size;
+  void (*entry_point) (int argc, char **argv);
+  int error;			// Zero by default
+};
+
+typedef struct mho_dyld_context *mho_dyld_context_t;
 
 #endif

@@ -65,6 +65,6 @@
  * @param filetype file type
  * @returns description, no need to be freed
  */
-const char     *mho_ft2s(int filetype);
+const char *mho_ft2s (int filetype);
 
 #endif

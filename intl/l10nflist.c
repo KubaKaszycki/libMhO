@@ -98,9 +98,10 @@ argz_count__ (const char *argz, size_t len)
     }
   return count;
 }
+
 # undef __argz_count
 # define __argz_count(argz, len) argz_count__ (argz, len)
-#endif	/* !_LIBC && !HAVE_ARGZ_COUNT */
+#endif /* !_LIBC && !HAVE_ARGZ_COUNT */
 
 #if defined HAVE_ARGZ_STRINGIFY
 # undef __argz_stringify
@@ -120,9 +121,10 @@ argz_stringify__ (char *argz, size_t len, int sep)
 	*argz++ = sep;
     }
 }
+
 # undef __argz_stringify
 # define __argz_stringify(argz, len, sep) argz_stringify__ (argz, len, sep)
-#endif	/* !_LIBC && !HAVE_ARGZ_STRINGIFY */
+#endif /* !_LIBC && !HAVE_ARGZ_STRINGIFY */
 
 #ifdef _LIBC
 #elif defined HAVE_ARGZ_NEXT
@@ -135,19 +137,19 @@ argz_next__ (char *argz, size_t argz_len, const char *entry)
   if (entry)
     {
       if (entry < argz + argz_len)
-        entry = strchr (entry, '\0') + 1;
+	entry = strchr (entry, '\0') + 1;
 
       return entry >= argz + argz_len ? NULL : (char *) entry;
     }
+  else if (argz_len > 0)
+    return argz;
   else
-    if (argz_len > 0)
-      return argz;
-    else
-      return 0;
+    return 0;
 }
+
 # undef __argz_next
 # define __argz_next(argz, len, entry) argz_next__ (argz, len, entry)
-#endif	/* !_LIBC && !HAVE_ARGZ_NEXT */
+#endif /* !_LIBC && !HAVE_ARGZ_NEXT */
 
 /* Return number of bits set in X.  */
 #ifndef ARCH_POP
@@ -163,8 +165,8 @@ pop (int x)
   return x;
 }
 #endif
-
 
+
 struct loaded_l10nfile *
 _nl_make_l10nflist (struct loaded_l10nfile **l10nfile_list,
 		    const char *dirlist, size_t dirlist_len,

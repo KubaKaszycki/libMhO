@@ -54,8 +54,7 @@ static struct loaded_l10nfile *_nl_loaded_domains;
 /* Return a data structure describing the message catalog described by
    the DOMAINNAME and CATEGORY parameters with respect to the currently
    established bindings.  */
-struct loaded_l10nfile *
-internal_function
+struct loaded_l10nfile *internal_function
 _nl_find_domain (const char *dirname, char *locale,
 		 const char *domainname, struct binding *domainbinding)
 {
@@ -70,16 +69,16 @@ _nl_find_domain (const char *dirname, char *locale,
 
   /* LOCALE can consist of up to four recognized parts for the XPG syntax:
 
-		language[_territory][.codeset][@modifier]
+     language[_territory][.codeset][@modifier]
 
      Beside the first part all of them are allowed to be missing.  If
      the full specified locale is not found, the less specific one are
      looked for.  The various parts will be stripped off according to
      the following order:
-		(1) codeset
-		(2) normalized codeset
-		(3) territory
-		(4) modifier
+     (1) codeset
+     (2) normalized codeset
+     (3) territory
+     (4) modifier
    */
 
   /* We need to protect modifying the _NL_LOADED_DOMAINS data.  */
@@ -119,8 +118,8 @@ _nl_find_domain (const char *dirname, char *locale,
     }
 
   /* See whether the locale value is an alias.  If yes its value
-     *overwrites* the alias name.  No test for the original value is
-     done.  */
+   *overwrites* the alias name.  No test for the original value is
+   done.  */
   alias_value = _nl_expand_alias (locale);
   if (alias_value != NULL)
     {
@@ -152,9 +151,9 @@ _nl_find_domain (const char *dirname, char *locale,
   /* Create all possible locale entries which might be interested in
      generalization.  */
   retval = _nl_make_l10nflist (&_nl_loaded_domains, dirname,
-			       strlen (dirname) + 1, mask, language, territory,
-			       codeset, normalized_codeset, modifier,
-			       domainname, 1);
+			       strlen (dirname) + 1, mask, language,
+			       territory, codeset, normalized_codeset,
+			       modifier, domainname, 1);
 
   gl_rwlock_unlock (lock);
 
